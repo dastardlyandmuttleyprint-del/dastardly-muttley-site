@@ -1,0 +1,81 @@
+# Vercel
+.vercel
+
+# macOS
+.DS_Store
+
+# Raw screen recordings / screenshots in project root (not site assets)
+*.mov
+Screenshot *.png
+Screen Recording *.mov
+
+# Original source media replaced by optimised versions
+media/fresh-aerial-1.png
+media/fresh-aerial-2.png
+media/fresh-aerial-3.png
+media/fresh-exterior.png
+media/fresh-interior.png
+media/fresh-site.png
+media/hero bigger.png
+media/ChatGPT Image Jun 17, 2025 at 10_53_51 PM.png
+media/Manifest/menu-counter.png
+media/Manifest/web-hero.png
+media/Manifest/web-menu.png
+media/Manifest/web-science.png
+media/Old Olive Kart/screen-1.png
+media/Old Olive Kart/screen-2.png
+media/Olive Lart/olive.mov
+media/The Enthusiasts Podcast/steve angle 2.mov
+media/Old Olive Kart/site-video-2.mov
+
+# Unused media subfolders
+media/Fresh/
+media/Mutt Clothing/
+media/Flipside/
+media/Mythora/
+media/james music/
+media/Sandro Ford Wrong Glass/
+media/Steps/
+media/Manifest/Brazil/
+
+# Old Wix exports
+media/92fe2c_*
+media/b6ec04f6*
+
+# Other unreferenced files
+media/2.jpg.avif
+media/DSC_0696.jpg
+media/FLIP.png
+media/IMG_5672.jpg
+media/Screenshot*
+media/flip-mark-2.png
+media/hero.png
+media/james 1.jpg
+media/jm-mark-dark.jpg
+media/jm-poster-1.png
+media/jm-poster-2.avif
+media/logo.avif
+media/olive-logo.png
+media/olive-site-2.png
+media/olive-site.png
+media/olive2.png
+media/steps.png
+
+# Unreferenced large files & macOS-duplicate copies (" 2.ext")
+media/Untitled*.zip
+media/**/Untitled.mp4
+media/**/* 2.PNG
+media/**/* 2.MP4
+media/**/* 2.JPG
+media/**/* 2.jpg
+media/**/* 2.png
+media/Manifest/IMG_*
+media/Manifest/a2d12332-*
+media/Manifest/poster-4.jpg
+media/Manifest/[0-9a-f][0-9a-f]*-[0-9a-f]*.JPG
+media/Manifest/[0-9a-f][0-9a-f]*-[0-9a-f]*.jpg
+media/Olive Lart/olive2.png
+media/Olive Lart/Untitled.png.avif
+media/The Enthusiasts Podcast/92fe2c_*
+media/The Enthusiasts Podcast/IMG_*
+media/The Enthusiasts Podcast/top*

@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="/bunkhouse/">
+<title>The Bunkhouse — Swansea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Bowlby+One+SC&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --paper: #f3ecdb;
+    --ink: #0e0e0e;
+    --yellow: #ffd60a;
+    --hot: #ff2d55;
+    --lime: #c4ff3d;
+    --cyan: #00d4ff;
+    --accent: var(--hot);
+    --grain-op: 0.18;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  /* Newsprint paper texture */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    opacity: var(--grain-op);
+    mix-blend-mode: multiply;
+  }
+  body.grit-clean { --grain-op: 0.04; }
+  body.grit-medium { --grain-op: 0.18; }
+  body.grit-chaos { --grain-op: 0.32; }
+
+  .display { font-family: 'Anton', 'Archivo Black', sans-serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1; text-transform: uppercase; }
+  .stencil { font-family: 'Bowlby One SC', 'Anton', sans-serif; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* === MARQUEE === */
+  .marquee { display: flex; overflow: hidden; white-space: nowrap; }
+  .marquee__inner { display: inline-flex; gap: 2.5rem; animation: scroll 40s linear infinite; padding-right: 2.5rem; }
+  .marquee--fast .marquee__inner { animation-duration: 22s; }
+  .marquee--reverse .marquee__inner { animation-direction: reverse; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee:hover .marquee__inner { animation-play-state: paused; }
+
+  /* duotone treatments */
+  .duotone-yellow { filter: grayscale(1) contrast(1.2); position: relative; }
+  .duotone-yellow img { mix-blend-mode: multiply; filter: contrast(1.15) brightness(1.1); }
+  .photo-halftone img {
+    filter: grayscale(1) contrast(1.6);
+  }
+  .photo-halftone {
+    background: var(--yellow);
+    position: relative;
+  }
+  .photo-halftone::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.25) 36%, transparent 37%);
+    background-size: 4px 4px;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0;
+  }
+
+  /* photo treatment toggle classes (set on body) */
+  body.treat-raw img.photo, body.treat-raw .photo > img { filter: grayscale(1) contrast(1.1); }
+  body.treat-duo .photo { background: var(--accent); }
+  body.treat-duo .photo > img { mix-blend-mode: multiply; filter: grayscale(1) contrast(1.4) brightness(1.05); }
+  body.treat-halftone .photo { background: var(--yellow); position: relative; overflow: hidden; }
+  body.treat-halftone .photo > img { mix-blend-mode: multiply; filter: grayscale(1) contrast(1.7) brightness(1.05); }
+  body.treat-halftone .photo::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, #0e0e0e 0.9px, transparent 1.2px);
+    background-size: 5px 5px;
+    mix-blend-mode: multiply;
+    opacity: .4;
+    pointer-events: none;
+  }
+
+  .photo { overflow: hidden; }
+  .photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* sticker and tape effects */
+  .sticker {
+    position: absolute;
+    background: var(--yellow);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    padding: .5rem .75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    box-shadow: 4px 4px 0 var(--ink);
+    user-select: none;
+    cursor: grab;
+    transition: transform 0.15s;
+    z-index: 5;
+  }
+  .sticker:active { cursor: grabbing; }
+  .sticker:hover { transform: rotate(-3deg) scale(1.05); }
+
+  .tape {
+    position: absolute;
+    background: rgba(255, 214, 10, 0.6);
+    border-left: 1px dashed rgba(0,0,0,.2);
+    border-right: 1px dashed rgba(0,0,0,.2);
+    width: 90px; height: 22px;
+    transform: rotate(-3deg);
+    pointer-events: none;
+    box-shadow: 0 1px 0 rgba(0,0,0,.1);
+  }
+
+  /* buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: .9rem 1.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: 13px;
+    background: var(--ink);
+    color: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--accent); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--accent); }
+  .btn--yellow { background: var(--yellow); color: var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+  .btn--yellow:hover { box-shadow: 7px 7px 0 var(--ink); }
+  .btn--ghost { background: transparent; color: var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+  .btn--ghost:hover { box-shadow: 7px 7px 0 var(--ink); }
+
+  /* Diagonal ribbon */
+  .ribbon {
+    background: var(--ink); color: var(--paper);
+    padding: .5rem 0;
+    transform: rotate(-1.5deg);
+    margin: 1rem -2rem;
+    overflow: hidden;
+  }
+  .ribbon--accent { background: var(--accent); color: var(--ink); }
+  .ribbon--yellow { background: var(--yellow); color: var(--ink); }
+
+  /* hero */
+  .hero {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 640px;
+    display: flex; flex-direction: column;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .hero__photo { position: absolute; inset: 0; overflow: hidden; }
+  .hero__photo picture { display: block; width: 100%; height: 100%; }
+  .hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: .55; filter: contrast(1.3) grayscale(1); }
+  .hero__photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, transparent 0%, rgba(14,14,14,.7) 70%);
+  }
+  .hero__title {
+    font-size: clamp(72px, 13vw, 240px);
+    color: var(--paper);
+    margin: 0;
+  }
+  .hero__title .accent { color: var(--accent); -webkit-text-stroke: 0; }
+  .hero__subtitle {
+    padding: .8rem 0;
+    margin-top: 1.2rem;
+  }
+
+  /* gig list rows */
+  .gig {
+    display: grid;
+    grid-template-columns: 110px 1.5fr 1fr 200px 120px;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.4rem 2rem;
+    border-bottom: 1.5px solid var(--ink);
+    cursor: pointer;
+    transition: background .15s;
+    position: relative;
+  }
+  .gig:hover { background: var(--ink); color: var(--paper); }
+  .gig:hover .gig__title { color: var(--yellow); }
+  .gig:hover .gig__cta { background: var(--yellow); color: var(--ink); }
+  .gig:hover::before {
+    content: "▶"; position: absolute; left: -1.5rem; color: var(--accent);
+  }
+  .gig__date {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .gig__date .day { font-size: 38px; display: block; }
+  .gig__title { font-family: 'Anton', sans-serif; font-size: clamp(28px, 3vw, 44px); text-transform: uppercase; line-height: 1; }
+  .gig__support { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: .7; text-transform: uppercase; }
+  .gig__cta {
+    padding: .5rem .9rem;
+    background: var(--ink); color: var(--paper);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    border: 2px solid var(--ink);
+  }
+  .gig.sold-out { opacity: .55; }
+  .gig.sold-out .gig__cta { background: transparent; color: var(--ink); }
+
+  /* tag pill */
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    padding: 3px 8px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .tag--yellow { background: var(--yellow); }
+  .tag--hot { background: var(--accent); color: var(--ink); }
+  .tag--ink { background: var(--ink); color: var(--paper); }
+
+  /* nav */
+  .nav {
+    position: sticky; top: 0;
+    z-index: 100;
+    background: var(--ink);
+    border-bottom: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .8rem 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .nav__brand { display: flex; align-items: center; gap: .6rem; font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: .02em; }
+  .nav__brand .dot { width: 12px; height: 12px; background: var(--accent); border: 2px solid var(--paper); border-radius: 50%; }
+  .nav__links { display: flex; gap: 1.5rem; }
+  .nav__links a { color: var(--paper); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav__links a:hover { border-bottom-color: var(--accent); }
+
+  /* section frame */
+  section { position: relative; }
+  .section-label {
+    position: absolute;
+    top: 1.2rem; left: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 10px;
+    z-index: 2;
+  }
+
+  /* zine grid card */
+  .zine-card {
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .zine-card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--ink); }
+  .zine-card--filled { background: var(--ink); color: var(--paper); }
+  .zine-card--yellow { background: var(--yellow); color: var(--ink); }
+  .zine-card--accent { background: var(--accent); color: var(--ink); }
+
+  /* big stamp */
+  .stamp {
+    display: inline-block;
+    border: 3px double var(--ink);
+    padding: .5rem 1rem;
+    transform: rotate(-4deg);
+    font-family: 'Bowlby One SC', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    background: var(--paper);
+  }
+
+  /* underline mark */
+  .scrawl {
+    position: relative; display: inline-block;
+  }
+  .scrawl::after {
+    content: ""; position: absolute; left: -4px; right: -4px; bottom: -4px;
+    height: 8px;
+    background: var(--accent);
+    z-index: -1;
+    transform: skewY(-1deg);
+  }
+
+  /* cursor mascot */
+  .cursor-mascot {
+    position: fixed;
+    width: 64px; height: 64px;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform .25s ease;
+    will-change: transform, left, top;
+  }
+  body.no-mascot .cursor-mascot { display: none; }
+  @media (hover: none), (pointer: coarse) { .cursor-mascot { display: none !important; } }
+
+  /* floating sticker animation */
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+  }
+  .wobble { animation: wobble 4s ease-in-out infinite; }
+
+  /* big footer */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 2rem;
+  }
+  footer a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+  footer a:hover { color: var(--yellow); }
+
+  /* utility */
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .nav-burger { display: none; }
+  @media (max-width: 900px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .gig { grid-template-columns: 80px 1fr; gap: 1rem; }
+    .gig__support, .gig__cta { display: none; }
+    .nav__links { display: none; }
+    .nav-cta { display: none; }
+    .nav-burger { display: flex; }
+    .nav { padding: .6rem 1rem; }
+    .container { padding: 0 1rem; }
+    .hero-stamp { display: none; }
+    .hero-address { display: none; }
+    section { overflow: hidden; }
+    .pullquote { font-size: clamp(28px, 6.5vw, 80px); line-height: 1.35; }
+    .linklist a { font-size: clamp(22px, 5vw, 40px); }
+    .about-photo { box-shadow: 4px 4px 0 var(--accent) !important; }
+    .about-year-card { left: 0 !important; bottom: -30px !important; transform: rotate(-2deg) !important; max-width: 180px !important; }
+  }
+
+  /* poster wall */
+  .poster {
+    aspect-ratio: 3/4;
+    border: 2px solid var(--ink);
+    padding: 1rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  .poster:nth-child(odd) { transform: rotate(-1.2deg); }
+  .poster:nth-child(even) { transform: rotate(1.2deg); }
+  .poster:hover { transform: rotate(0) scale(1.04); z-index: 4; }
+  .poster--ink { background: var(--ink); color: var(--paper); }
+  .poster--yellow { background: var(--yellow); color: var(--ink); }
+  .poster--accent { background: var(--accent); color: var(--ink); }
+  .poster__title { font-family: 'Anton', sans-serif; font-size: clamp(28px, 3vw, 48px); text-transform: uppercase; line-height: .9; }
+  .poster__date { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; }
+
+  /* divider strip */
+  .divider {
+    background: var(--ink); color: var(--paper);
+    padding: .4rem 0;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(28px, 4vw, 64px);
+    line-height: 1;
+    overflow: hidden;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .divider--accent { background: var(--accent); color: var(--ink); }
+  .divider--yellow { background: var(--yellow); color: var(--ink); }
+  .divider--paper { background: var(--paper); color: var(--ink); }
+
+  /* underline ascii type */
+  .ascii-rule {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink);
+    opacity: .6;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    letter-spacing: 1px;
+  }
+
+  /* venue spec table */
+  .spec {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .spec td { border-bottom: 1px dashed rgba(255,255,255,.25); padding: .6rem 0; }
+  .spec td:first-child { opacity: .6; text-transform: uppercase; letter-spacing: .1em; font-size: 11px; width: 45%; }
+  .spec td:last-child { font-weight: 700; }
+
+  /* about pull quote */
+  .pullquote {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(40px, 6vw, 100px);
+    line-height: 1.15;
+    letter-spacing: -.01em;
+  }
+
+  /* link list */
+  .linklist a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 0;
+    border-bottom: 1.5px solid currentColor;
+    color: inherit; text-decoration: none;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 3.5vw, 56px);
+    text-transform: uppercase;
+    line-height: 1;
+    transition: padding .15s, color .15s;
+  }
+  .linklist a:hover { padding-left: 1rem; color: var(--accent); }
+  .linklist a span { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: .6; }
+
+  /* tweaks panel z above grain */
+  .tweaks-shell, .tweaks-panel { z-index: 10000 !important; }
+
+  /* arrow svg */
+  .arrow { display: inline-block; transition: transform .15s; }
+  .gig:hover .arrow, a:hover .arrow { transform: translateX(8px); }
+</style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="grit-medium treat-halftone">
+
+<!-- Cursor mascot -->
+<svg class="cursor-mascot" viewBox="0 0 80 80" id="cursor-mascot" aria-hidden="true">
+  <g>
+    <rect x="20" y="14" width="40" height="40" fill="#ffd60a" stroke="#0e0e0e" stroke-width="3"/>
+    <circle cx="40" cy="40" r="9" fill="#0e0e0e"/>
+    <circle cx="40" cy="40" r="4" fill="#ffd60a"/>
+    <circle cx="30" cy="22" r="2" fill="#0e0e0e"/>
+    <circle cx="50" cy="22" r="2" fill="#0e0e0e"/>
+    <path d="M30 30 Q40 36 50 30" stroke="#0e0e0e" stroke-width="2" fill="none"/>
+    <line x1="20" y1="54" x2="14" y2="68" stroke="#0e0e0e" stroke-width="3"/>
+    <line x1="60" y1="54" x2="66" y2="68" stroke="#0e0e0e" stroke-width="3"/>
+    <circle cx="14" cy="70" r="4" fill="#ffd60a" stroke="#0e0e0e" stroke-width="2"/>
+    <circle cx="66" cy="70" r="4" fill="#ffd60a" stroke="#0e0e0e" stroke-width="2"/>
+  </g>
+</svg>
+
+<div id="root"></div>
+
+<script type="text/babel">
+// tweaks-panel.jsx — inlined
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+  .twk-field{appearance:none;width:100%;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+  .twk-num{display:flex;align-items:center;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+`;
+
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+  }, []);
+  return [values, setTweak];
+}
+
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">{children}</div>
+      </div>
+    </>
+  );
+}
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+function TweakColor({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <input type="color" className="twk-swatch" value={value}
+             onChange={(e) => onChange(e.target.value)} />
+    </div>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+</script>
+
+<script type="text/babel">
+// app.jsx — inlined
+const { useState, useEffect, useRef } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "hot",
+  "treatment": "halftone",
+  "grit": "medium",
+  "hero": "photo",
+  "mascot": true
+}/*EDITMODE-END*/;
+
+const ACCENTS = {
+  hot: { val: '#ff2d55', label: 'HOT PINK' },
+  lime: { val: '#c4ff3d', label: 'LIME' },
+  cyan: { val: '#00d4ff', label: 'CYAN' },
+  yellow: { val: '#ffd60a', label: 'ALL YELLOW' }
+};
+
+const SHOWS = [
+  { day: 'FRI', date: '08', month: 'MAY', year: '26', band: 'PANIC SHACK', sup: 'w/ Jaded + DJ set til late', genre: 'PUNK / POST-PUNK', stage: 'KINGSWAY MAIN', price: '£12 ADV', status: 'on' },
+  { day: 'SAT', date: '09', month: 'MAY', year: '26', band: 'BUZZARD BUZZARD BUZZARD', sup: 'w/ Adwaith + Melin Melyn', genre: 'WELSH ROCK', stage: 'KINGSWAY MAIN', price: '£15 ADV', status: 'soldout' },
+  { day: 'WED', date: '13', month: 'MAY', year: '26', band: 'OPEN MIC // PARK ST', sup: 'free entry, all welcome', genre: 'OPEN MIC', stage: 'PARK ST BAR', price: 'FREE', status: 'on' },
+  { day: 'THU', date: '14', month: 'MAY', year: '26', band: 'GRANDMAS HOUSE', sup: 'w/ Slate + Lemondaze', genre: 'NOISE-POP', stage: 'KINGSWAY MAIN', price: '£10 ADV', status: 'on' },
+  { day: 'FRI', date: '15', month: 'MAY', year: '26', band: 'CHROMA', sup: 'EP launch + supports tba', genre: 'ALT / SHOEGAZE', stage: 'KINGSWAY MAIN', price: '£8 ADV', status: 'on' },
+  { day: 'SAT', date: '16', month: 'MAY', year: '26', band: 'LOVELY TOWN PRESENTS:', sup: 'four bands, one cover, all night', genre: 'SHOWCASE', stage: 'BOTH STAGES', price: '£6 ADV', status: 'lowstock' },
+  { day: 'THU', date: '21', month: 'MAY', year: '26', band: 'SLATE', sup: 'w/ Sister Wives + Hawys', genre: 'POST-HARDCORE', stage: 'KINGSWAY MAIN', price: '£9 ADV', status: 'on' },
+  { day: 'FRI', date: '22', month: 'MAY', year: '26', band: 'MR MOTIVATOR', sup: 'plus DJs Sticky Carpet til 3', genre: 'PARTY / DJ', stage: 'KINGSWAY MAIN', price: '£12 ADV', status: 'on' },
+  { day: 'SAT', date: '23', month: 'MAY', year: '26', band: 'ADWAITH', sup: 'homecoming show, w/ supports tba', genre: 'WELSH INDIE', stage: 'KINGSWAY MAIN', price: '£14 ADV', status: 'lowstock' },
+  { day: 'SUN', date: '24', month: 'MAY', year: '26', band: 'JAZZ BRUNCH SESSIONS', sup: 'free, table service, 1pm-4pm', genre: 'JAZZ', stage: 'PARK ST BAR', price: 'FREE', status: 'on' },
+];
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [['#whatson',"WHAT'S ON"],['#about','ABOUT'],['#stages','STAGES'],['#what-we-do','WHAT WE DO'],['#hire','HIRE'],['#find','FIND US']];
+  return (
+    <>
+      <nav className="nav">
+        <div className="nav__brand">
+          <img src="source/logo.avif" alt="Bunkhouse" style={{height:44, width:'auto', display:'block'}}/>
+        </div>
+        <div className="nav__links">
+          {links.map(([h,l]) => <a key={h} href={h}>{l}</a>)}
+        </div>
+        <div style={{display:'flex', alignItems:'center', gap:'1rem'}}>
+          <a className="btn btn--yellow nav-cta" href="#whatson" style={{padding:'.55rem 1rem', boxShadow:'3px 3px 0 #0e0e0e'}}>
+            BOOK TICKETS <span className="arrow">→</span>
+          </a>
+          <button className="nav-burger" onClick={() => setOpen(o => !o)} aria-label="Menu"
+            style={{flexDirection:'column', gap:5, background:'none', border:'none', cursor:'pointer', padding:4}}>
+            <span style={{display:'block', width:24, height:2, background:'var(--paper)', transition:'transform .2s, opacity .2s',
+              transform: open ? 'translateY(7px) rotate(45deg)' : 'none'}}/>
+            <span style={{display:'block', width:24, height:2, background:'var(--paper)', transition:'opacity .2s',
+              opacity: open ? 0 : 1}}/>
+            <span style={{display:'block', width:24, height:2, background:'var(--paper)', transition:'transform .2s, opacity .2s',
+              transform: open ? 'translateY(-7px) rotate(-45deg)' : 'none'}}/>
+          </button>
+        </div>
+      </nav>
+      {open && (
+        <div style={{position:'fixed', inset:0, top:0, zIndex:99, background:'var(--ink)', display:'flex', flexDirection:'column', justifyContent:'center', padding:'2rem'}}>
+          <div style={{marginBottom:'3rem'}}>
+            <img src="source/logo.avif" alt="Bunkhouse" style={{height:36, width:'auto', display:'block'}}/>
+          </div>
+          {links.map(([h,l]) => (
+            <a key={h} href={h} onClick={() => setOpen(false)}
+              style={{fontFamily:'Anton, sans-serif', fontSize:'clamp(36px,8vw,72px)', textTransform:'uppercase', color:'var(--paper)',
+                textDecoration:'none', borderBottom:'1px solid rgba(255,255,255,.1)', padding:'.6rem 0', lineHeight:1.1}}>
+              {l}
+            </a>
+          ))}
+          <a className="btn btn--yellow" href="#whatson" onClick={() => setOpen(false)}
+            style={{marginTop:'2rem', alignSelf:'flex-start'}}>
+            BOOK TICKETS →
+          </a>
+        </div>
+      )}
+    </>
+  );
+}
+
+function HeroMarquee() {
+  const items = ['🔊 NEXT UP — PANIC SHACK / FRI 8 MAY', '★ TICKETS ON SALE NOW', 'GRASSROOTS · INDEPENDENT · LOUD', '#OWNOURVENUES — FIRST IN WALES', '★', '240 SHOWS A YEAR', '★', 'TWO STAGES · ONE STREET'];
+  return (
+    <div className="marquee marquee--fast" style={{background:'var(--accent)', color:'var(--ink)', borderTop:'2px solid var(--ink)', borderBottom:'2px solid var(--ink)', padding:'.6rem 0', fontFamily:'Anton', fontSize:'clamp(20px,2.4vw,38px)', textTransform:'uppercase', letterSpacing:'.01em'}}>
+      <div className="marquee__inner">
+        {[...items, ...items, ...items].map((t,i) => <span key={i}>{t}</span>)}
+      </div>
+    </div>
+  );
+}
+
+function Hero({ variant }) {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i+1) % 4), 3500);
+    return () => clearInterval(t);
+  }, []);
+  const headlines = ['LOUD', 'LOCAL', 'LIVE', 'YOURS'];
+
+  return (
+    <header className="hero">
+      <div className="hero__photo">
+        <picture>
+          <source media="(max-width: 900px)" srcSet="source/img-07.jpg"/>
+          <img src="source/img-08.jpg" alt=""/>
+        </picture>
+      </div>
+
+      <div className="hero-stamp" style={{position:'absolute', top:'6rem', right:'2rem', zIndex:3, transform:'rotate(7deg)'}}>
+        <div className="stamp" style={{background:'var(--accent)', color:'var(--ink)', fontSize:13, padding:'.6rem 1rem'}}>
+          PROTECTED CULTURAL STATUS<br/>
+          <span style={{fontSize:10, fontFamily:'JetBrains Mono'}}>FIRST IN WALES · 2024</span>
+        </div>
+      </div>
+
+      <div style={{position:'relative', zIndex:2, padding:'0 2rem clamp(4rem,10vh,8rem)', flex:1, display:'flex', flexDirection:'column', justifyContent:'flex-end', minHeight:0}}>
+        <div className="mono hero-address" style={{fontSize:12, letterSpacing:'.2em', marginBottom:'1.5rem', color:'var(--yellow)'}}>
+          ⚡ THE BUNKHOUSE / KINGSWAY × PARK ST / SA1 5JT
+        </div>
+        <h1 className="hero__title display">
+          MUSIC<br/>
+          THAT'S<br/>
+          <span style={{color:'var(--accent)'}}>{headlines[idx]}</span><sup style={{fontSize:'.28em', color:'var(--yellow)', marginLeft:'0.15em', verticalAlign:'super', lineHeight:0}}>※</sup>
+        </h1>
+        <div style={{display:'flex', gap:'1rem', marginTop:'2rem', flexWrap:'wrap'}}>
+          <a className="btn btn--yellow" href="#whatson">SEE WHAT'S ON <span className="arrow">→</span></a>
+          <a className="btn" style={{background:'transparent', color:'var(--paper)', borderColor:'var(--paper)', boxShadow:'5px 5px 0 var(--accent)'}} href="#about">ABOUT US</a>
+        </div>
+      </div>
+
+    </header>
+  );
+}
+
+function WhatsOn() {
+  const [filter, setFilter] = useState('all');
+  const filters = [['all','ALL SHOWS'], ['kingsway','KINGSWAY MAIN'], ['park','PARK ST BAR'], ['free','FREE ENTRY']];
+  const filtered = SHOWS.filter(s => {
+    if (filter === 'all') return true;
+    if (filter === 'kingsway') return s.stage.includes('KINGSWAY') || s.stage === 'BOTH STAGES';
+    if (filter === 'park') return s.stage.includes('PARK') || s.stage === 'BOTH STAGES';
+    if (filter === 'free') return s.price === 'FREE';
+    return true;
+  });
+  return (
+    <section id="whatson" style={{paddingTop:'5rem', position:'relative'}}>
+      <div className="section-label">/ 01 — WHAT'S ON</div>
+      <div className="container">
+        <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem', marginBottom:'2rem'}}>
+          <h2 className="display" style={{fontSize:'clamp(64px,11vw,180px)', margin:0}}>
+            WHAT'S<br/>
+            <span style={{color:'var(--accent)'}}>ON.</span>
+            <span className="mono" style={{fontSize:14, marginLeft:'1rem', verticalAlign:'top', opacity:.6}}>// MAY '26</span>
+          </h2>
+          <div style={{display:'flex', gap:'.5rem', flexWrap:'wrap'}}>
+            {filters.map(([k,l]) => (
+              <button key={k} onClick={() => setFilter(k)} className="mono"
+                style={{
+                  padding:'.55rem .9rem',
+                  fontSize:11, fontWeight:700,
+                  border:'2px solid var(--ink)',
+                  background: filter===k ? 'var(--ink)' : 'transparent',
+                  color: filter===k ? 'var(--paper)' : 'var(--ink)',
+                  cursor:'pointer', textTransform:'uppercase', letterSpacing:'.05em'
+                }}>
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="ascii-rule">{'─•─'.repeat(80)}</div>
+
+        <div style={{borderTop:'2px solid var(--ink)'}}>
+          {filtered.map((s, i) => (
+            <div key={i} className={'gig' + (s.status==='soldout' ? ' sold-out' : '')}>
+              <div className="gig__date">
+                {s.day}<span className="day display">{s.date}</span>{s.month} '{s.year}
+              </div>
+              <div>
+                <div className="gig__title">{s.band}</div>
+                <div className="gig__support">{s.sup}</div>
+              </div>
+              <div style={{display:'flex', gap:'.4rem', flexWrap:'wrap'}}>
+                <span className="tag">{s.genre}</span>
+                <span className="tag tag--yellow">{s.stage}</span>
+                {s.status==='lowstock' && <span className="tag tag--hot">LOW STOCK</span>}
+                {s.status==='soldout' && <span className="tag tag--ink">SOLD OUT</span>}
+              </div>
+              <div className="mono" style={{fontSize:13, fontWeight:700}}>
+                {s.price}<br/>
+                <span style={{fontSize:10, opacity:.6}}>+ booking fee</span>
+              </div>
+              <div className="gig__cta">
+                {s.status==='soldout' ? 'WAITLIST →' : 'TICKETS →'}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{marginTop:'3rem', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'1rem'}}>
+          <p className="mono" style={{margin:0, fontSize:12, opacity:.7}}>
+            // SHOWING {filtered.length} OF {SHOWS.length} UPCOMING SHOWS — MORE ANNOUNCED EVERY WEEK
+          </p>
+          <a className="btn" href="#">FULL LISTING ON GIGANTIC <span className="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Divider({ words, accent }) {
+  const cls = accent === 'accent' ? 'divider divider--accent' : accent === 'yellow' ? 'divider divider--yellow' : 'divider';
+  return (
+    <div className={cls + ' marquee'}>
+      <div className="marquee__inner" style={{padding:'.4rem 0'}}>
+        {[...words, ...words, ...words].map((w,i) => (
+          <span key={i} style={{display:'inline-flex', alignItems:'center', gap:'2rem'}}>
+            {w} <span style={{fontSize:'.6em'}}>★</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" style={{padding:'6rem 0', background:'var(--paper)', position:'relative'}}>
+      <div className="section-label">/ 02 — ABOUT</div>
+      <div className="container">
+        <div className="grid-2" style={{gap:'4rem', alignItems:'start'}}>
+          <div>
+            <p className="mono" style={{fontSize:12, letterSpacing:'.2em', marginBottom:'1rem'}}>// WHO WE ARE</p>
+            <h2 className="pullquote">
+              We don't book shows. <br/>
+              We <span style={{background:'var(--ink)', color:'var(--accent)', padding:'0 .2em'}}>build them</span> with the people who play them.
+            </h2>
+            <p style={{fontSize:'clamp(15px,1.2vw,18px)', lineHeight:1.55, marginTop:'2rem', maxWidth:560}}>
+              The Bunkhouse opened in 2017 as a passion project, two rooms above a bar in the middle of Swansea. Eight years on we're an independent, multi-award-winning music venue and creative hub. <strong>240 shows a year</strong> in the venue alone, plus tours, festivals, education and projects across South Wales and beyond.
+            </p>
+            <p style={{fontSize:'clamp(15px,1.2vw,18px)', lineHeight:1.55, maxWidth:560}}>
+              In 2024 we became the <strong>first venue in Wales</strong> to secure permanent protected cultural status through Music Venue Trust's <span className="scrawl">#OwnOurVenues</span> initiative. We belong to the community now. For good.
+            </p>
+
+            <div style={{display:'flex', gap:'.6rem', marginTop:'2rem', flexWrap:'wrap'}}>
+              <span className="tag tag--ink">DIY ETHOS</span>
+              <span className="tag tag--yellow">GRASSROOTS</span>
+              <span className="tag">INDIE-OWNED</span>
+              <span className="tag tag--hot">PROTECTED</span>
+              <span className="tag">MULTI-AWARD</span>
+            </div>
+          </div>
+
+          <div className="about-photo-wrap" style={{position:'relative'}}>
+            <div className="about-photo photo" style={{aspectRatio:'4/5', border:'2px solid var(--ink)', boxShadow:'10px 10px 0 var(--accent)'}}>
+              <img src="source/img-05.jpg" alt=""/>
+            </div>
+            <div className="tape" style={{top:-12, left:'40%'}}></div>
+            <div className="tape" style={{top:-12, right:'15%', transform:'rotate(8deg)'}}></div>
+
+            <div className="about-year-card" style={{position:'absolute', bottom:-40, left:-40, background:'var(--yellow)', padding:'1rem 1.4rem', border:'2px solid var(--ink)', boxShadow:'5px 5px 0 var(--ink)', transform:'rotate(-3deg)', maxWidth:240}}>
+              <div className="mono" style={{fontSize:10, fontWeight:700, marginBottom:4}}>★ ESTABLISHED</div>
+              <div className="display" style={{fontSize:48, lineHeight:1}}>2017</div>
+              <div className="mono" style={{fontSize:10, opacity:.7}}>BY THE PEOPLE, FOR THE PEOPLE</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid-4" style={{marginTop:'5rem', borderTop:'2px solid var(--ink)', borderBottom:'2px solid var(--ink)', padding:'1.5rem 0'}}>
+          {[
+            ['240+', 'shows / yr', 'in venue'],
+            ['2', 'stages', 'kingsway + park st'],
+            ['80%', 'local supply', 'food & drink'],
+            ['1ST', 'in wales', 'cultural status']
+          ].map((s,i) => (
+            <div key={i} style={{borderLeft: i>0 ? '1.5px solid var(--ink)' : 'none', paddingLeft: i>0 ? '1.5rem' : 0}}>
+              <div className="display" style={{fontSize:'clamp(48px,6vw,96px)', color: i%2 ? 'var(--accent)' : 'var(--ink)'}}>{s[0]}</div>
+              <div className="mono" style={{fontSize:11, textTransform:'uppercase', fontWeight:700}}>{s[1]}</div>
+              <div className="mono" style={{fontSize:11, opacity:.55}}>{s[2]}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Stages() {
+  const stages = [
+    { id: 'kingsway', name: 'KINGSWAY MAIN', cap: '300 standing', desc: 'The big room. Full lighting rig, high-tech PA, the energy you hear about. High-energy touring bands, club nights, packed-out local shows.', img: 'source/img-13.jpg', tag: 'MAIN STAGE' },
+    { id: 'park', name: 'PARK ST BAR', cap: '80 standing', desc: 'Intimate. Acoustic. Spoken word, comedy, jazz nights, afterparties. The room where the artist and the audience are practically in the same conversation.', img: 'source/img-12.jpg', tag: 'BAR STAGE' }
+  ];
+  return (
+    <section id="stages" style={{padding:'6rem 0', background:'var(--ink)', color:'var(--paper)', position:'relative'}}>
+      <div className="section-label" style={{background:'var(--paper)', color:'var(--ink)'}}>/ 03 — TWO STAGES</div>
+      <div className="container">
+        <h2 className="display" style={{fontSize:'clamp(64px,12vw,200px)', margin:'0 0 2rem'}}>
+          TWO STAGES.<br/>
+          <span style={{color:'var(--accent)'}}>ONE STREET.</span>
+        </h2>
+        <p className="mono" style={{maxWidth:600, fontSize:13, lineHeight:1.6, opacity:.8, marginBottom:'3rem'}}>
+          // The Bunkhouse spans two city-centre streets — Kingsway & Park St — across two floors. Step-free access from street level to both rooms. Tell us if you need anything.
+        </p>
+
+        <div className="grid-2" style={{gap:'2rem'}}>
+          {stages.map((s, i) => (
+            <div key={s.id} style={{position:'relative'}}>
+              <div className="photo" style={{aspectRatio:'4/3', border:'2px solid var(--paper)', marginBottom:'1.5rem'}}>
+                <img src={s.img} alt=""/>
+              </div>
+              <div style={{display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom:'.5rem'}}>
+                <div className="mono" style={{fontSize:11, opacity:.6, letterSpacing:'.15em'}}>{s.tag} · CAP {s.cap}</div>
+                <div className="mono" style={{fontSize:11, opacity:.6}}>0{i+1}/02</div>
+              </div>
+              <h3 className="display" style={{fontSize:'clamp(40px,5vw,80px)', margin:'0 0 1rem', color: i===0 ? 'var(--yellow)' : 'var(--accent)'}}>
+                {s.name}
+              </h3>
+              <p style={{fontSize:16, lineHeight:1.5, opacity:.9, maxWidth:480}}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <table className="spec" style={{marginTop:'4rem', maxWidth:800}}>
+          <tbody>
+            <tr><td>// SOUND</td><td>FULL HIGH-TECH PA, BOTH STAGES</td></tr>
+            <tr><td>// LIGHTING</td><td>FULL RIG @ KINGSWAY MAIN</td></tr>
+            <tr><td>// VISUALS</td><td>PROJECTION + LED, ON REQUEST</td></tr>
+            <tr><td>// CREW</td><td>SOUND ENG + LIGHTING TECH AVAILABLE</td></tr>
+            <tr><td>// AGE POLICY</td><td>16+ MON–SUN BEFORE 11PM / 18+ AFTER</td></tr>
+            <tr><td>// ACCESS</td><td>STEP-FREE ENTRY VIA KINGSWAY · PA TICKETS · DISABLED WC</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function WhatWeDo() {
+  const cards = [
+    { tag: '[ promotions ]', title: 'WE PROMOTE.', body: 'From debut headline shows in our own room to support slots and arena tours, we co-promote with venues and partners across the UK. SJM, FKP Scorpio, AMG, plus a network of independents.', link: 'PROMO ENQUIRIES', kind: 'filled' },
+    { tag: '[ tour mgmt ]', title: 'WE TOUR-MANAGE.', body: 'UK-wide routing, logistics, stage management, repping, artist liaison. Festivals incl. Truck, Y Not, TRNSMT, Isle of Wight. From DIY runs to festival fly-ins.', link: 'WORK WITH US', kind: 'yellow' },
+    { tag: '[ education ]', title: 'WE TEACH.', body: 'Free-to-the-point-of-service workshops on promoting, sound, production, artist development. With Creative Wales, UWTSD, Gower College, Swansea Arena. No theory for theory\'s sake.', link: 'COURSES', kind: 'plain' },
+    { tag: '[ projects ]', title: 'WE PROJECT-MANAGE.', body: 'Multi-week courses, school sessions, full creative campaigns. Start-to-finish: concept, delivery, tutors, funders, the lot. Practical, responsive, grounded.', link: 'PARTNER WITH US', kind: 'accent' },
+    { tag: '[ lovely town ]', title: 'WE BUILT A FESTIVAL.', body: 'Lovely Town — a free, multi-day festival of live music, panels, networking and workshops across Swansea. Founded by Jordan McGuire (Bunkhouse), Simon Parton (BBC Horizons) & Tori Sillman (Anthem).', link: 'LOVELY TOWN ↗', kind: 'filled' },
+    { tag: '[ venue hire ]', title: 'WE LET YOU HIRE IT.', body: 'Whole venue or one room. Seven days a week. Bring your own night, or we\'ll bring the DJs, sound, lights, crew. Whatever.', link: 'HIRE THE BUNKHOUSE', kind: 'yellow' },
+  ];
+  return (
+    <section id="what-we-do" style={{padding:'6rem 0', position:'relative'}}>
+      <div className="section-label">/ 04 — WHAT ELSE</div>
+      <div className="container">
+        <div style={{marginBottom:'3rem', maxWidth:900}}>
+          <p className="mono" style={{fontSize:12, letterSpacing:'.2em', marginBottom:'1rem'}}>// MORE THAN A VENUE</p>
+          <h2 className="display" style={{fontSize:'clamp(56px,9vw,160px)', margin:0, lineHeight:1.05}}>
+            A YEAR-ROUND<br/>
+            <span style={{color:'var(--accent)'}}>CREATIVE</span> HUB.
+          </h2>
+        </div>
+
+        <div className="grid-3" style={{gap:'1.5rem'}}>
+          {cards.map((c, i) => (
+            <div key={i} className={'zine-card ' + (c.kind === 'filled' ? 'zine-card--filled' : c.kind === 'yellow' ? 'zine-card--yellow' : c.kind === 'accent' ? 'zine-card--accent' : '')}>
+              <div className="mono" style={{fontSize:11, fontWeight:700, opacity:.7, marginBottom:'1rem', letterSpacing:'.1em'}}>{c.tag}</div>
+              <h3 className="display" style={{fontSize:'clamp(32px,3vw,52px)', margin:'0 0 1rem', lineHeight:1.05}}>{c.title}</h3>
+              <p style={{fontSize:14, lineHeight:1.5, marginBottom:'2rem'}}>{c.body}</p>
+              <a href="#" className="mono" style={{fontSize:12, fontWeight:700, color:'inherit', textDecoration:'underline', textUnderlineOffset:4, display:'inline-flex', gap:'.4rem', alignItems:'center'}}>
+                {c.link} <span className="arrow">→</span>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div style={{marginTop:'5rem', padding:'3rem 0', borderTop:'2px solid var(--ink)', borderBottom:'2px solid var(--ink)', position:'relative'}}>
+          <div className="display" style={{fontSize:'clamp(180px,20vw,360px)', position:'absolute', top:-30, left:-20, color:'var(--accent)', opacity:.18, lineHeight:1, pointerEvents:'none'}}>"</div>
+          <blockquote style={{fontFamily:'Anton, sans-serif', fontSize:'clamp(28px,3.5vw,56px)', textTransform:'uppercase', lineHeight:1, margin:0, maxWidth:1100, letterSpacing:'-.01em'}}>
+            "The promoters course at the Bunkhouse changed the game for me. Went in with no clue how shows worked behind the scenes and left feeling confident enough to book my own events. <span style={{color:'var(--accent)'}}>Honest, supportive, real.</span>"
+          </blockquote>
+          <div className="mono" style={{marginTop:'2rem', fontSize:12, fontWeight:700, letterSpacing:'.1em'}}>— KIERAN J., 21, SWANSEA / PROMOTERS COURSE '24</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Hire() {
+  return (
+    <section id="hire" style={{padding:'6rem 0', background:'var(--accent)', color:'var(--ink)', position:'relative', borderTop:'2px solid var(--ink)', borderBottom:'2px solid var(--ink)'}}>
+      <div className="section-label">/ 05 — VENUE HIRE</div>
+      <div className="container">
+        <div className="grid-2" style={{gap:'4rem', alignItems:'center'}}>
+          <div>
+            <p className="mono" style={{fontSize:12, letterSpacing:'.2em', marginBottom:'1rem'}}>// HIRE THE WHOLE THING (OR JUST A BIT)</p>
+            <h2 className="display" style={{fontSize:'clamp(64px,11vw,180px)', margin:0, lineHeight:1.05}}>
+              YOUR<br/>NIGHT.<br/>OUR<br/>ROOM.
+            </h2>
+          </div>
+          <div>
+            <p style={{fontSize:'clamp(16px,1.5vw,22px)', lineHeight:1.45, marginTop:0}}>
+              Available seven days a week. Hire the whole venue, the Kingsway Main, or just the Park St Bar. Whatever your night is — corporate launch, club night, wedding, private gig, album party, comedy showcase — we'll cater it.
+            </p>
+            <ul style={{listStyle:'none', padding:0, margin:'2rem 0', fontFamily:'JetBrains Mono', fontSize:14, fontWeight:700, lineHeight:2}}>
+              <li>→ FULL HIGH-TECH PA, BOTH STAGES</li>
+              <li>→ FULL LIGHTING RIG @ KINGSWAY</li>
+              <li>→ PROJECTIONS + VISUALS ON REQUEST</li>
+              <li>→ FULL CREW AVAILABLE — SOUND, LIGHTS, DJS, ACTS</li>
+              <li>→ DEDICATED BAR / DRINKS MENU IN BOTH ROOMS</li>
+            </ul>
+            <div style={{display:'flex', gap:'1rem', flexWrap:'wrap'}}>
+              <a className="btn" style={{background:'var(--ink)', color:'var(--accent)', boxShadow:'5px 5px 0 var(--paper)'}} href="mailto:info@thebunkhouseswansea.com">EMAIL EVENTS MGR</a>
+              <a className="btn" style={{background:'var(--paper)', color:'var(--ink)', boxShadow:'5px 5px 0 var(--ink)'}} href="#">DOWNLOAD TECH SPEC ↓</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{position:'absolute', bottom:'2rem', right:'2rem', transform:'rotate(8deg)'}}>
+        <div className="stamp" style={{background:'var(--ink)', color:'var(--accent)'}}>
+          BOOK NOW<br/>
+          <span style={{fontSize:'.6em'}}>★ AVAILABILITY GOING FAST ★</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FindUs() {
+  return (
+    <section id="find" style={{padding:'6rem 0', background:'var(--paper)', position:'relative'}}>
+      <div className="section-label">/ 06 — FIND US</div>
+      <div className="container">
+        <div className="grid-2" style={{gap:'4rem'}}>
+          <div>
+            <h2 className="display" style={{fontSize:'clamp(64px,9vw,140px)', margin:'0 0 2rem', lineHeight:1.05}}>
+              GET<br/>HERE.
+            </h2>
+            <div className="mono" style={{fontSize:14, lineHeight:1.8}}>
+              <div style={{fontSize:18, fontWeight:700, marginBottom:'1rem'}}>THE BUNKHOUSE</div>
+              PARK STREET<br/>
+              SWANSEA<br/>
+              SA1 3DJ<br/>
+              <br/>
+              <a href="mailto:info@thebunkhouseswansea.com" style={{color:'var(--ink)'}}>info@thebunkhouseswansea.com</a><br/>
+              <br/>
+              <span style={{opacity:.6}}>// MAIN ENTRANCE: PARK ST</span><br/>
+              <span style={{opacity:.6}}>// STEP-FREE ACCESS: KINGSWAY (ASK STAFF)</span>
+            </div>
+
+            <div style={{marginTop:'3rem'}}>
+              <div className="grid-3" style={{gap:'.6rem'}}>
+                {[
+                  ['CAR', 'M4 J42 → A483 → city centre. Disabled-only car park on Park St; Pell St car park 30 secs away.'],
+                  ['BUS', 'Stops along Kingsway; or Quadrant station, Wilkinsons exit, right then left onto Union St.'],
+                  ['TRAIN', 'Swansea High St station. Left along High St to Argos, left onto College St onto Kingsway.']
+                ].map(([t, d]) => (
+                  <div key={t} style={{border:'2px solid var(--ink)', padding:'1rem'}}>
+                    <div className="display" style={{fontSize:24, color:'var(--accent)', marginBottom:'.5rem'}}>{t}</div>
+                    <p style={{fontSize:12, margin:0, lineHeight:1.4, fontFamily:'JetBrains Mono'}}>{d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style={{border:'2px solid var(--ink)', background:'var(--ink)', color:'var(--paper)', padding:'2rem', position:'relative', aspectRatio:'1', boxShadow:'10px 10px 0 var(--accent)'}}>
+              <svg viewBox="0 0 400 400" style={{width:'100%', height:'100%'}}>
+                <defs>
+                  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(243,236,219,0.08)" strokeWidth="1"/>
+                  </pattern>
+                </defs>
+                <rect width="400" height="400" fill="url(#grid)"/>
+                <line x1="0" y1="160" x2="400" y2="180" stroke="#f3ecdb" strokeWidth="14" opacity=".15"/>
+                <line x1="0" y1="160" x2="400" y2="180" stroke="#f3ecdb" strokeWidth="2" strokeDasharray="6 6"/>
+                <text x="20" y="155" fill="#f3ecdb" fontFamily="JetBrains Mono" fontSize="11" opacity=".7">THE KINGSWAY</text>
+                <line x1="190" y1="0" x2="210" y2="400" stroke="#f3ecdb" strokeWidth="10" opacity=".12"/>
+                <line x1="190" y1="0" x2="210" y2="400" stroke="#f3ecdb" strokeWidth="1.5" strokeDasharray="4 4"/>
+                <text x="220" y="320" fill="#f3ecdb" fontFamily="JetBrains Mono" fontSize="11" opacity=".7" transform="rotate(90, 220, 320)">PARK STREET</text>
+                <line x1="0" y1="280" x2="400" y2="290" stroke="#f3ecdb" strokeWidth="6" opacity=".1"/>
+                <text x="20" y="275" fill="#f3ecdb" fontFamily="JetBrains Mono" fontSize="9" opacity=".5">UNION ST</text>
+                <g transform="translate(200, 175)">
+                  <circle r="35" fill="#ff2d55" stroke="#f3ecdb" strokeWidth="3"/>
+                  <circle r="50" fill="none" stroke="#ffd60a" strokeWidth="2" strokeDasharray="4 4"/>
+                  <circle r="65" fill="none" stroke="#ffd60a" strokeWidth="1" strokeDasharray="2 4" opacity=".6"/>
+                  <text textAnchor="middle" y="-2" fontFamily="Anton" fontSize="14" fill="#0e0e0e">YOU</text>
+                  <text textAnchor="middle" y="14" fontFamily="Anton" fontSize="14" fill="#0e0e0e">ARE HERE</text>
+                </g>
+                <text x="80" y="60" fill="#f3ecdb" fontFamily="JetBrains Mono" fontSize="10" opacity=".5">↑ HIGH ST STN (8 MIN)</text>
+                <text x="270" y="370" fill="#f3ecdb" fontFamily="JetBrains Mono" fontSize="10" opacity=".5">PELL ST CARPARK ↓</text>
+                <text x="20" y="220" fill="#f3ecdb" fontFamily="JetBrains Mono" fontSize="10" opacity=".5">QUADRANT BUS</text>
+              </svg>
+              <div className="mono" style={{position:'absolute', top:'1rem', right:'1rem', fontSize:10, fontWeight:700, opacity:.7}}>// MAP / NOT TO SCALE</div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{marginTop:'5rem'}}>
+          <p className="mono" style={{fontSize:12, letterSpacing:'.2em', marginBottom:'1rem'}}>// QUICK LINKS</p>
+          <div className="linklist">
+            <a href="#"><span>JOIN THE WHATSAPP <em style={{fontStyle:'normal', color:'var(--accent)'}}>(NO SPAM)</em></span><span>↗</span></a>
+            <a href="#"><span>MERCH SHOP</span><span>↗</span></a>
+            <a href="#"><span>FAQS + CONTACT</span><span>↗</span></a>
+            <a href="#"><span>ACCESSIBILITY INFO</span><span>↗</span></a>
+            <a href="#"><span>POLICIES + SAFE SPACE</span><span>↗</span></a>
+            <a href="#"><span>SUSTAINABILITY</span><span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div className="container">
+        <div className="grid-4" style={{gap:'2rem', marginBottom:'4rem'}}>
+          <div>
+            <div className="display" style={{fontSize:48, color:'var(--yellow)', lineHeight:.9}}>BUNK<br/>HOUSE</div>
+            <p className="mono" style={{fontSize:12, marginTop:'1rem', opacity:.6, lineHeight:1.6}}>
+              Independent<br/>multi-award-winning<br/>music venue<br/>+ creative hub<br/>since 2017.
+            </p>
+          </div>
+          <div>
+            <div className="mono" style={{fontSize:11, opacity:.5, marginBottom:'1rem', letterSpacing:'.15em'}}>// VISIT</div>
+            <div className="mono" style={{fontSize:13, lineHeight:1.8}}>
+              Park Street<br/>
+              Swansea<br/>
+              SA1 3DJ
+            </div>
+          </div>
+          <div>
+            <div className="mono" style={{fontSize:11, opacity:.5, marginBottom:'1rem', letterSpacing:'.15em'}}>// FOLLOW</div>
+            <div className="mono" style={{fontSize:13, lineHeight:1.9}}>
+              <a href="https://instagram.com/bunkhouseswansea">→ INSTAGRAM</a><br/>
+              <a href="https://facebook.com/bunkhouseswansea">→ FACEBOOK</a><br/>
+              <a href="https://twitter.com/thebunkhousesa1">→ TWITTER</a><br/>
+              <a href="#">→ WHATSAPP</a>
+            </div>
+          </div>
+          <div>
+            <div className="mono" style={{fontSize:11, opacity:.5, marginBottom:'1rem', letterSpacing:'.15em'}}>// THE PROMISE</div>
+            <p className="display" style={{fontSize:32, lineHeight:.95, color:'var(--accent)', margin:0}}>
+              NO<br/>DISCRIMINATION.<br/>
+              <span style={{color:'var(--yellow)'}}>NO BULLSHIT.</span>
+            </p>
+          </div>
+        </div>
+
+        <div className="marquee" style={{borderTop:'2px solid var(--paper)', borderBottom:'2px solid var(--paper)', padding:'.5rem 0', marginBottom:'2rem'}}>
+          <div className="marquee__inner display" style={{fontSize:'clamp(28px,4vw,72px)', color:'var(--yellow)'}}>
+            {Array(12).fill('THE BUNKHOUSE / SWANSEA / SINCE 2017 / ').map((t,i) => <span key={i}>{t}<span style={{color:'var(--accent)'}}>★</span></span>)}
+          </div>
+        </div>
+
+        <div style={{display:'flex', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem', fontFamily:'JetBrains Mono', fontSize:11, opacity:.5}}>
+          <span>© THE BUNKHOUSE MUSIC VENUE 2026</span>
+          <span>SITE: PUNK-FORWARD, RESPONSIVELY-MADE, ACCESSIBLE-BY-DEFAULT</span>
+          <span>Cymraeg / English</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function Tweaks() {
+  const [t, setT] = useTweaks(TWEAK_DEFAULTS);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent', ACCENTS[t.accent].val);
+    document.body.classList.remove('treat-raw','treat-duo','treat-halftone');
+    document.body.classList.add('treat-' + t.treatment);
+    document.body.classList.remove('grit-clean','grit-medium','grit-chaos');
+    document.body.classList.add('grit-' + t.grit);
+    document.body.classList.toggle('no-mascot', !t.mascot);
+  }, [t]);
+
+  return (
+    <TweaksPanel title="TWEAKS // BUNKHOUSE">
+      <TweakSection title="ACCENT COLOR">
+        <TweakRadio value={t.accent} options={[['hot','PINK'],['lime','LIME'],['cyan','CYAN'],['yellow','YELLOW']]} onChange={v => setT('accent', v)}/>
+      </TweakSection>
+      <TweakSection title="PHOTO TREATMENT">
+        <TweakRadio value={t.treatment} options={[['raw','RAW B&W'],['duo','DUOTONE'],['halftone','HALFTONE']]} onChange={v => setT('treatment', v)}/>
+      </TweakSection>
+      <TweakSection title="GRIT LEVEL">
+        <TweakRadio value={t.grit} options={[['clean','CLEAN'],['medium','MED'],['chaos','CHAOS']]} onChange={v => setT('grit', v)}/>
+      </TweakSection>
+      <TweakSection title="CURSOR MASCOT">
+        <TweakToggle value={t.mascot} onChange={v => setT('mascot', v)} label="Speaker boy follows cursor"/>
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav/>
+      <Hero/>
+      <WhatsOn/>
+      <About/>
+      <Stages/>
+      <Divider words={['LOUD','LOCAL','LIVE','YOURS']} accent="yellow"/>
+      <WhatWeDo/>
+      <Hire/>
+      <FindUs/>
+      <Footer/>
+      <Tweaks/>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+<script>
+// Cursor mascot follow
+(function() {
+  const m = document.getElementById('cursor-mascot');
+  let tx = window.innerWidth/2, ty = window.innerHeight/2;
+  let cx = tx, cy = ty;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  function tick() {
+    cx += (tx - cx) * 0.12;
+    cy += (ty - cy) * 0.12;
+    const dx = tx - cx, dy = ty - cy;
+    const rot = Math.max(-12, Math.min(12, dx * 0.1));
+    m.style.left = cx + 'px';
+    m.style.top = cy + 'px';
+    m.style.transform = `translate(-50%,-50%) rotate(${rot}deg)`;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// draggable stickers
+function makeDraggable(el) {
+  let sx, sy, ox, oy, dragging = false;
+  el.addEventListener('pointerdown', e => {
+    dragging = true; el.setPointerCapture(e.pointerId);
+    sx = e.clientX; sy = e.clientY;
+    const r = el.getBoundingClientRect();
+    ox = r.left; oy = r.top;
+    el.style.position = 'fixed';
+    el.style.left = r.left + 'px'; el.style.top = r.top + 'px';
+    el.style.right = 'auto'; el.style.bottom = 'auto';
+  });
+  el.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    el.style.left = (ox + e.clientX - sx) + 'px';
+    el.style.top  = (oy + e.clientY - sy) + 'px';
+  });
+  el.addEventListener('pointerup', e => { dragging = false; });
+}
+window.makeDraggable = makeDraggable;
+</script>
+</body>
+</html>

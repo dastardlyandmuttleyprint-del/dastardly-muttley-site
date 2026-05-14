@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work With Us — Dastardly &amp; Muttley</title>
+  <meta name="description" content="Start a project with Dastardly &amp; Muttley — an independent creative studio in Swansea, South Wales." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/system.css" />
+  <style>
+    /* ── Enquiry form section ── */
+    .enquiry { background: var(--paper); }
+
+    .enquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+    @media (min-width: 900px) {
+      .enquiry-grid { grid-template-columns: 1.6fr 1fr; gap: 80px; align-items: start; }
+    }
+
+    .form-fields { display: flex; flex-direction: column; gap: 0; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .form-group label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: .55;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      color: var(--ink);
+      padding: 6px 0;
+      font-family: var(--body);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -.005em;
+      width: 100%;
+      outline: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); font-size: 15px; }
+    .form-group select option { background: var(--paper); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 36px;
+      padding: 16px 28px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: opacity .25s;
+    }
+    .btn-submit:hover { opacity: .75; }
+    .btn-submit .arrow { width: 18px; height: 1px; background: currentColor; position: relative; }
+    .btn-submit .arrow::after { content:""; position:absolute; right:-1px; top:-3px; width:7px; height:7px; border-top:1px solid currentColor; border-right:1px solid currentColor; transform: rotate(45deg); }
+
+    .enquiry-aside { padding-top: 8px; }
+    .enquiry-aside h3 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+    .enquiry-detail { margin-bottom: 24px; }
+    .enquiry-detail h5 {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: .55;
+      margin-bottom: 8px;
+    }
+    .enquiry-detail p,
+    .enquiry-detail a {
+      font-family: var(--display);
+      font-size: 14px;
+      line-height: 1.55;
+      letter-spacing: -.005em;
+    }
+    .enquiry-detail a:hover { opacity: .6; }
+
+    .next-steps {
+      margin-top: 32px;
+      border-top: 1px solid var(--rule);
+      padding-top: 22px;
+    }
+    .next-steps h5 {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: .55;
+      margin-bottom: 16px;
+    }
+    .next-step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: .8;
+      margin-bottom: 10px;
+    }
+    .next-step .n {
+      font-family: var(--mono);
+      font-size: 11px;
+      opacity: .55;
+    }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ─── Top bar ─── -->
+  <header class="topbar">
+    <a href="index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
+    <div class="brand-meta"><span class="dot"></span>Independent Studio · Swansea, Wales</div>
+    <nav class="nav-links">
+      <a href="work.html">Work</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Work with us</a>
+    </nav>
+  </header>
+
+  <!-- ─── Hero (dark) ─── -->
+  <section class="contact">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-eyebrow">§ Work with us</div>
+        <h1 class="contact-headline">
+          Let's make<br>
+          something <span class="it">worth making.</span>
+        </h1>
+        <a href="mailto:dastardlyandmuttleyprint@gmail.com" class="contact-email">
+          dastardlyandmuttleyprint@gmail.com
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+      <div class="contact-side">
+        <div class="blk">
+          <h5>Studio</h5>
+          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
+        </div>
+        <div class="blk">
+          <h5>Social</h5>
+          <a href="https://www.instagram.com/dastardlyandmuttleydesign/" target="_blank" rel="noopener">@dastardlyandmuttleydesign</a>
+        </div>
+        <div class="blk">
+          <h5>Hours</h5>
+          <p>Mon — Fri<br>09:00 — 18:00 GMT</p>
+        </div>
+        <div class="blk">
+          <h5>Status</h5>
+          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Enquiry Form ─── -->
+  <section class="enquiry">
+    <div class="sec-head">
+      <div class="sec-num">§ 01 — Enquiry</div>
+      <div class="sec-title">Tell us <span class="it">about it.</span></div>
+      <div class="sec-meta">New project</div>
+    </div>
+    <div class="enquiry-grid">
+
+      <form class="form-fields" name="contact" method="POST" action="mailto:dastardlyandmuttleyprint@gmail.com" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="What should we call you?" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="company">Company / Brand</label>
+          <input type="text" id="company" name="company" placeholder="Who are you working with?" />
+        </div>
+        <div class="form-group">
+          <label for="service">What Do You Need?</label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service...</option>
+            <option value="web">Web Design</option>
+            <option value="graphic">Graphic Design</option>
+            <option value="brand">Brand Identity</option>
+            <option value="photo">Photography</option>
+            <option value="video">Video Production</option>
+            <option value="print">Print</option>
+            <option value="multiple">Multiple Services</option>
+            <option value="other">Something Else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="budget">Rough Budget</label>
+          <select id="budget" name="budget">
+            <option value="" disabled selected>What are you working with?</option>
+            <option value="under500">Under &pound;500</option>
+            <option value="500-1k">&pound;500 – &pound;1,000</option>
+            <option value="1k-3k">&pound;1,000 – &pound;3,000</option>
+            <option value="3k-5k">&pound;3,000 – &pound;5,000</option>
+            <option value="5k+">&pound;5,000+</option>
+            <option value="tbd">Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us About It</label>
+          <textarea id="message" name="message" placeholder="What are you working on? The more detail the better..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          Send It <span class="arrow"></span>
+        </button>
+      </form>
+
+      <aside class="enquiry-aside rv">
+        <h3>We'll come back to you properly.</h3>
+        <div class="enquiry-detail">
+          <h5>Response Time</h5>
+          <p>Within 24 hours, Mon — Fri</p>
+        </div>
+        <div class="enquiry-detail">
+          <h5>Or Email Directly</h5>
+          <a href="mailto:dastardlyandmuttleyprint@gmail.com">dastardlyandmuttleyprint@gmail.com</a>
+        </div>
+        <div class="next-steps">
+          <h5>What Happens Next</h5>
+          <div class="next-step"><span class="n">01</span><span>You fill in the form</span></div>
+          <div class="next-step"><span class="n">02</span><span>We read it properly and come back with actual thoughts — not a template reply</span></div>
+          <div class="next-step"><span class="n">03</span><span>If we're a good fit, we'll set up a call</span></div>
+          <div class="next-step"><span class="n">04</span><span>We get to work</span></div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ─── Wordmark footer ─── -->
+  <footer class="wordmark" aria-hidden="true">
+    <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
+      <text x="1300" y="210" text-anchor="middle"
+            font-family="Space Grotesk, sans-serif"
+            font-weight="700"
+            font-size="240"
+            letter-spacing="-10"
+            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+    </svg>
+  </footer>
+
+  <script>
+    const topbar = document.querySelector('.topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  </script>
+  <script src="js/cursor.js"></script>
+</body>
+</html>

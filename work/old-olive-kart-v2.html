@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Old Olive Kart — Dastardly &amp; Muttley</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="../css/system.css" />
+  <style>
+    .topbar.light{ mix-blend-mode: normal; color: var(--ink); }
+    .topbar.light a, .topbar.light button{ color: var(--ink); }
+    .topbar.light .brand-meta .dot{ background:#0c0c0c; }
+
+    /* Video placeholder card — used until full scroll video is in place */
+    .video-frame{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #0c0c0c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .video-frame video,
+    .video-frame img{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-frame .placeholder{
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 20px;
+      color: var(--paper);
+      text-align: center;
+    }
+    .video-frame .placeholder .play{
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(245,243,238,.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-frame .placeholder .play svg{ margin-left: 4px; }
+    .video-frame .placeholder .label{
+      font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .55;
+    }
+    .video-frame .placeholder .ttl{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(22px, 2.6vw, 36px);
+      letter-spacing: -.02em;
+    }
+    .video-frame .placeholder .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+  <header class="topbar light" data-screen-label="00 Top">
+    <a href="../index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
+    <div class="brand-meta">Independent Studio · Swansea, Wales</div>
+    <nav class="nav-links">
+      <a href="../work.html">Work</a>
+      <a href="../services.html">Services</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html" class="nav-cta">Start a project</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ─────────────────────────────────── -->
+  <section class="cs-hero" data-screen-label="01 Hero">
+    <div class="top-meta">
+      <span>§ Case Study — 03 / 50+</span>
+      <span>Web — Hospitality</span>
+      <span>2025 — South Wales</span>
+    </div>
+    <h1>Old Olive<br><span class="it">Kart.</span></h1>
+    <div class="cs-meta-row">
+      <div class="col"><h5>Client</h5><p>The Old Olive Kart</p></div>
+      <div class="col"><h5>Sector</h5><p><span class="it">Hospitality</span> · Coffee &amp; Deli</p></div>
+      <div class="col"><h5>Scope</h5><p>Web Design &amp; Build</p></div>
+      <div class="col"><h5>Year</h5><p>2025</p></div>
+      <div class="col"><h5>Location</h5><p>South Wales</p></div>
+    </div>
+  </section>
+
+  <!-- ── LEDE ─────────────────────────────────── -->
+  <section class="cs-lede" data-screen-label="02 Lede">
+    <div class="cs-lede-inner">
+      <aside class="cs-lede-aside">§ The Brief</aside>
+      <p>The Olive Kart already had what most places spend years trying to build — <span class="it">a beautiful venue, a Victorian wordmark with character, photography that earns its lighting, and a loyal local following.</span> What they didn't have was a website that did any of it justice.</p>
+    </div>
+  </section>
+
+  <!-- ── § 01 — THE BRIEF ─────────────────────── -->
+  <section class="cs-chap dark" data-screen-label="03 Brief">
+    <div class="chap-head">
+      <div class="chap-num">§ 01 — The Brief</div>
+      <div>
+        <h2>Build a website <span class="it">that doesn't waste the brand.</span></h2>
+        <p class="blurb">A clean job: take everything they already had — the wordmark, the room, the photography — and put it online in a way that makes the digital storefront feel as considered as the physical one. No re-brand. No design-by-committee. Just a site that lets the work walk in front.</p>
+      </div>
+    </div>
+
+    <div class="cs-pair">
+      <img src="../media/Old Olive Kart/logo.png" alt="The Old Olive Kart wordmark — Victorian display serif, 'Coffee Bar &amp; Deli'"
+           loading="lazy"
+           style="aspect-ratio:1/1;object-fit:contain;background:#f5f3ee;padding:14%;" />
+      <div class="cs-pair-text">
+        <h3>The mark <span class="it">was already theirs.</span></h3>
+        <p>Victorian display serif, ironwork flourish, "Coffee Bar &amp; Deli" set inside a hairline rule. A wordmark that already understood itself. Our job was to listen to it — typography choices, type pairings, white space — and let the site echo the same register.</p>
+        <p>Most rebuilds start by replacing what's there. The strongest thing we could do for this brand was <span class="it">resist that instinct.</span></p>
+      </div>
+    </div>
+    <div class="cs-cap"><span>Fig. 01 — Existing wordmark · client-supplied</span><span>Used as-is throughout the build</span></div>
+  </section>
+
+  <!-- ── § 02 — THE LIVE SITE ─────────────────── -->
+  <section class="cs-chap paper" data-screen-label="04 The Site">
+    <div class="chap-head">
+      <div class="chap-num">§ 02 — The Site</div>
+      <div>
+        <h2>Atmosphere first, <span class="it">layout second.</span></h2>
+        <p class="blurb">Most hospitality sites lean on stock food shots and a Google-Maps embed. We did the opposite — let the existing photography carry every page, and built a layout quiet enough not to compete with it. A reservation form that doesn't feel bolted on. A menu that reads, not scans.</p>
+      </div>
+    </div>
+
+    <div class="video-frame">
+      <video src="../media/Old%20Olive%20Kart/site-video-2.mp4"
+             autoplay muted loop playsinline preload="metadata"
+             poster="../media/Old Olive Kart/screen-1.jpg"></video>
+    </div>
+    <div class="cs-cap"><span>Fig. 02 — Live site · scroll-through</span><span>theoldolivekart.co.uk</span></div>
+  </section>
+
+  <!-- ── § 03 — INSIDE THE LAYOUT ────────────── -->
+  <section class="cs-chap mid" data-screen-label="05 Layout">
+    <div class="chap-head">
+      <div class="chap-num">§ 03 — Inside the Layout</div>
+      <div>
+        <h2>Hospitality, <span class="it">photographed.</span></h2>
+        <p class="blurb">The photography is the website. Every section is built around an image that does the heavy lifting — the iced coffee on the terrace, the cocktail at golden hour, the morning light on the counter. Type stays calm so the room can speak.</p>
+      </div>
+    </div>
+
+    <div class="cs-poster">
+      <img src="../media/Old Olive Kart/screen-1.jpg" alt="Iced coffee, plant, terrace — golden afternoon" loading="lazy" />
+      <img src="../media/Old Olive Kart/screen-2.jpg" alt="Cocktail at golden hour — purple gradient drink, blurred warm interior" loading="lazy" />
+    </div>
+    <div class="cs-cap"><span>Fig. 03 — Hero photography · used in-layout</span><span>Photography supplied by client</span></div>
+  </section>
+
+  <!-- ── § 04 — THE OUTCOME ──────────────────── -->
+  <section class="cs-chap paper" data-screen-label="06 Outcome">
+    <div class="chap-head">
+      <div class="chap-num">§ 04 — The Outcome</div>
+      <div>
+        <h2>The website <span class="it">that finally matches the room.</span></h2>
+        <p class="blurb">A digital storefront that opens the same way the door does. Same composure, same warmth, same restraint. Built fast because the brand already knew itself — our job was to get out of its way and ship.</p>
+      </div>
+    </div>
+
+    <div class="cs-pair reverse">
+      <div class="cs-pair-text">
+        <h3>The work, <span class="it">in three lines.</span></h3>
+        <p><strong>Brand strategy</strong> — none required. Existing identity respected, used at full strength.</p>
+        <p><strong>Web design &amp; build</strong> — full site, mobile-first, hosted by the client, handed over with a CMS they can run themselves.</p>
+        <p><strong>Result</strong> — <span class="it">a site that sounds like the venue.</span> Same clientele, more reservations, no friction between what they sell and how they sell it.</p>
+      </div>
+      <img src="../media/Old Olive Kart/screen-1.jpg" alt="On-site detail · iced coffee &amp; orchid"
+           loading="lazy"
+           style="aspect-ratio:4/5;object-fit:cover;" />
+    </div>
+  </section>
+
+  <!-- ── PULL ─────────────────────────────────── -->
+  <section class="cs-pull" data-screen-label="07 Pull Quote">
+    <div class="cs-pull-inner">
+      <h2>Restraint <span class="it">is the work.</span></h2>
+      <div class="foot">
+        <span>The Old Olive Kart — 2025</span>
+        <span>Dastardly &amp; Muttley · Studio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NAV ──────────────────────────────────── -->
+  <nav class="cs-nav" data-screen-label="08 Project Nav">
+    <a href="james-music-v2.html">
+      <span class="lab">← Previous</span>
+      <span class="ttl">James Music</span>
+    </a>
+    <a href="steps-2-v2.html">
+      <span class="lab">Next →</span>
+      <span class="ttl">Steps <span class="it">2.0</span></span>
+    </a>
+  </nav>
+
+  <!-- ── CONTACT ──────────────────────────────── -->
+  <section class="contact" data-screen-label="09 Contact">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-eyebrow">§ Start a project</div>
+        <h2 class="contact-headline">Have something<br>worth <span class="it">making?</span></h2>
+        <a href="mailto:hello@dastardlyandmuttley.co.uk" class="contact-email">
+          hello@dastardlyandmuttley.co.uk
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+      <div class="contact-side">
+        <div class="blk">
+          <h5>Studio</h5>
+          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
+        </div>
+        <div class="blk">
+          <h5>Status</h5>
+          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-foot">
+      <span>© 2026 Dastardly &amp; Muttley Ltd</span>
+      <span>Case Study · The Old Olive Kart</span>
+      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
+    </div>
+  </section>
+
+  <footer class="wordmark" aria-hidden="true">
+    <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
+      <text x="1300" y="210" text-anchor="middle"
+            font-family="Space Grotesk, sans-serif"
+            font-weight="700"
+            font-size="240"
+            letter-spacing="-10"
+            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+    </svg>
+  </footer>
+  <script src="../js/cursor.js"></script>
+</body>
+</html>
