@@ -73,6 +73,7 @@ media/Manifest/a2d12332-*
 media/Manifest/poster-4.jpg
 media/Manifest/[0-9a-f][0-9a-f]*-[0-9a-f]*.JPG
 media/Manifest/[0-9a-f][0-9a-f]*-[0-9a-f]*.jpg
+!media/Manifest/candid-*.jpg
 media/Olive Lart/olive2.png
 media/Olive Lart/Untitled.png.avif
 media/The Enthusiasts Podcast/92fe2c_*
