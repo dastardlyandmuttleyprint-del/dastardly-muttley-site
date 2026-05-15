@@ -5,23 +5,521 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dastardly &amp; Muttley — Independent Creative Studio, Swansea</title>
   <meta name="description" content="An independent creative studio in Swansea building bold brand identities, websites and campaigns for businesses that refuse to blend in." />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
 
-  <link rel="stylesheet" href="css/system.css" />
+  <style>
+    /* ─── Tokens (v3 system, shared with case studies) ─── */
+    :root{
+      --paper: #f5f3ee;
+      --paper-2:#ece9e1;
+      --ink:   #0c0c0c;
+      --rule:  rgba(12,12,12,.14);
+      --muted: rgba(12,12,12,.55);
+
+      --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+      --serif:   "Instrument Serif", "Times New Roman", serif;
+      --mono:    "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+      --pad: clamp(20px, 3.2vw, 44px);
+      --max: 1360px;
+    }
+    *,*::before,*::after{ box-sizing: border-box; margin:0; padding:0; }
+    html,body{ background: var(--paper); color: var(--ink); }
+    html{ -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+    body{
+      font-family: var(--display);
+      font-size: 14px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    img{ display:block; max-width:100%; height:auto; }
+    a{ color:inherit; text-decoration:none; }
+    ::selection{ background: var(--ink); color: var(--paper); }
+    .it{ font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.005em; }
+    .mono{ font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+
+    /* ─── Slim editorial top bar ─── */
+    .bar{
+      position: fixed; top:0; left:0; right:0; z-index: 80;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      align-items: center; gap: 16px;
+      padding: 12px var(--pad);
+      font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--paper);
+      mix-blend-mode: difference;
+      pointer-events: none;
+      transition: background .5s ease, color .5s ease, padding .5s ease;
+    }
+    .bar > *{ pointer-events: auto; }
+    .bar.scrolled{
+      mix-blend-mode: normal;
+      background: rgba(245,243,238,.9);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      color: var(--ink);
+      padding-top: 9px; padding-bottom: 9px;
+      box-shadow: 0 1px 0 var(--rule);
+    }
+    .bar .brand{ display:inline-flex; gap: 8px; align-items: baseline; }
+    .bar .brand b{ font-weight: 500; }
+    .bar .brand .amp{ font-family: var(--serif); font-style: italic; font-weight: 400; opacity: .85; }
+    .bar .mid{ text-align:center; opacity:.7; }
+    .bar .right{ text-align:right; display:flex; justify-content: flex-end; gap: 20px; align-items: center; }
+    .bar .right a{ opacity: .85; }
+    .bar .right a:hover{ opacity: 1; }
+    .bar .nav-cta{ border:1px solid currentColor; padding: 6px 14px 7px; border-radius:999px; font-size:10px; letter-spacing: .14em; opacity: 1 !important; }
+
+    /* ─── HERO — full-bleed (original treatment) ─── */
+    .hero{
+      position: relative;
+      height: 100vh; height: 100dvh;
+      background: var(--ink);
+      color: var(--paper);
+      overflow: hidden;
+    }
+    .hero-media{
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.04);
+      transition: transform 1.4s ease;
+    }
+    .hero-media::after{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 30%, rgba(0,0,0,.15) 65%, rgba(0,0,0,.85) 100%);
+    }
+    .hero-grid{
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      padding: calc(var(--pad) + 60px) var(--pad) var(--pad);
+    }
+    .hero-eyebrow{
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .85;
+    }
+    .hero-eyebrow .left{ display: inline-flex; gap: 18px; align-items: baseline; }
+    .hero-headline{
+      align-self: end;
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(40px, min(8.4vw, 13vh), 150px);
+      line-height: .88; letter-spacing: -.04em;
+      margin-bottom: clamp(16px, 4vh, 48px);
+    }
+    .hero-headline .it{ font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; }
+    .hero-meta{
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr auto;
+      gap: 26px;
+      align-items: end;
+      border-top: 1px solid rgba(245,243,238,.18);
+      padding-top: 16px;
+    }
+    .hero-meta .col .label{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .55; margin-bottom: 5px;
+    }
+    .hero-meta .col .val{
+      font-family: var(--display); font-weight: 500; font-size: 14px; letter-spacing: -.005em;
+    }
+    .hero-meta .col .val .ser{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .hero-cta{
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 13px 22px;
+      border: 1px solid var(--paper);
+      border-radius: 999px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      transition: background .25s, color .25s;
+    }
+    .hero-cta:hover{ background: var(--paper); color: var(--ink); }
+    .hero-cta .arrow{ width: 18px; height: 1px; background: currentColor; position: relative; }
+    .hero-cta .arrow::after{ content:""; position:absolute; right:-1px; top:-3px; width:7px; height:7px; border-top:1px solid currentColor; border-right:1px solid currentColor; transform: rotate(45deg); }
+    .hero-vert{
+      position: absolute; right: 18px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; opacity: .7;
+    }
+    .hero-ticker{
+      position: absolute;
+      left: var(--pad); bottom: 22px;
+      display: flex; gap: 12px; align-items: center;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      opacity: .75;
+    }
+    .hero-ticker .blink-2{ width:6px; height:6px; border-radius:50%; background: var(--paper); animation: blink2 1.6s infinite; }
+    @keyframes blink2{ 0%,60%{opacity:1} 70%,100%{opacity:.15} }
+
+    /* hero — bar override (so type stays readable over photo) */
+    .bar.over-hero{ mix-blend-mode: difference; color: var(--paper); background: transparent; }
+    .bar.over-hero a, .bar.over-hero .brand{ color: var(--paper); }
+    .bar.over-hero .nav-cta{ border-color: currentColor; color: var(--paper) !important; }
+
+    /* split lines (hero) */
+    .split-line{ display: block; overflow: hidden; }
+    .split-line > span{ display: inline-block; transform: translateY(110%); transition: transform 1s cubic-bezier(.7,0,.2,1); }
+    .split-line.in > span{ transform: none; }
+
+    @media (max-width: 760px){
+      .hero-vert{ display:none; }
+      .hero-meta{ grid-template-columns: 1fr 1fr; gap: 16px; }
+      .hero-meta .col:nth-child(2){ display:none; }
+      .hero-meta .col:nth-child(3){ display:none; }
+    }
+
+    /* ─── MASTHEAD removed — hero replaces it ─── */
+
+    /* ─── Designed-for / client logos (kept dark) ─── */
+    .clients{
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      border-top: 1px solid rgba(245,243,238,.1);
+      border-bottom: 1px solid rgba(245,243,238,.1);
+    }
+    .clients .lbl{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--paper); opacity: .45;
+      padding: 0 clamp(20px, 3vw, 40px);
+      border-right: 1px solid rgba(245,243,238,.1);
+      display: flex; align-items: center; white-space: nowrap;
+    }
+    .clients .logos{ display: grid; grid-template-columns: repeat(6, 1fr); }
+    .clients .logo{ display: flex; align-items: center; justify-content: center; padding: 24px 16px; border-right: 1px solid rgba(245,243,238,.1); }
+    .clients .logo:last-child{ border-right: none; }
+    .clients .logo img{
+      height: 32px; width: auto; max-width: 90%;
+      filter: invert(1) grayscale(1); opacity: .55;
+      transition: opacity .3s;
+    }
+    .clients .logo:hover img{ opacity: 1; }
+    .clients .logo.sm img{ height: 22px; }
+    .clients .logo.lg img{ height: 48px; }
+    @media (max-width: 900px){
+      .clients{ grid-template-columns: 1fr; }
+      .clients .lbl{ display: none; }
+      .clients .logos{ grid-template-columns: repeat(3, 1fr); }
+      .clients .logo:nth-child(3){ border-right: none; }
+      .clients .logo:nth-child(n+4){ border-top: 1px solid rgba(245,243,238,.1); }
+    }
+
+    /* ─── Section primitives (shared with case studies) ─── */
+    .block{ padding: clamp(56px, 6vw, 96px) var(--pad); }
+    .block.dark{ background: var(--ink); color: var(--paper); }
+    .block.paper2{ background: var(--paper-2); }
+    .wrap{ max-width: var(--max); margin: 0 auto; }
+
+    .seclabel{
+      display: flex; gap: 20px; align-items: baseline; justify-content: space-between;
+      flex-wrap: wrap;
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .block.dark .seclabel{ border-bottom-color: rgba(245,243,238,.22); color: rgba(245,243,238,.7); }
+    .seclabel .ttl{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(22px, 2.4vw, 34px);
+      letter-spacing: -.02em; line-height: 1.05; text-transform: none;
+      color: var(--ink);
+      max-width: 22ch;
+    }
+    .block.dark .seclabel .ttl{ color: var(--paper); }
+    .seclabel .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .seclabel .l{ display: flex; flex-direction: column; gap: 10px; }
+    .seclabel .r{ text-align: right; align-self: flex-end; opacity: .75; }
+
+    /* ─── Manifesto — typographic pull, no random photograph ─── */
+    .manifesto-grid{
+      display: grid; gap: clamp(28px, 3.5vw, 56px);
+      grid-template-columns: 1fr;
+      align-items: end;
+    }
+    @media (min-width: 900px){
+      .manifesto-grid{ grid-template-columns: 1.5fr 1fr; }
+    }
+    .manifesto-lead{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(24px, 2.8vw, 42px);
+      line-height: 1.1; letter-spacing: -.022em;
+      max-width: 22ch;
+    }
+    .manifesto-lead .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .manifesto-lead .strike{ text-decoration: line-through; text-decoration-thickness: 2px; opacity: .32; }
+
+    .manifesto-pull{
+      align-self: end;
+      padding-left: clamp(0px, 2vw, 32px);
+      border-left: 1px solid var(--rule);
+      padding-top: 10px;
+      display: grid; gap: 14px;
+    }
+    @media (max-width: 899px){ .manifesto-pull{ padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); padding-top: 22px; } }
+    .manifesto-pull .stat{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(64px, 9vw, 132px);
+      line-height: .88; letter-spacing: -.045em;
+    }
+    .manifesto-pull .stat .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .manifesto-pull .stat-cap{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .55;
+      max-width: 22ch;
+    }
+
+    /* ─── SELECTED WORK — magazine index with sticky preview ─── */
+    .work-wrap{
+      display: grid; gap: clamp(28px, 3vw, 56px);
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    @media (min-width: 900px){
+      .work-wrap{ grid-template-columns: 1.5fr 1fr; gap: clamp(40px, 5vw, 80px); }
+    }
+
+    .work-index{
+      display: grid; grid-template-columns: 1fr;
+    }
+    .work-row{
+      display: grid;
+      grid-template-columns: 36px 1.6fr 1fr auto;
+      gap: 18px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-top: 1px solid var(--rule);
+      cursor: pointer;
+      transition: padding-left .35s cubic-bezier(.7,0,.2,1), background .3s;
+      position: relative;
+    }
+    .work-row:last-child{ border-bottom: 1px solid var(--rule); }
+    .work-row:hover, .work-row.active{ padding-left: 12px; }
+    .work-row:hover .ttl, .work-row.active .ttl{ }
+    .work-row .n{ font-family: var(--mono); font-size: 10px; opacity: .55; }
+    .work-row .ttl{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(22px, 2.4vw, 36px);
+      line-height: 1.05; letter-spacing: -.025em;
+    }
+    .work-row .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .work-row .tags{
+      display: flex; flex-wrap: wrap; gap: 6px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      opacity: .7;
+    }
+    .work-row .tags span{ border: 1px solid var(--rule); padding: 4px 8px 5px; border-radius: 999px; }
+    .work-row .year{ font-family: var(--mono); font-size: 10px; opacity: .55; }
+
+    /* mobile preview inline (under each row) */
+    .work-row .inline-cover{
+      display: none;
+      grid-column: 1 / -1;
+      margin-top: 10px;
+      aspect-ratio: 4/3;
+      overflow: hidden; background: var(--paper-2);
+    }
+    .work-row .inline-cover img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 899px){
+      .work-row{ grid-template-columns: 28px 1fr; }
+      .work-row .tags, .work-row .year{ display: none; }
+      .work-row .inline-cover{ display: block; }
+    }
+
+    /* sticky preview pane (desktop only) */
+    .work-preview{
+      position: sticky; top: 100px;
+      align-self: start;
+      display: none;
+    }
+    @media (min-width: 900px){ .work-preview{ display: block; } }
+    .work-preview .frame{
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--paper-2);
+      position: relative;
+    }
+    .work-preview .frame img{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0;
+      transition: opacity .55s cubic-bezier(.2,.8,.2,1), transform 1.2s cubic-bezier(.2,.8,.2,1);
+      transform: scale(1.04);
+    }
+    .work-preview .frame img.is-active{ opacity: 1; transform: scale(1); }
+    .work-preview .cap{
+      margin-top: 12px;
+      display:flex; justify-content: space-between; gap: 12px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      opacity: .6;
+    }
+
+    .work-foot{
+      margin-top: clamp(24px, 3vw, 40px);
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .work-foot .btn{
+      font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 4px;
+      display: inline-flex; gap: 10px; align-items: baseline;
+    }
+
+    /* ─── Pull-quote slab (kept clean — ink) ─── */
+    .pq{
+      background: var(--ink); color: var(--paper);
+      padding: clamp(80px, 10vw, 140px) var(--pad);
+    }
+    .pq .wrap{ max-width: var(--max); margin: 0 auto; }
+    .pq .lab{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; opacity: .65; margin-bottom: 22px; }
+    .pq h2{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(44px, 7vw, 110px);
+      line-height: .95; letter-spacing: -.04em;
+      max-width: 16ch;
+    }
+    .pq h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .pq .cred{
+      margin-top: clamp(40px, 5vw, 70px);
+      padding-top: 16px;
+      border-top: 1px solid rgba(245,243,238,.2);
+      display: flex; justify-content: space-between; gap: 18px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .7;
+    }
+
+    /* ─── Capabilities — sample-sheet (image + label) ─── */
+    .caps-grid{
+      display: grid; gap: 22px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 900px){ .caps-grid{ grid-template-columns: repeat(4, 1fr); gap: 22px; } }
+    .cap{
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .cap .specimen{
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--paper-2);
+      position: relative;
+    }
+    .cap .specimen img{ width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+    .cap:hover .specimen img{ transform: scale(1.03); }
+    .cap .specimen .corner{
+      position: absolute; top: 12px; left: 12px;
+      font-family: var(--mono); font-size: 8px; letter-spacing: .2em; text-transform: uppercase;
+      background: var(--paper); color: var(--ink);
+      padding: 5px 8px;
+      border-radius: 2px;
+    }
+    .cap h3{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(18px, 1.9vw, 24px); line-height: 1.1; letter-spacing: -.02em;
+    }
+    .cap h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .cap .deliv{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      opacity: .55;
+    }
+
+    /* ─── Process — tight ledger rows ─── */
+    .proc-grid{
+      display: grid; grid-template-columns: 1fr;
+    }
+    .proc-row{
+      display: grid;
+      grid-template-columns: 60px 1.2fr 2fr 1fr;
+      gap: 20px;
+      align-items: baseline;
+      padding: 18px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .proc-row:last-child{ border-bottom: 1px solid var(--rule); }
+    .proc-row .n{ font-family: var(--display); font-weight: 500; font-size: 28px; letter-spacing: -.03em; line-height: 1; }
+    .proc-row .n .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .proc-row h4{ font-family: var(--display); font-weight: 500; font-size: clamp(16px, 1.5vw, 20px); line-height: 1.15; letter-spacing: -.01em; }
+    .proc-row p{ font-size: 13px; line-height: 1.55; max-width: 44ch; opacity: .8; }
+    .proc-row .dur{ font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; opacity: .55; text-align: right; }
+    @media (max-width: 760px){
+      .proc-row{ grid-template-columns: 40px 1fr; row-gap: 4px; }
+      .proc-row p{ grid-column: 2 / 3; }
+      .proc-row .dur{ grid-column: 2 / 3; text-align: left; }
+    }
+
+    /* ─── Ledger ─── */
+    .ledger{
+      background: var(--paper-2);
+      padding: clamp(40px, 5vw, 64px) var(--pad);
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    }
+    .ledger .wrap{ display: grid; grid-template-columns: 1fr; gap: 28px; }
+    @media (min-width: 900px){ .ledger .wrap{ grid-template-columns: 1fr 2.4fr; gap: 60px; } }
+    .ledger .lab{ font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .65; }
+    .ledger dl{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 22px; }
+    .ledger dt{ font-family: var(--display); font-weight: 500; font-size: clamp(30px, 3vw, 52px); line-height: .92; letter-spacing: -.03em; }
+    .ledger dt .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .ledger dd{ font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; opacity: .65; margin-top: 6px; }
+    @media (max-width: 600px){ .ledger dl{ grid-template-columns: 1fr 1fr; } }
+
+    /* ─── Contact ─── */
+    .contact{
+      background: var(--ink); color: var(--paper);
+      padding: clamp(80px, 10vw, 140px) var(--pad) 60px;
+    }
+    .contact .wrap{ max-width: var(--max); margin: 0 auto; }
+    .contact-grid{ display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 900px){ .contact-grid{ grid-template-columns: 1.6fr 1fr; gap: 60px; } }
+    .contact .eyebrow{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; opacity: .55; margin-bottom: 28px; }
+    .contact h2{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(48px, 8vw, 140px);
+      line-height: .92; letter-spacing: -.04em;
+    }
+    .contact h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .contact-email{
+      display: inline-flex; gap: 12px; align-items: center;
+      margin-top: 28px;
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(16px, 1.7vw, 22px); letter-spacing: -.005em;
+      border-bottom: 1px solid currentColor; padding-bottom: 4px;
+    }
+    .contact-email:hover{ opacity: .75; }
+    .contact-side{
+      display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+      align-content: start; padding-top: 14px;
+    }
+    .contact-side .blk h5{ font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin-bottom: 8px; }
+    .contact-side .blk p, .contact-side .blk a{ font-family: var(--display); font-size: 13px; line-height: 1.45; letter-spacing: -.005em; }
+    .contact-side .blk a:hover{ opacity: .7; }
+    .contact-foot{
+      margin-top: clamp(40px, 5vw, 70px);
+      padding-top: 18px;
+      border-top: 1px solid rgba(245,243,238,.18);
+      display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      opacity: .55;
+    }
+
+    /* ─── Wordmark ─── */
+    .wordmark{ background: var(--ink); padding: 0 0 30px; overflow: hidden; }
+    .wordmark svg{ display: block; width: 100%; height: auto; }
+
+    /* ─── Reveal ─── */
+    .rv{ opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+    .rv.in{ opacity: 1; transform: none; }
+    .rv.d1{ transition-delay: .08s; }
+    .rv.d2{ transition-delay: .16s; }
+    .rv.d3{ transition-delay: .24s; }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
 
-  <!-- ─── Top bar ─── -->
-  <header class="topbar" data-screen-label="00 Top">
-    <a href="index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
-    <div class="brand-meta"><span class="dot"></span>Independent Studio · Swansea, Wales</div>
-    <nav class="nav-links">
+  <!-- Top bar -->
+  <header class="bar" id="bar" data-screen-label="00 Top">
+    <a class="brand" href="index.html"><b>Dastardly</b> <span class="amp">&amp;</span> <b>Muttley</b></a>
+    <div class="mid">Independent Studio · Swansea, Wales</div>
+    <nav class="right">
       <a href="work.html">Work</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
@@ -29,15 +527,13 @@
     </nav>
   </header>
 
-  <!-- ─── Hero: featured work ─── -->
+  <!-- ─── HERO — full-bleed (original treatment) ─── -->
   <section class="hero" id="hero" data-screen-label="01 Hero">
-    <div class="hero-media" id="hero-media" style="background-image:url('media/hero bigger.jpg')"></div>
+    <div class="hero-media" id="hero-media" style="background-image:url('media/hero-bigger.jpg')"></div>
 
     <div class="hero-grid">
       <div class="hero-eyebrow">
-        <span class="left">
-          <span>Independent Creative Studio</span>
-        </span>
+        <span class="left"><span>Independent Creative Studio</span></span>
         <span class="right">2026 — Volume 04</span>
       </div>
 
@@ -59,271 +555,247 @@
           <div class="label">Based</div>
           <div class="val">Swansea, <span class="ser">Wales</span></div>
         </div>
-        <div class="col hero-cta-wrap">
+        <div class="col">
           <a href="#work" class="hero-cta">View The Work <span class="arrow"></span></a>
         </div>
       </div>
     </div>
 
-    <div class="hero-vert">DM · 26.05.04</div>
-    <div class="hero-ticker"><span class="blink"></span> Now booking — Q3 2026</div>
+    <div class="hero-vert">DM · 26.05.14</div>
+    <div class="hero-ticker"><span class="blink-2"></span> Now booking — Q3 2026</div>
   </section>
 
-  <!-- ─── Marquee strip ─── -->
-  <div class="strip" aria-hidden="true" style="display:none">
-    <div class="strip-track">
-      <span>Brand Identity</span><span class="serif it">·</span>
-      <span>Web Design</span><span class="serif it">·</span>
-      <span>Photography</span><span class="serif it">·</span>
-      <span>Print &amp; Editorial</span><span class="serif it">·</span>
-      <span>Campaign</span><span class="serif it">·</span>
-      <span>Brand Identity</span><span class="serif it">·</span>
-      <span>Web Design</span><span class="serif it">·</span>
-      <span>Photography</span><span class="serif it">·</span>
-      <span>Print &amp; Editorial</span><span class="serif it">·</span>
-      <span>Campaign</span><span class="serif it">·</span>
+  <!-- ─── Clients ─── -->
+  <div class="clients" aria-label="Designed for">
+    <div class="lbl">Designed for</div>
+    <div class="logos">
+      <div class="logo sm"><img src="media/clients/logo-manifest.png" alt="Manifest"></div>
+      <div class="logo"><img src="media/clients/logo-james-music.png" alt="James Music"></div>
+      <div class="logo lg"><img src="media/clients/logo-old-olive-kart.png" alt="The Old Olive Kart"></div>
+      <div class="logo lg"><img src="media/clients/logo-mythora.png" alt="Mythora"></div>
+      <div class="logo lg"><img src="media/clients/logo-enthusiasts.png" alt="The Enthusiasts Podcast"></div>
+      <div class="logo lg"><img src="media/clients/logo-problematic-pub.png" alt="Problematic Pub"></div>
     </div>
   </div>
 
-  <!-- ─── Designed for ─── -->
-  <div class="designed-for" id="clients" aria-label="Designed for">
-    <div class="df-label">Designed for</div>
-    <div class="df-logos">
-      <div class="df-logo df-logo--sm"><img src="media/clients/logo-manifest.png" alt="Manifest"></div>
-      <div class="df-logo"><img src="media/clients/logo-james-music.png" alt="James Music"></div>
-      <div class="df-logo df-logo--lg"><img src="media/clients/logo-old-olive-kart.png" alt="The Old Olive Kart"></div>
-      <div class="df-logo df-logo--lg"><img src="media/clients/logo-mythora.png" alt="Mythora"></div>
-      <div class="df-logo df-logo--lg"><img src="media/clients/logo-enthusiasts.png" alt="The Enthusiasts Podcast"></div>
-      <div class="df-logo df-logo--lg"><img src="media/clients/logo-problematic-pub.png" alt="Problematic Pub"></div>
-    </div>
-  </div>
+  <!-- ─── Manifesto — paired with photograph ─── -->
+  <section class="block" data-screen-label="02 Manifesto">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 01 — Studio</span>
+          <span class="ttl">A studio for businesses that <span class="it">refuse to blend in.</span></span>
+        </div>
+        <div class="r">Est. Swansea · 2022</div>
+      </div>
 
-  <!-- ─── Manifesto ─── -->
-  <section class="manifesto" id="manifesto" data-screen-label="02 Manifesto">
-    <div class="sec-head">
-      <div class="sec-num">§ 01 — Studio</div>
-      <div class="sec-title">A studio for businesses<br>that <span class="it">refuse to blend in.</span></div>
-      <div class="sec-meta">Est. Swansea · 2022</div>
-    </div>
-    <div class="manifesto-grid">
-      <p class="manifesto-lead rv">
-        We build brands for the corner café, the high-street florist, the second-album band, the indie that's outgrowing its wordpress site — the businesses
-        <span class="strike">corporate agencies</span> <span class="it">no-one else</span> takes seriously.
-      </p>
-      <div class="manifesto-side">
-        <p class="rv d1">Web, identity, photography and print under one roof. One brief, one team, one consistent visual system from the screen to the shop window.</p>
-        <p class="rv d2">No templates. No off-the-shelf solutions. No agency theatre. Every project is built from scratch around what makes you genuinely different.</p>
+      <div class="manifesto-grid">
+        <p class="manifesto-lead rv">
+          We build brands for the corner café, the high-street florist, the second-album band, the indie outgrowing its WordPress site — the businesses
+          <span class="strike">corporate agencies</span> <span class="it">no-one else</span> takes seriously.
+        </p>
+
+        <div class="manifesto-pull rv d1">
+          <div class="stat">50<span class="it">+</span></div>
+          <div class="stat-cap">Brands shipped<br>Since '22 · Across four disciplines</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Index of work ─── -->
-  <section class="work" id="work" data-screen-label="03 Selected Work">
-    <div class="sec-head">
-      <div class="sec-num">§ 02 — Selected Work</div>
-      <div class="sec-title">Index <span class="it">'24 — '26</span></div>
-      <div class="sec-meta">Recent projects</div>
-    </div>
-
-    <div class="work-table" id="work-table">
-
-      <a href="work/manifest.html" class="work-row">
-        <div class="num">01</div>
-        <div class="title">Manifest</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Web</span><span class="tag">Print</span></div>
-        <div class="year">2026</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Brand identity</li><li>Website design</li><li>Digital menus</li><li>Posters &amp; staffwear</li></ul>
-          <p class="expand-summary">Identity, web design, digital menus, in-store posters, and staffwear for a Welsh-Brazilian restaurant.</p>
-        </div></div>
-      </a>
-
-      <a href="work/sandro-ford-wrong-glass.html" class="work-row">
-        <div class="num">02</div>
-        <div class="title">Sandro Ford: Wrong Glass</div>
-        <div class="tags"><span class="tag">Merch</span><span class="tag">Print</span></div>
-        <div class="year">2026</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Custom glassware</li><li>Merch design</li><li>Product photography</li></ul>
-          <p class="expand-summary">Custom printed glassware and merchandise design for Swansea musician Sandro Ford's debut release.</p>
-        </div></div>
-      </a>
-
-      <a href="work/mythora.html" class="work-row">
-        <div class="num">03</div>
-        <div class="title">Mythora</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Logo</span><span class="tag">Print</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo &amp; mark</li><li>Poster artwork</li><li>Sticker design</li></ul>
-          <p class="expand-summary">Band identity, logo design, and poster artwork for a South Wales rock band.</p>
-        </div></div>
-      </a>
-
-      <a href="work/james-music.html" class="work-row">
-        <div class="num">04</div>
-        <div class="title">James Music</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Photography</span><span class="tag">Print</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo &amp; wordmark</li><li>Window vinyl &amp; signage</li><li>Campaign photography</li><li>Print collateral</li></ul>
-          <p class="expand-summary">Brand identity, shopfront graphics, and dual campaigns for a long-standing Swansea music institution.</p>
-        </div></div>
-      </a>
-
-      <a href="work/old-olive-kart.html" class="work-row">
-        <div class="num">05</div>
-        <div class="title">The Old Olive Kart</div>
-        <div class="tags"><span class="tag">Web</span><span class="tag">Identity</span><span class="tag">Photography</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo &amp; identity</li><li>Website design &amp; build</li><li>Product photography</li><li>Video</li></ul>
-          <p class="expand-summary">Full brand identity and website for a West Wales artisan olive oil trader at farmers' markets.</p>
-        </div></div>
-      </a>
-
-      <a href="work/enthusiasts-podcast.html" class="work-row">
-        <div class="num">06</div>
-        <div class="title">The Enthusiasts</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Photography</span><span class="tag">Video</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Brand mark</li><li>Editorial photography</li><li>Episode video direction</li><li>Merchandise</li></ul>
-          <p class="expand-summary">Brand identity, editorial photography, and video direction for a Swansea culture podcast.</p>
-        </div></div>
-      </a>
-
-    </div>
-
-    <div class="work-foot">
-      <span class="mono" style="opacity:.55">Hover to expand</span>
-      <a href="work.html" class="btn-link">
-        Full archive
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ─── Capabilities ─── -->
-  <section class="capabilities" id="capabilities" data-screen-label="04 Capabilities">
-    <div class="sec-head">
-      <div class="sec-num" style="color: rgba(245,243,238,.6)">§ 03 — Capabilities</div>
-      <div class="sec-title" style="color: var(--paper)">What we <span class="it">do.</span></div>
-      <div class="sec-meta">Four disciplines, one studio</div>
-    </div>
-
-    <div class="cap-grid">
-      <div class="cap-row">
-        <div class="num">A.</div>
-        <h3>Brand <span class="it">Identity</span></h3>
-        <div>
-          <p>Naming, logo systems, typography, colour, voice, and the rules that hold it all together. A complete identity that survives contact with the real world — packaging, posters, websites, the side of a van.</p>
-          <div class="deliv">Logo · Typography · Voice · Guidelines</div>
+  <!-- ─── Selected work — magazine index w/ sticky cover ─── -->
+  <section class="block paper2" id="work" data-screen-label="03 Selected Work">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 02 — Selected Work · '24—'26</span>
+          <span class="ttl">In this <span class="it">issue.</span></span>
         </div>
-        <div class="more">→ 01 / 04</div>
+        <div class="r">Six recent projects<br>Hover to preview</div>
       </div>
 
-      <div class="cap-row">
-        <div class="num">B.</div>
-        <h3>Web <span class="it">&amp; Digital</span></h3>
-        <div>
-          <p>From a one-page site that closes the deal to full e-commerce. We design and build everything ourselves, so the thing that ships is the thing we drew. Fast, considered, built to grow.</p>
-          <div class="deliv">Marketing site · E-commerce · CMS · Email</div>
-        </div>
-        <div class="more">→ 02 / 04</div>
-      </div>
+      <div class="work-wrap">
+        <!-- left: index list -->
+        <div class="work-index">
+          <a href="work/manifest.html" class="work-row" data-cover="media/covers/manifest.jpg" data-cap="Manifest · 2025">
+            <div class="n">01</div>
+            <div class="ttl">Manifest<span class="it">.</span></div>
+            <div class="tags"><span>Identity</span><span>Web</span><span>Print</span></div>
+            <div class="year">2026</div>
+            <div class="inline-cover"><img src="media/covers/manifest.jpg" alt="Manifest"></div>
+          </a>
+          <a href="work/sandro-ford.html" class="work-row" data-cover="media/covers/sandro.jpg" data-cap="Sandro Ford · Wrong Glass · 2026">
+            <div class="n">02</div>
+            <div class="ttl">Sandro Ford <span class="it">— Wrong Glass</span></div>
+            <div class="tags"><span>Merch</span><span>Print</span></div>
+            <div class="year">2026</div>
+            <div class="inline-cover"><img src="media/covers/sandro.jpg" alt="Sandro Ford"></div>
+          </a>
+          <a href="work/mythora.html" class="work-row" data-cover="media/covers/mythora.png" data-cap="Mythora · 2025">
+            <div class="n">03</div>
+            <div class="ttl">Mythora<span class="it">.</span></div>
+            <div class="tags"><span>Identity</span><span>Logo</span><span>Print</span></div>
+            <div class="year">2025</div>
+            <div class="inline-cover"><img src="media/covers/mythora.png" alt="Mythora"></div>
+          </a>
+          <a href="work/james-music.html" class="work-row" data-cover="media/hero-bigger.jpg" data-cap="James Music · 2025">
+            <div class="n">04</div>
+            <div class="ttl">James Music<span class="it">.</span></div>
+            <div class="tags"><span>Identity</span><span>Photography</span><span>Print</span></div>
+            <div class="year">2025</div>
+            <div class="inline-cover"><img src="media/hero-bigger.jpg" alt="James Music"></div>
+          </a>
+          <a href="work/old-olive-kart.html" class="work-row" data-cover="media/covers/olive.jpg" data-cap="The Old Olive Kart · 2025">
+            <div class="n">05</div>
+            <div class="ttl">The Old <span class="it">Olive Kart</span></div>
+            <div class="tags"><span>Web</span><span>Identity</span><span>Photography</span></div>
+            <div class="year">2025</div>
+            <div class="inline-cover"><img src="media/covers/olive.jpg" alt="Old Olive Kart"></div>
+          </a>
+          <a href="work/enthusiasts.html" class="work-row" data-cover="media/covers/enthusiasts.jpg" data-cap="The Enthusiasts · 2025">
+            <div class="n">06</div>
+            <div class="ttl">The <span class="it">Enthusiasts</span></div>
+            <div class="tags"><span>Identity</span><span>Photography</span><span>Video</span></div>
+            <div class="year">2025</div>
+            <div class="inline-cover"><img src="media/covers/enthusiasts.jpg" alt="The Enthusiasts"></div>
+          </a>
 
-      <div class="cap-row">
-        <div class="num">C.</div>
-        <h3>Photography <span class="it">&amp; Film</span></h3>
-        <div>
-          <p>Brand imagery that feels like the brand. Product, lifestyle, on-location, drone, short-form social — shot, graded and delivered as a usable image library, not a one-off folder.</p>
-          <div class="deliv">Brand · Product · Editorial · Motion</div>
+          <div class="work-foot">
+            <span class="mono" style="opacity:.55">Vol. 04 · 06 of 50<span class="it">+</span></span>
+            <a href="work.html" class="btn">Full archive <span aria-hidden="true">→</span></a>
+          </div>
         </div>
-        <div class="more">→ 03 / 04</div>
-      </div>
 
-      <div class="cap-row">
-        <div class="num">D.</div>
-        <h3>Print <span class="it">&amp; Object</span></h3>
-        <div>
-          <p>Books, menus, packaging, posters, signage, business cards that don't feel like business cards. We design it; we project-manage the print partners we trust to do it right, in the UK.</p>
-          <div class="deliv">Editorial · Packaging · Signage · Stationery</div>
-        </div>
-        <div class="more">→ 04 / 04</div>
+        <!-- right: sticky cover preview -->
+        <aside class="work-preview" id="workPreview">
+          <div class="frame">
+            <img src="media/covers/manifest.jpg" alt="" data-key="media/covers/manifest.jpg" class="is-active">
+            <img src="media/covers/sandro.jpg" alt="" data-key="media/covers/sandro.jpg">
+            <img src="media/covers/mythora.png" alt="" data-key="media/covers/mythora.png">
+            <img src="media/hero-bigger.jpg" alt="" data-key="media/hero-bigger.jpg">
+            <img src="media/covers/olive.jpg" alt="" data-key="media/covers/olive.jpg">
+            <img src="media/covers/enthusiasts.jpg" alt="" data-key="media/covers/enthusiasts.jpg">
+          </div>
+          <div class="cap">
+            <span id="previewCap">Manifest · 2025</span>
+            <span>Hover an entry</span>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- ─── Editorial pull quote ─── -->
-  <section class="editorial" data-screen-label="05 Pull Quote">
-    <div class="editorial-inner">
-      <div class="editorial-eyebrow">
-        <span>§ Pull Quote</span>
-        <span>—</span>
-        <span>The studio, in one line</span>
-      </div>
-      <h2 class="editorial-quote rv">
+  <!-- ─── Pull quote ─── -->
+  <section class="pq" data-screen-label="04 Pull Quote">
+    <div class="wrap">
+      <div class="lab">§ Pull Quote — The studio, in one line</div>
+      <h2 class="rv">
         Don't chase trends.<br>
         <span class="it">Set them.</span>
       </h2>
-      <div class="editorial-foot">
-        <span>Dastardly &amp; Muttley — 2026</span>
+      <div class="cred">
+        <span>Dastardly &amp; Muttley · 2026</span>
         <span>Studio Statement</span>
       </div>
     </div>
   </section>
 
-  <!-- ─── Process ─── -->
-  <section class="process" id="process" data-screen-label="06 Process">
-    <div class="sec-head">
-      <div class="sec-num">§ 04 — Process</div>
-      <div class="sec-title">How <span class="it">it goes.</span></div>
-      <div class="sec-meta">A four-stage system</div>
-    </div>
+  <!-- ─── Capabilities — specimen sheet ─── -->
+  <section class="block" data-screen-label="05 Capabilities">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 03 — Capabilities</span>
+          <span class="ttl">Four disciplines, <span class="it">one studio.</span></span>
+        </div>
+        <div class="r">Specimens<br>From recent projects</div>
+      </div>
 
-    <div class="proc-grid">
-      <div class="proc-step rv">
-        <div class="num">01<span class="it">/</span></div>
-        <h4>Brief &amp; Discover</h4>
-        <p>A real conversation, not a form. We dig into the business, the market, and what makes you genuinely different from everyone else doing the same thing on your high street.</p>
-        <div class="dur">~ 1 — 2 weeks</div>
-      </div>
-      <div class="proc-step rv d1">
-        <div class="num">02<span class="it">/</span></div>
-        <h4>Strategy &amp; Direction</h4>
-        <p>Before a pixel moves, we lock the direction. Visual territory, tone, references, competitive landscape — the thinking that makes everything else actually land.</p>
-        <div class="dur">~ 1 week</div>
-      </div>
-      <div class="proc-step rv d2">
-        <div class="num">03<span class="it">/</span></div>
-        <h4>Design &amp; Build</h4>
-        <p>The full system — logo, colour, type, web, print. Every element built to work together. Nothing off-the-shelf. We iterate until it's exactly right and you can't imagine it any other way.</p>
-        <div class="dur">~ 4 — 8 weeks</div>
-      </div>
-      <div class="proc-step rv d3">
-        <div class="num">04<span class="it">/</span></div>
-        <h4>Deliver &amp; Launch</h4>
-        <p>A handoff that actually makes sense — files, brand guidelines, and a system you can run yourself. We stay on hand for whatever comes next, because most projects don't end at launch.</p>
-        <div class="dur">Ongoing</div>
+      <div class="caps-grid">
+        <div class="cap rv">
+          <div class="specimen">
+            <img src="media/caps/identity.png" alt="Mythora — identity specimen">
+            <span class="corner">A · Identity</span>
+          </div>
+          <h3>Brand <span class="it">Identity</span></h3>
+          <div class="deliv">Naming · Logo · Type<br>Voice · Guidelines</div>
+        </div>
+        <div class="cap rv d1">
+          <div class="specimen">
+            <img src="media/caps/web.jpg" alt="Old Olive Kart — website specimen">
+            <span class="corner">B · Web</span>
+          </div>
+          <h3>Web <span class="it">&amp; Digital</span></h3>
+          <div class="deliv">Marketing site · E-commerce<br>CMS · Email</div>
+        </div>
+        <div class="cap rv d2">
+          <div class="specimen">
+            <img src="media/Manifest/brazil-1.jpg" alt="On location in Brazil for Manifest — dock photograph">
+            <span class="corner">C · Photography</span>
+          </div>
+          <h3>Photography <span class="it">&amp; Film</span></h3>
+          <div class="deliv">Brand · Product<br>Editorial · Motion</div>
+        </div>
+        <div class="cap rv d3">
+          <div class="specimen">
+            <img src="media/caps/print.jpg" alt="Manifest — print specimen">
+            <span class="corner">D · Print</span>
+          </div>
+          <h3>Print <span class="it">&amp; Object</span></h3>
+          <div class="deliv">Editorial · Packaging<br>Signage · Stationery</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Ledger / studio facts ─── -->
+  <!-- ─── Process ─── -->
+  <section class="block paper2" data-screen-label="06 Process">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 04 — Process</span>
+          <span class="ttl">How <span class="it">it goes.</span></span>
+        </div>
+        <div class="r">A four-stage system</div>
+      </div>
+
+      <div class="proc-grid">
+        <div class="proc-row rv">
+          <div class="n">01<span class="it">/</span></div>
+          <h4>Brief &amp; Discover</h4>
+          <p>A real conversation, not a form. We dig into the business, the market, and what makes you genuinely different.</p>
+          <div class="dur">~ 1 — 2 weeks</div>
+        </div>
+        <div class="proc-row rv d1">
+          <div class="n">02<span class="it">/</span></div>
+          <h4>Strategy &amp; Direction</h4>
+          <p>Before a pixel moves, we lock the direction — visual territory, tone, references.</p>
+          <div class="dur">~ 1 week</div>
+        </div>
+        <div class="proc-row rv d2">
+          <div class="n">03<span class="it">/</span></div>
+          <h4>Design &amp; Build</h4>
+          <p>The full system — logo, colour, type, web, print. We iterate until it's exactly right.</p>
+          <div class="dur">~ 4 — 8 weeks</div>
+        </div>
+        <div class="proc-row rv d3">
+          <div class="n">04<span class="it">/</span></div>
+          <h4>Deliver &amp; Launch</h4>
+          <p>Files, brand guidelines, and a system you can run yourself. We stay on hand for what comes next.</p>
+          <div class="dur">Ongoing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Ledger ─── -->
   <section class="ledger" data-screen-label="07 Studio Facts">
-    <div class="ledger-inner">
-      <div class="ledger-label">§ Studio<br>Index</div>
-      <dl class="ledger-list">
+    <div class="wrap">
+      <div class="lab">§ Studio<br>Index</div>
+      <dl>
         <div><dt>50<span class="it">+</span></dt><dd>Projects shipped</dd></div>
         <div><dt>04</dt><dd>Disciplines, in-house</dd></div>
-        <div><dt><span class="it">Est.</span><br>'22</dt><dd>Founded — Elysium Gallery</dd></div>
+        <div><dt><span class="it">Est.</span> '22</dt><dd>Founded — Elysium Gallery</dd></div>
         <div><dt>100<span class="it">%</span></dt><dd>Independent &amp; self-funded</dd></div>
         <div><dt>Q3</dt><dd>Now booking — 2026</dd></div>
         <div><dt>SA1<br><span class="it">8PE</span></dt><dd>Swansea, South Wales</dd></div>
@@ -333,94 +805,90 @@
 
   <!-- ─── Contact ─── -->
   <section class="contact" id="contact" data-screen-label="08 Contact">
-    <div class="contact-grid">
-      <div>
-        <div class="contact-eyebrow">§ 05 — Get in touch</div>
-        <h2 class="contact-headline">
-          Have something<br>
-          worth <span class="it">making?</span>
-        </h2>
-        <a href="/cdn-cgi/l/email-protection#5038353c3c3f10343123243122343c29313e343d2524243c35297e333f7e253b" class="contact-email">
-          <span class="__cf_email__" data-cfemail="8fe7eae3e3e0cfebeefcfbeefdebe3f6eee1ebe2fafbfbe3eaf6a1ece0a1fae4">[email&#160;protected]</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
-        </a>
-      </div>
-      <div class="contact-side">
-        <div class="blk">
-          <h5>Studio</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow">§ 05 — Get in touch</div>
+          <h2>Have something<br>worth <span class="it">making?</span></h2>
+          <a class="contact-email" href="mailto:hello@dastardlyandmuttley.co.uk">
+            hello@dastardlyandmuttley.co.uk
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
+          </a>
         </div>
-        <div class="blk">
-          <h5>Direct</h5>
-          <a href="tel:+441792000000">+44 (0)1792 000 000</a><br>
-          <a href="https://instagram.com/dastardlyandmuttleydesign" target="_blank" rel="noopener">@dastardlyandmuttleydesign</a>
-        </div>
-        <div class="blk">
-          <h5>Hours</h5>
-          <p>Mon — Fri<br>09:00 — 18:00 GMT</p>
-        </div>
-        <div class="blk">
-          <h5>Status</h5>
-          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
+        <div class="contact-side">
+          <div class="blk"><h5>Studio</h5><p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p></div>
+          <div class="blk"><h5>Direct</h5><a href="tel:+441792000000">+44 (0)1792 000 000</a><br><a href="https://instagram.com/dastardlyandmuttleydesign" target="_blank" rel="noopener">@dastardlyandmuttleydesign</a></div>
+          <div class="blk"><h5>Hours</h5><p>Mon — Fri<br>09:00 — 18:00 GMT</p></div>
+          <div class="blk"><h5>Status</h5><p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p></div>
         </div>
       </div>
-    </div>
 
-    <div class="contact-foot">
-      <span>© 2026 Dastardly &amp; Muttley Ltd · Co. 14XXXXXX</span>
-      <span>Site v2.0 — Hand-built in Swansea</span>
-      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
+      <div class="contact-foot">
+        <span>© 2026 Dastardly &amp; Muttley Ltd · Co. 14XXXXXX</span>
+        <span>Site v3.0 — Hand-built in Swansea</span>
+        <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
+      </div>
     </div>
   </section>
 
-  <!-- ─── Wordmark footer ─── -->
+  <!-- Wordmark -->
   <footer class="wordmark" aria-hidden="true">
     <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
       <text x="1300" y="210" text-anchor="middle"
-            font-family="Space Grotesk, sans-serif"
-            font-weight="700"
-            font-size="240"
-            letter-spacing="-10"
-            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+        font-family="Space Grotesk, sans-serif"
+        font-weight="700" font-size="240" letter-spacing="-10"
+        fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
     </svg>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Nav background on scroll
-    const topbar = document.querySelector('.topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+  <script>
+    // bar: difference blend over hero, normal once scrolled past
+    const bar = document.getElementById('bar');
+    const hero = document.getElementById('hero');
+    function syncBar(){
+      const heroBottom = hero ? hero.offsetTop + hero.offsetHeight - 80 : 0;
+      const over = scrollY < heroBottom;
+      bar.classList.toggle('over-hero', over);
+      bar.classList.toggle('scrolled', scrollY > 60 && !over);
+    }
+    addEventListener('scroll', syncBar, {passive:true});
+    syncBar();
 
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.18 });
-    document.querySelectorAll('.rv, .split-line').forEach(el => io.observe(el));
-
-    // Hero split-line entry
+    // hero split-line entry
     requestAnimationFrame(() => {
       document.querySelectorAll('.hero .split-line').forEach((el, i) => {
-        setTimeout(() => el.classList.add('in'), 200 + i * 120);
+        setTimeout(() => el.classList.add('in'), 180 + i * 110);
       });
     });
 
-    // Subtle hero image parallax + scale-in
+    // hero parallax
     const heroMedia = document.getElementById('hero-media');
     requestAnimationFrame(() => { heroMedia.style.transform = 'scale(1.0)'; });
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight) {
-        heroMedia.style.transform = `scale(${1 + y / 4000}) translateY(${y * 0.18}px)`;
+    addEventListener('scroll', () => {
+      const y = scrollY;
+      if (y < innerHeight){
+        heroMedia.style.transform = `scale(${1 + y/4000}) translateY(${y * 0.18}px)`;
       }
     }, { passive: true });
 
+    // Reveal
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    // Work index hover preview — swap which image is .is-active by data-key
+    const rows = document.querySelectorAll('.work-row');
+    const previewImgs = document.querySelectorAll('.work-preview .frame img');
+    const previewCap = document.getElementById('previewCap');
+    function setPreview(key, cap){
+      previewImgs.forEach(img => img.classList.toggle('is-active', img.dataset.key === key));
+      if (cap && previewCap) previewCap.textContent = cap;
+    }
+    rows.forEach(r => {
+      r.addEventListener('mouseenter', () => setPreview(r.dataset.cover, r.dataset.cap));
+      r.addEventListener('focus', () => setPreview(r.dataset.cover, r.dataset.cap));
+    });
   </script>
-  <script src="js/cursor.js"></script>
 </body>
 </html>

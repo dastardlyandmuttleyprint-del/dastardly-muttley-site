@@ -4,211 +4,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fresh Home Improvements — Dastardly &amp; Muttley</title>
+  <meta name="description" content="Brand, website and drone photography for a Welsh home-improvements company." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="../css/system.css" />
-  <style>
-    .topbar.light{ mix-blend-mode: normal; color: var(--ink); }
-    .topbar.light a, .topbar.light button{ color: var(--ink); }
-    .topbar.light .brand-meta .dot{ background:#0c0c0c; }
-
-    .fr-aerial-grid{ display: grid; grid-template-columns: 1fr; gap: 14px; }
-    @media (min-width: 760px){ .fr-aerial-grid{ grid-template-columns: repeat(3, 1fr); gap: 16px; } }
-    .fr-aerial-grid img{ width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-    .fr-cap-row{
-      display: grid; grid-template-columns: 1fr; gap: 16px;
-      margin-top: 22px;
-      font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-      opacity: .55;
-    }
-    @media (min-width: 760px){ .fr-cap-row{ grid-template-columns: repeat(3, 1fr); gap: 16px; } }
-  </style>
+  <link rel="stylesheet" href="../css/v3.css" />
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-
-  <header class="topbar light" data-screen-label="00 Top">
-    <a href="../index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
-    <div class="brand-meta">Independent Studio · Swansea, Wales</div>
-    <nav class="nav-links">
-      <a href="../work.html">Work</a>
-      <a href="../services.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html" class="nav-cta">Work with us</a>
-    </nav>
+  <header class="bar">
+    <a class="back" href="../index.html"><span class="arr"></span><span>Index</span></a>
+    <div class="mid">Dastardly <span class="it">&amp;</span> Muttley · Case 07/50<span class="it">+</span></div>
+    <div class="right"><a class="nav-cta" href="../contact.html">Start a project</a></div>
   </header>
 
-  <section class="cs-hero" data-screen-label="01 Hero">
-    <div class="top-meta">
-      <span>§ Case Study — 05 / 50+</span>
-      <span>Identity · Web · Photography · Drone</span>
-      <span>2025 — Wales</span>
+  <header class="ph">
+    <div class="ph-wrap">
+      <div class="ph-meta">
+        <div class="l"><span>§ Case 07</span><span>Identity · Web · Photography · Drone</span></div>
+        <div>2025 — Wales</div>
+      </div>
+      <h1 class="ph-title">Fresh Home<span class="it">.</span></h1>
+      <div class="ph-grid">
+        <p class="ph-lede">
+          The work was already premium — extensions and renovations that genuinely transform properties. The brand needed to <span class="it">price accordingly.</span>
+        </p>
+        <div class="ph-specs">
+          <div><div class="k">Client</div><div class="v">Fresh Home <span class="it">Improvements</span></div></div>
+          <div><div class="k">Year</div><div class="v">2025</div></div>
+          <div><div class="k">Sector</div><div class="v"><span class="it">Construction</span> · Renovation</div></div>
+          <div><div class="k">Disciplines</div><div class="v">03 — Web, Photography,<br>Drone</div></div>
+        </div>
+      </div>
     </div>
-    <h1>Fresh<br>Home<span class="it">.</span></h1>
-    <div class="cs-meta-row">
-      <div class="col"><h5>Client</h5><p>Fresh Home Improvements</p></div>
-      <div class="col"><h5>Sector</h5><p><span class="it">Construction</span> · Renovation</p></div>
-      <div class="col"><h5>Scope</h5><p>Identity · Web · Drone</p></div>
-      <div class="col"><h5>Year</h5><p>2025</p></div>
-      <div class="col"><h5>Location</h5><p>Wales</p></div>
+  </header>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 01 — The Site</span><span class="ttl">Designed to convert. <span class="it">Built to last.</span></span></div>
+        <div class="r">freshhomeimprovements.co.uk<br>Custom build · client-managed CMS</div>
+      </div>
+      <div class="fig rv">
+        <img src="../media/fresh-site.jpg" alt="Fresh Home Improvements live site — homepage hero with seasonal promotion">
+        <div class="cap"><span>Fig. 01 — Live site · home</span><span>Mobile-first · client-managed</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="cs-lede" data-screen-label="02 Lede">
-    <div class="cs-lede-inner">
-      <aside class="cs-lede-aside">§ The Brief</aside>
-      <p>Fresh Home Improvements had the work — renovations and extensions that genuinely transform properties. What they needed was <span class="it">a brand and platform positioned to attract the clients their craft deserves.</span></p>
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 02 — Get In The Air</span><span class="ttl">Get <span class="it">in the air.</span></span></div>
+        <div class="r">Most contractors show a front door<br>and a patio. We got in the air.</div>
+      </div>
+      <div class="fig rv">
+        <div class="grid-3">
+          <img src="../media/fresh-aerial-1.jpg" alt="Aerial — farmhouse renovation, hillside">
+          <img src="../media/fresh-aerial-2.jpg" alt="Aerial — coastal Welsh house, full restoration">
+          <img src="../media/fresh-aerial-3.jpg" alt="Aerial — large new-build, garden landscaping">
+        </div>
+        <div class="cap"><span>Fig. 02 — Hillside · Coastal · Extension</span><span>Drone · D&amp;M · 2025</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- ── § 01 — THE SITE ─────────────────────── -->
-  <section class="cs-chap dark" data-screen-label="03 The Site">
-    <div class="chap-head">
-      <div class="chap-num">§ 01 — The Site</div>
-      <div>
-        <h2>Designed to convert. <span class="it">Built to last.</span></h2>
-        <p class="blurb">A site for a high-ticket service has one job: prove the work. We built Fresh Home a platform that opens on the craft, runs on a CMS the team can maintain, and grows alongside their portfolio.</p>
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 03 — On The Ground</span><span class="ttl">Craft, <span class="it">at every scale.</span></span></div>
+        <div class="r">Detail · taste<br>Aerial · capability</div>
       </div>
-    </div>
-
-    <div class="cs-pair">
-      <img src="../media/fresh-site.jpg" alt="Fresh Home Improvements live site — homepage hero with seasonal promotion, navigation, and the script wordmark" loading="lazy" style="aspect-ratio:16/10;object-fit:cover;object-position:top;" />
-      <div class="cs-pair-text">
-        <h3>The platform, <span class="it">in use.</span></h3>
-        <p>The hero rotates between active campaigns and portfolio reveals. The navigation moves the visitor towards <span class="it">the work</span> — exterior, kitchens, bathrooms, bespoke joinery — not towards a contact form.</p>
-        <p>Every page is built to be picked up and edited by the client themselves. <span class="it">An asset, not a dependency.</span></p>
+      <div class="pair reverse rv">
+        <div class="note">
+          <h3>Interior <span class="it">and exterior.</span></h3>
+          <p>The interior photography focuses on rooms where the renovation choices are the loudest argument — copper tubs, dark panelling, considered light.</p>
+          <p>The aerials make the same argument at building scale. Both formats, one position: <span class="it">we make houses worth photographing.</span></p>
+        </div>
+        <img src="../media/fresh-interior.jpg" alt="Renovated bathroom — copper bath, dark teal walls, brass fittings">
       </div>
-    </div>
-    <div class="cs-cap"><span>Fig. 01 — Live site · homepage</span><span>freshhomeimprovements.co.uk</span></div>
-  </section>
-
-  <!-- ── § 02 — GET IN THE AIR ─────────────────── -->
-  <section class="cs-chap paper" data-screen-label="04 Get In The Air">
-    <div class="chap-head">
-      <div class="chap-num">§ 02 — The Argument</div>
-      <div>
-        <h2>Get <span class="it">in the air.</span></h2>
-        <p class="blurb">Most contractors show a front door and a patio. We got in the air. Drone gives prospective clients the full scale of every project — and signals that this company takes its presentation as seriously as its craft.</p>
-      </div>
-    </div>
-
-    <div class="fr-aerial-grid">
-      <img src="../media/fresh-aerial-1.jpg" alt="Aerial — farmhouse renovation, hillside" loading="lazy" />
-      <img src="../media/fresh-aerial-2.jpg" alt="Aerial — coastal Welsh house, full restoration" loading="lazy" />
-      <img src="../media/fresh-aerial-3.jpg" alt="Aerial — large new-build, garden landscaping" loading="lazy" />
-    </div>
-    <div class="fr-cap-row">
-      <span>Fig. 02 — Hillside renovation</span>
-      <span>Fig. 03 — Coastal restoration</span>
-      <span>Fig. 04 — Extension &amp; landscape</span>
     </div>
   </section>
 
-  <!-- ── § 03 — ON THE GROUND ─────────────────── -->
-  <section class="cs-chap mid" data-screen-label="05 On The Ground">
-    <div class="chap-head">
-      <div class="chap-num">§ 03 — On The Ground</div>
-      <div>
-        <h2>Craft, <span class="it">at every scale.</span></h2>
-        <p class="blurb">Detail shots that prove the finish. Aerial shots that prove the scale. The combination is what closes the lead — one signals taste, the other signals capability.</p>
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 04 — Outcome</span><span class="ttl">Premium work, <span class="it">priced accordingly.</span></span></div>
+        <div class="r">A position the company can hold</div>
+      </div>
+      <div class="fig rv">
+        <img src="../media/fresh-exterior.jpg" alt="Completed exterior — large modern property, blue-sky aerial">
+        <div class="cap"><span>Fig. 04 — Completed exterior</span><span>D&amp;M · 2025</span></div>
       </div>
     </div>
-
-    <div class="cs-pair reverse">
-      <div class="cs-pair-text">
-        <h3>Interior <span class="it">and exterior.</span></h3>
-        <p>The interior photography focuses on rooms where the renovation choices are the loudest argument — copper tubs, dark panelling, considered light. Not "nice kitchen" — <span class="it">a room you'd photograph yourself.</span></p>
-        <p>The aerials make the same argument at building scale. Both formats, one position: <span class="it">we make houses worth photographing.</span></p>
-      </div>
-      <img src="../media/fresh-interior.jpg" alt="Renovated bathroom — copper bath, dark teal walls, brass fittings"
-           loading="lazy"
-           style="aspect-ratio:1/1;object-fit:cover;" />
-    </div>
-    <div class="cs-cap"><span>Fig. 05 — Interior · bathroom renovation</span><span>Photography · Dastardly &amp; Muttley</span></div>
   </section>
 
-  <!-- ── § 04 — THE OUTCOME ─────────────────── -->
-  <section class="cs-chap paper" data-screen-label="06 The Outcome">
-    <div class="chap-head">
-      <div class="chap-num">§ 04 — The Outcome</div>
-      <div>
-        <h2>Premium work, <span class="it">priced accordingly.</span></h2>
-        <p class="blurb">A site that opens on the work, not on a discount. A photography library — drone, interior, exterior — that the client can keep using long after launch. A position the company can hold.</p>
-      </div>
-    </div>
-
-    <img src="../media/fresh-exterior.jpg" alt="Completed exterior — large modern property, blue-sky aerial" loading="lazy" style="width:100%;display:block;aspect-ratio:3/2;object-fit:cover;" />
-    <div class="cs-cap"><span>Fig. 06 — Completed exterior</span><span>Photography · Dastardly &amp; Muttley · 2025</span></div>
-  </section>
-
-  <section class="cs-pull" data-screen-label="07 Pull Quote">
-    <div class="cs-pull-inner">
+  <section class="pq dark" style="background: var(--ink); color: var(--paper);">
+    <div class="wrap">
+      <div class="lab">The work, in one line</div>
       <h2>Craft, <br><span class="it">at every scale.</span></h2>
-      <div class="foot">
-        <span>Fresh Home — 2025</span>
-        <span>Dastardly &amp; Muttley · Studio</span>
-      </div>
+      <div class="credit"><span>Fresh Home — 2025</span><span>D&amp;M · Studio</span></div>
     </div>
   </section>
 
-  <nav class="cs-nav" data-screen-label="08 Project Nav">
-    <a href="steps-2-v2.html">
-      <span class="lab">← Previous</span>
-      <span class="ttl">Steps <span class="it">2.0</span></span>
-    </a>
-    <a href="metanoia-v2.html">
-      <span class="lab">Next →</span>
-      <span class="ttl">Metanoia</span>
-    </a>
-  </nav>
-
-  <section class="contact" data-screen-label="09 Contact">
-    <div class="contact-grid">
-      <div>
-        <div class="contact-eyebrow">§ Start a project</div>
-        <h2 class="contact-headline">Have something<br>worth <span class="it">making?</span></h2>
-        <a href="mailto:hello@dastardlyandmuttley.co.uk" class="contact-email">
-          hello@dastardlyandmuttley.co.uk
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
-        </a>
+  <section class="closing">
+    <div class="wrap">
+      <a class="next-link" href="metanoia.html">
+        <div class="lab">Next case<br>08 / 50<span class="it">+</span></div>
+        <div class="ttl">Metanoia<span class="it">.</span></div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
+      </a>
+      <div class="closing-foot">
+        <span>© 2026 Dastardly &amp; Muttley · Case 07</span>
+        <span class="mid">Case Study v3</span>
+        <span class="end"><a href="../contact.html">hello@dastardlyandmuttley.co.uk →</a></span>
       </div>
-      <div class="contact-side">
-        <div class="blk">
-          <h5>Studio</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
-        </div>
-        <div class="blk">
-          <h5>Status</h5>
-          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
-        </div>
-      </div>
-    </div>
-    <div class="contact-foot">
-      <span>© 2026 Dastardly &amp; Muttley Ltd</span>
-      <span>Case Study · Fresh Home</span>
-      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
     </div>
   </section>
 
   <footer class="wordmark" aria-hidden="true">
     <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
-      <text x="1300" y="210" text-anchor="middle"
-            font-family="Space Grotesk, sans-serif"
-            font-weight="700"
-            font-size="240"
-            letter-spacing="-10"
-            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+      <text x="1300" y="210" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="240" letter-spacing="-10" fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
     </svg>
   </footer>
-  <script>    // Nav background on scroll
-    const topbar = document.querySelector('.topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+
+  <script>
+    const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
   </script>
-  <script src="../js/cursor.js"></script>
 </body>
 </html>

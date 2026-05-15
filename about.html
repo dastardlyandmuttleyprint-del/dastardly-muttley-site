@@ -4,224 +4,263 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Dastardly &amp; Muttley</title>
-  <meta name="description" content="About Dastardly &amp; Muttley — an independent creative studio based at Elysium Gallery Studios, Swansea, South Wales." />
-
+  <meta name="description" content="About Dastardly &amp; Muttley — an independent creative studio at Elysium Gallery Studios, Swansea." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="css/system.css" />
+  <link rel="stylesheet" href="css/v3.css" />
+  <style>
+    /* Principles — compact ledger rows */
+    .pl-row{
+      display: grid; grid-template-columns: 60px 1fr 2fr;
+      gap: 20px; align-items: baseline;
+      padding: 18px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .pl-row:last-child{ border-bottom: 1px solid var(--rule); }
+    .pl-row .n{ font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; }
+    .pl-row h3{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.05; letter-spacing: -.02em;
+    }
+    .pl-row h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .pl-row p{ font-size: 13px; line-height: 1.6; max-width: 50ch; opacity: .82; }
+    @media (max-width: 760px){
+      .pl-row{ grid-template-columns: 40px 1fr; row-gap: 4px; }
+      .pl-row p{ grid-column: 2 / 3; }
+    }
+
+    /* Letter */
+    .letter-grid{
+      display: grid; grid-template-columns: 1fr; gap: 32px;
+    }
+    @media (min-width: 900px){
+      .letter-grid{ grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
+    }
+    .letter-aside{
+      position: sticky; top: 96px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .65;
+      display: grid; gap: 6px;
+    }
+    .letter-body p{
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(16px, 1.6vw, 22px);
+      line-height: 1.55; letter-spacing: -.005em;
+      max-width: 50ch;
+      margin-bottom: 18px;
+    }
+    .letter-body p .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .letter-body .signoff{
+      margin-top: 32px;
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(24px, 2.6vw, 38px); letter-spacing: -.015em; line-height: 1;
+    }
+    .letter-body .signoff .small{
+      font-family: var(--mono); font-style: normal;
+      font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      display: block; margin-top: 12px; opacity: .55;
+    }
+
+    /* Ledger figures */
+    .ld-list{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 22px; }
+    .ld-list dt{ font-family: var(--display); font-weight: 500; font-size: clamp(28px, 3vw, 48px); line-height: .92; letter-spacing: -.025em; }
+    .ld-list dt .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .ld-list dd{ font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; opacity: .65; margin-top: 6px; }
+    @media (max-width: 600px){ .ld-list{ grid-template-columns: 1fr 1fr; } }
+
+    /* Studio image band */
+    .studio-band{ position: relative; background: var(--ink); }
+    .studio-band img{ width: 100%; height: clamp(360px, 60vh, 620px); object-fit: cover; display: block; filter: contrast(1.02); }
+    .studio-band .cap{
+      position: absolute; bottom: 18px; left: var(--pad); right: var(--pad);
+      display: flex; justify-content: space-between; gap: 14px;
+      color: var(--paper); opacity: .85;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+    }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- ─── Top bar ─── -->
-  <header class="topbar">
-    <a href="index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
-    <div class="brand-meta"><span class="dot"></span>Independent Studio · Swansea, Wales</div>
-    <nav class="nav-links">
+  <header class="bar full">
+    <a class="brand" href="index.html"><b>Dastardly</b> <span class="amp">&amp;</span> <b>Muttley</b></a>
+    <div class="mid"><span>Independent Studio</span><span class="sep">·</span><span>Swansea, Wales</span></div>
+    <nav class="right">
       <a href="work.html">Work</a>
       <a href="services.html">Services</a>
-      <a href="about.html">About</a>
+      <a href="about.html" aria-current="page">About</a>
       <a href="contact.html" class="nav-cta">Work with us</a>
     </nav>
   </header>
 
-  <!-- ─── Page Hero ─── -->
-  <div class="page-hero">
-    <div class="top-meta">
-      <span>§ About — The Studio</span>
-      <span>Est. Swansea · 2022</span>
+  <header class="ph">
+    <div class="ph-wrap">
+      <div class="ph-meta">
+        <div class="l"><span>§ About — The Studio</span><span>Est. Swansea · 2022</span></div>
+        <div>Vol. 04 — Spring '26</div>
+      </div>
+      <h1 class="ph-title">The high street<br>deserves <span class="it">better.</span></h1>
+      <div class="ph-grid">
+        <p class="ph-lede">
+          We build brands for the businesses <span class="it">no-one else</span> takes seriously — the corner café, the high-street florist, the second-album band.
+        </p>
+        <div class="ph-specs">
+          <div><div class="k">Founded</div><div class="v"><span class="it">Est.</span> 2022</div></div>
+          <div><div class="k">Location</div><div class="v">Elysium Gallery<br>Studios · SA1</div></div>
+          <div><div class="k">Independent</div><div class="v">100<span class="it">%</span> self-funded</div></div>
+          <div><div class="k">Booking</div><div class="v">Q3 · 2026</div></div>
+        </div>
+      </div>
     </div>
-    <h1>
-      The high street<br>
-      deserves <span class="it">better.</span>
-    </h1>
-    <div class="lede">
-      <p class="one rv">We build brands for the businesses <span class="it">no-one else</span> takes seriously.</p>
-      <p class="two rv d1">The corner café, the high-street florist, the second-album band — they carry something no corporate can manufacture: a real story, rooted in a real place. We believe every independent business deserves to look extraordinary. Not eventually. Now.</p>
-    </div>
-  </div>
+  </header>
 
-  <!-- ─── Studio Image ─── -->
+  <!-- Studio band image -->
   <div class="studio-band">
-    <img src="media/ChatGPT Image Jun 17, 2025 at 10_53_51 PM.jpg" alt="Dastardly &amp; Muttley studio at Elysium Gallery Studios, Swansea" />
-    <div class="caption">
+    <img src="media/studio.jpg" alt="Dastardly &amp; Muttley studio at Elysium Gallery Studios, Swansea">
+    <div class="cap">
       <span>Elysium Gallery Studios — Swansea, Wales</span>
       <span>2026</span>
     </div>
   </div>
 
-  <!-- ─── Letter ─── -->
-  <section class="letter">
-    <div class="sec-head">
-      <div class="sec-num">§ 01 — The Studio</div>
-      <div class="sec-title">A <span class="it">letter</span> from us.</div>
-      <div class="sec-meta">On why we exist</div>
-    </div>
-    <div class="letter-grid">
-      <aside class="letter-aside">
-        <span class="l">Dastardly &amp; Muttley</span>
-        <span class="l">Elysium Gallery Studios</span>
-        <span class="l">Swansea, Wales</span>
-      </aside>
-      <div class="letter-body">
-        <p class="rv">Independent businesses carry stories that corporate brands pay millions to fake. The corner café that's been there for twenty years. The band that's just about to break through. The market trader who genuinely knows everything about what they sell.</p>
-        <p class="rv d1">All they need is the right visual language to tell that story. That's what we do — web design, graphic design, photography, print. The complete picture, built around what makes you <span class="it">genuinely different.</span></p>
-        <p class="rv d2">No templates. No off-the-shelf solutions. No agency theatre. We take on a small number of projects at a time so every one gets the full version of us.</p>
-        <div class="signoff rv d3">
-          Dastardly &amp; Muttley
-          <span class="small">Creative Studio · Swansea, Wales · Est. 2022</span>
+  <!-- Letter -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 01 — The Studio</span><span class="ttl">A <span class="it">letter</span> from us.</span></div>
+        <div class="r">On why we exist</div>
+      </div>
+
+      <div class="letter-grid">
+        <aside class="letter-aside">
+          <span>Dastardly &amp; Muttley</span>
+          <span>Elysium Gallery Studios</span>
+          <span>Swansea, Wales</span>
+        </aside>
+        <div class="letter-body">
+          <p>Independent businesses carry stories that corporate brands pay millions to fake. The corner café that's been there for twenty years. The band that's just about to break through. The market trader who genuinely knows everything about what they sell.</p>
+          <p>All they need is the right visual language to tell that story. That's what we do — web design, graphic design, photography, print. The complete picture, built around what makes you <span class="it">genuinely different.</span></p>
+          <p>No templates. No off-the-shelf solutions. No agency theatre. We take on a small number of projects at a time so every one gets the full version of us.</p>
+          <div class="signoff">
+            Dastardly &amp; Muttley
+            <span class="small">Creative Studio · Swansea, Wales · Est. 2022</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Principles ─── -->
-  <section class="principles">
-    <div class="sec-head">
-      <div class="sec-num">§ 02 — How we work</div>
-      <div class="sec-title">Things we <span class="it">believe.</span></div>
-      <div class="sec-meta">Studio principles</div>
-    </div>
-    <div class="principle-row rv">
-      <div class="num">01</div>
-      <h3>Local is <span class="it">not small.</span></h3>
-      <p>Independent doesn't mean underpowered. The best work we've made has been for businesses two miles from here — and it's gone up against national brands without blinking. Scale is not the point. Distinctiveness is.</p>
-    </div>
-    <div class="principle-row rv d1">
-      <div class="num">02</div>
-      <h3>Opinion over <span class="it">options.</span></h3>
-      <p>We don't show you forty-seven directions and ask which one you like. We show you the right one and tell you why it works. You can push back; we'll fight our corner. That tension is where the good stuff comes from.</p>
-    </div>
-    <div class="principle-row rv d2">
-      <div class="num">03</div>
-      <h3>One brief, <span class="it">one system.</span></h3>
-      <p>Web, print, photography — all under one roof, all from one brief. A brand that holds together from the screen to the shopfront to the side of a van, without you having to herd three separate agencies.</p>
-    </div>
-    <div class="principle-row rv d3">
-      <div class="num">04</div>
-      <h3>Nothing <span class="it">off-the-shelf.</span></h3>
-      <p>Every project is built from scratch. We don't have templates, frameworks, or preset solutions. If someone else could have made the same thing, it's not done.</p>
+  <!-- Principles -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 02 — How We Work</span><span class="ttl">Things we <span class="it">believe.</span></span></div>
+        <div class="r">Studio principles · 04</div>
+      </div>
+
+      <div class="pl-row rv">
+        <div class="n">01</div>
+        <h3>Local is <span class="it">not small.</span></h3>
+        <p>Independent doesn't mean underpowered. The best work we've made has been for businesses two miles from here — and it's gone up against national brands without blinking. Scale is not the point. Distinctiveness is.</p>
+      </div>
+      <div class="pl-row rv d1">
+        <div class="n">02</div>
+        <h3>Opinion over <span class="it">options.</span></h3>
+        <p>We don't show forty-seven directions and ask which one you like. We show you the right one and tell you why it works. You can push back; we'll fight our corner. That tension is where the good stuff comes from.</p>
+      </div>
+      <div class="pl-row rv d2">
+        <div class="n">03</div>
+        <h3>One brief, <span class="it">one system.</span></h3>
+        <p>Web, print, photography — all under one roof, all from one brief. A brand that holds together from the screen to the shopfront to the side of a van, without you herding three separate agencies.</p>
+      </div>
+      <div class="pl-row rv d3">
+        <div class="n">04</div>
+        <h3>Nothing <span class="it">off-the-shelf.</span></h3>
+        <p>Every project is built from scratch. We don't have templates, frameworks, or preset solutions. If someone else could have made the same thing, it's not done.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ─── Studio Index ─── -->
-  <section class="ledger">
-    <div class="ledger-inner">
-      <div class="ledger-label">§ Studio<br>Index</div>
-      <dl class="ledger-list">
+  <!-- Ledger -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 03 — Studio Index</span><span class="ttl">By <span class="it">the numbers.</span></span></div>
+        <div class="r">A snapshot</div>
+      </div>
+      <dl class="ld-list">
         <div><dt>50<span class="it">+</span></dt><dd>Projects shipped</dd></div>
         <div><dt>04</dt><dd>Disciplines, in-house</dd></div>
-        <div><dt><span class="it">Est.</span><br>'22</dt><dd>Founded — Elysium Gallery</dd></div>
+        <div><dt><span class="it">Est.</span> '22</dt><dd>Founded — Elysium Gallery</dd></div>
         <div><dt>100<span class="it">%</span></dt><dd>Independent &amp; self-funded</dd></div>
         <div><dt>Q3</dt><dd>Now booking — 2026</dd></div>
-        <div><dt>SA1<br><span class="it">8PE</span></dt><dd>Swansea, South Wales</dd></div>
+        <div><dt>SA1 <span class="it">8PE</span></dt><dd>Swansea, South Wales</dd></div>
       </dl>
     </div>
   </section>
 
-  <!-- ─── Where we sit ─── -->
-  <section class="where">
-    <div class="sec-head">
-      <div class="sec-num">§ 03 — Location</div>
-      <div class="sec-title">Where <span class="it">we sit.</span></div>
-      <div class="sec-meta">Studio &amp; contact</div>
-    </div>
-    <div class="where-grid">
-      <p class="where-lead rv">We work from <span class="it">Elysium Gallery Studios</span> in Swansea — right in the heart of South Wales' creative community.</p>
-      <div class="where-side">
-        <div class="blk">
-          <h5>Address</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
-        </div>
-        <div class="blk">
-          <h5>Email</h5>
-          <a href="mailto:dastardlyandmuttleyprint@gmail.com">dastardlyandmuttleyprint@gmail.com</a>
-        </div>
-        <div class="blk">
-          <h5>Hours</h5>
-          <p>Mon — Fri<br>09:00 — 18:00 GMT</p>
-        </div>
-        <div class="blk">
-          <h5>Social</h5>
-          <a href="https://www.instagram.com/dastardlyandmuttleydesign/" target="_blank" rel="noopener">@dastardlyandmuttleydesign</a>
+  <!-- Where -->
+  <section class="block dark">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l"><span>§ 04 — Location</span><span class="ttl">Where <span class="it">we sit.</span></span></div>
+        <div class="r" style="color: rgba(245,243,238,.7);">Studio &amp; contact</div>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr; gap: 32px;">
+        <div style="display:grid; grid-template-columns: 1fr; gap: 32px;">
+          <p style="font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.1; letter-spacing: -.022em; max-width: 26ch;">
+            We work from <span class="it">Elysium Gallery Studios</span> in Swansea — in the heart of South Wales' creative community.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 720px;">
+            <div>
+              <h5 style="font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin-bottom: 8px;">Address</h5>
+              <p style="font-family: var(--display); font-size: 13px; line-height: 1.5;">Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
+            </div>
+            <div>
+              <h5 style="font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin-bottom: 8px;">Hours</h5>
+              <p style="font-family: var(--display); font-size: 13px; line-height: 1.5;">Mon — Fri<br>09:00 — 18:00 GMT</p>
+            </div>
+            <div>
+              <h5 style="font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin-bottom: 8px;">Email</h5>
+              <a href="mailto:dastardlyandmuttleyprint@gmail.com" style="font-family: var(--display); font-size: 13px;">dastardlyandmuttleyprint@gmail.com</a>
+            </div>
+            <div>
+              <h5 style="font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; margin-bottom: 8px;">Social</h5>
+              <a href="https://www.instagram.com/dastardlyandmuttleydesign/" target="_blank" rel="noopener" style="font-family: var(--display); font-size: 13px;">@dastardlyandmuttleydesign</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── Contact CTA ─── -->
-  <section class="contact">
-    <div class="contact-grid">
-      <div>
-        <div class="contact-eyebrow">§ 04 — Start a project</div>
-        <h2 class="contact-headline">
-          Have something<br>
-          worth <span class="it">making?</span>
-        </h2>
-        <a href="contact.html" class="contact-email">
-          Get in touch
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
-        </a>
+  <!-- CTA + closing -->
+  <section class="closing">
+    <div class="wrap">
+      <a class="next-link" href="contact.html">
+        <div class="lab">Start a project<br>Booking Q3 · 2026</div>
+        <div class="ttl">Have something <span class="it">worth making?</span></div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
+      </a>
+      <div class="closing-foot">
+        <span>© 2026 Dastardly &amp; Muttley · About</span>
+        <span class="mid">Site v3</span>
+        <span class="end"><a href="contact.html">hello@dastardlyandmuttley.co.uk →</a></span>
       </div>
-      <div class="contact-side">
-        <div class="blk">
-          <h5>Studio</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
-        </div>
-        <div class="blk">
-          <h5>Direct</h5>
-          <a href="mailto:dastardlyandmuttleyprint@gmail.com">dastardlyandmuttleyprint@gmail.com</a><br>
-          <a href="https://instagram.com/dastardlyandmuttleydesign" target="_blank" rel="noopener">@dastardlyandmuttleydesign</a>
-        </div>
-        <div class="blk">
-          <h5>Hours</h5>
-          <p>Mon — Fri<br>09:00 — 18:00 GMT</p>
-        </div>
-        <div class="blk">
-          <h5>Status</h5>
-          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
-        </div>
-      </div>
-    </div>
-    <div class="contact-foot">
-      <span>© 2026 Dastardly &amp; Muttley Ltd</span>
-      <span>Site v2.0 — Hand-built in Swansea</span>
-      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
     </div>
   </section>
 
-  <!-- ─── Wordmark footer ─── -->
   <footer class="wordmark" aria-hidden="true">
     <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
-      <text x="1300" y="210" text-anchor="middle"
-            font-family="Space Grotesk, sans-serif"
-            font-weight="700"
-            font-size="240"
-            letter-spacing="-10"
-            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+      <text x="1300" y="210" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="240" letter-spacing="-10" fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
     </svg>
   </footer>
 
   <script>
-    const topbar = document.querySelector('.topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.18 });
+    const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
     document.querySelectorAll('.rv').forEach(el => io.observe(el));
   </script>
-  <script src="js/cursor.js"></script>
 </body>
 </html>

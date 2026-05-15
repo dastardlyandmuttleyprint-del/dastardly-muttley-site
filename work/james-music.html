@@ -4,260 +4,206 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>James Music — Dastardly &amp; Muttley</title>
+  <meta name="description" content="Identity, two campaigns, and shopfront for James Music — a long-standing Welsh music institution." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="../css/system.css" />
+  <link rel="stylesheet" href="../css/v3.css" />
   <style>
-    .topbar.light{ mix-blend-mode: normal; color: var(--ink); }
-    .topbar.light a, .topbar.light button{ color: var(--ink); }
-    .topbar.light .brand-meta .dot{ background:#0c0c0c; }
-
-    /* Campaign side-by-side */
-    .jm-campaigns{
-      display: grid; grid-template-columns: 1fr; gap: 14px;
-    }
-    @media (min-width: 900px){
-      .jm-campaigns{ grid-template-columns: 1fr 1fr; gap: 16px; }
-    }
-    .jm-campaigns img{
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-    }
-    .jm-cap-row{
-      display: grid; grid-template-columns: 1fr; gap: 16px;
-      margin-top: 22px;
-      font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-      opacity: .55;
-    }
-    @media (min-width: 900px){
-      .jm-cap-row{ grid-template-columns: 1fr 1fr; gap: 16px; }
-    }
-
-    /* Mark-on-black hero treatment */
-    .jm-mark-frame{
-      background: #0c0c0c;
-      padding: clamp(60px, 9vw, 140px) var(--pad);
-      margin: 0 calc(var(--pad) * -1);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .jm-mark-frame img{
-      max-width: 760px; width: 100%; display: block;
-    }
+    .jm-red{ background: #c1272d; color: var(--paper); }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
 
-  <header class="topbar light" data-screen-label="00 Top">
-    <a href="../index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
-    <div class="brand-meta">Independent Studio · Swansea, Wales</div>
-    <nav class="nav-links">
-      <a href="../work.html">Work</a>
-      <a href="../services.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html" class="nav-cta">Work with us</a>
-    </nav>
+  <header class="bar">
+    <a class="back" href="../index.html"><span class="arr"></span><span>Index</span></a>
+    <div class="mid">Dastardly <span class="it">&amp;</span> Muttley · Case 04/50<span class="it">+</span></div>
+    <div class="right"><a class="nav-cta" href="../contact.html">Start a project</a></div>
   </header>
 
-  <!-- ── HERO ─────────────────────────────────── -->
-  <section class="cs-hero" data-screen-label="01 Hero">
-    <div class="top-meta">
-      <span>§ Case Study — 02 / 50+</span>
-      <span>Identity · Campaign · Print</span>
-      <span>2025 — South Wales</span>
+  <!-- ─── PROJECT HEADER ─── -->
+  <header class="ph">
+    <div class="ph-wrap">
+      <div class="ph-meta">
+        <div class="l">
+          <span>§ Case 04</span>
+          <span>Identity · Photography · Campaign</span>
+        </div>
+        <div>2025 — South Wales</div>
+      </div>
+
+      <h1 class="ph-title">James <span class="it">Music.</span></h1>
+
+      <div class="ph-grid">
+        <p class="ph-lede">
+          Decades of trust, a loyal community — and a brand that needed to live on the wall as confidently as on the screen.
+        </p>
+        <div class="ph-specs">
+          <div><div class="k">Client</div><div class="v">James Music</div></div>
+          <div><div class="k">Year</div><div class="v">2025</div></div>
+          <div><div class="k">Sector</div><div class="v"><span class="it">Retail</span> · Music</div></div>
+          <div><div class="k">Disciplines</div><div class="v">03 — Identity, Photo,<br>Campaign</div></div>
+        </div>
+      </div>
     </div>
-    <h1>James <span class="it">Music.</span></h1>
-    <div class="cs-meta-row">
-      <div class="col"><h5>Client</h5><p>James Music</p></div>
-      <div class="col"><h5>Sector</h5><p><span class="it">Retail</span> · Musical Instruments</p></div>
-      <div class="col"><h5>Scope</h5><p>Identity · Photography · Campaign</p></div>
-      <div class="col"><h5>Year</h5><p>2025</p></div>
-      <div class="col"><h5>Location</h5><p>South Wales</p></div>
+  </header>
+
+  <!-- ─── 01 · THE MARK ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 01 — The Mark</span>
+          <span class="ttl">Shopfront-tested <span class="it">first.</span></span>
+        </div>
+        <div class="r">A logotype that had to read at four feet<br>before it ever got to a screen</div>
+      </div>
+
+      <div class="fig rv">
+        <div class="contain dark">
+          <img src="../media/jm-mark-light.jpg" alt="James Music script logotype — red on near-black, with floating Telecaster and Les Paul" style="max-width:760px;">
+        </div>
+        <div class="cap">
+          <span>Fig. 01 — Primary logotype</span>
+          <span>Hand-drawn · D&amp;M</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ── LEDE ─────────────────────────────────── -->
-  <section class="cs-lede" data-screen-label="02 Lede">
-    <div class="cs-lede-inner">
-      <aside class="cs-lede-aside">§ The Brief</aside>
-      <p>James Music had decades of trust and a community that genuinely loved the place. The brief wasn't reinvention — it was building <span class="it">a visual identity as authoritative as their reputation,</span> and campaigns that could speak to two very different audiences without ever feeling split.</p>
+  <!-- ─── 02 · ONE MARK, TWO GROUNDS ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 02 — The Argument</span>
+          <span class="ttl">Drawn for <span class="it">the wall,</span> not the screen.</span>
+        </div>
+        <div class="r">Coherence at every contrast<br>Same mark, two grounds</div>
+      </div>
+
+      <div class="pair reverse rv">
+        <div class="note">
+          <h3>One mark, <span class="it">two grounds.</span></h3>
+          <p>The script reads with the same authority on light and dark — the curve weights tuned to hold up in both. Black shopfront, white print collateral, vinyl bag, t-shirt, 70s-style poster — without ever feeling inconsistent.</p>
+          <p><span class="it">A test that proves an identity is more than a logo file.</span></p>
+        </div>
+        <div class="contain" style="padding: clamp(40px, 6vw, 80px);">
+          <img src="../media/James music.png" alt="James Music script — primary logotype on light ground" style="max-width:640px;">
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ── § 01 — THE MARK ──────────────────────── -->
-  <section class="cs-chap dark" data-screen-label="03 The Mark">
-    <div class="chap-head">
-      <div class="chap-num">§ 01 — The Mark</div>
-      <div>
-        <h2>The script, <span class="it">shopfront-tested first.</span></h2>
-        <p class="blurb">A logotype that had to read at four feet on a high-street window before it ever got to a screen. We worked the design at scale first — and only refined for digital after the wall version sang.</p>
+  <!-- ─── 03 · TWO CAMPAIGNS ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 03 — Two Campaigns</span>
+          <span class="ttl">Two audiences. <span class="it">One system.</span></span>
+        </div>
+        <div class="r">"Your Place in the Symphony" · classical<br>"Find Your Sound" · contemporary</div>
       </div>
-    </div>
 
-    <div class="jm-mark-frame">
-      <img src="../media/jm-mark-light.jpg" alt="James Music script logotype — red on near-black, with floating Telecaster and Les Paul" loading="lazy" />
-    </div>
-    <div class="cs-cap"><span>Fig. 01 — Primary logotype · red on near-black</span><span>Hand-drawn · Dastardly &amp; Muttley</span></div>
-  </section>
-
-  <!-- ── § 02 — DRAWN FOR THE WALL ────────────── -->
-  <section class="cs-chap paper" data-screen-label="04 Drawn For The Wall">
-    <div class="chap-head">
-      <div class="chap-num">§ 02 — The Argument</div>
-      <div>
-        <h2>Drawn for <span class="it">the wall, not the screen.</span></h2>
-        <p class="blurb">Most logos are designed in software, then re-tested at print size as an afterthought. We worked the other way round.</p>
+      <div class="fig rv">
+        <div class="grid-2">
+          <img src="../media/SYMPHONY.jpg" alt="Your Place in the Symphony — campaign poster, orchestra image with red sun">
+          <img src="../media/jm-find-your-sound.jpg" alt="Find Your Sound — campaign poster, Hendrix performing live with red colour-block">
+        </div>
+        <div class="cap">
+          <span>Fig. 02 — Symphony / Find Your Sound · paired</span>
+          <span>Same system, different room</span>
+        </div>
       </div>
-    </div>
-
-    <div class="cs-pair">
-      <img src="../media/James music.png" alt="James Music script — primary logotype on light ground"
-           loading="lazy"
-           style="aspect-ratio:4/3;object-fit:contain;background:#f5f3ee;padding:6%;" />
-      <div class="cs-pair-text">
-        <h3>One mark, <span class="it">two grounds.</span></h3>
-        <p>The script reads with the same authority on light and dark — the curve weights tuned to hold up in both. That mattered more for this client than most: the brand had to live on a black shopfront, on white print collateral, on a vinyl bag, on a t-shirt, and on a 70s-style poster — without ever feeling inconsistent.</p>
-        <p><span class="it">Coherence at every contrast.</span> A test that proves an identity is more than a logo file.</p>
-      </div>
-    </div>
-    <div class="cs-cap"><span>Fig. 02 — Primary logotype on paper · inverse application</span><span>Hand-drawn · Dastardly &amp; Muttley</span></div>
-  </section>
-
-  <!-- ── § 03 — TWO CAMPAIGNS ─────────────────── -->
-  <section class="cs-chap mid" data-screen-label="05 Two Campaigns">
-    <div class="chap-head">
-      <div class="chap-num">§ 03 — Two Campaigns</div>
-      <div>
-        <h2>Two audiences. <span class="it">One system.</span></h2>
-        <p class="blurb">"Your Place in the Symphony" for classical players. "Find Your Sound" for beginners and rock players. Same visual language, different tone — built together, not retrofitted.</p>
-      </div>
-    </div>
-
-    <div class="jm-campaigns">
-      <img src="../media/SYMPHONY.jpg" alt="Your Place in the Symphony — campaign poster, orchestra image with red sun"
-           loading="lazy" />
-      <img src="../media/jm-find-your-sound.jpg" alt="Find Your Sound — campaign poster, Hendrix performing live with red colour-block"
-           loading="lazy" />
-    </div>
-
-    <div class="jm-cap-row">
-      <span>Fig. 03 — Your Place in the Symphony · classical</span>
-      <span>Fig. 04 — Find Your Sound · contemporary</span>
     </div>
   </section>
 
-  <!-- ── § 04 — DISCIPLINE OF A SYSTEM ────────── -->
-  <section class="cs-chap dark" data-screen-label="06 Discipline">
-    <div class="chap-head">
-      <div class="chap-num">§ 04 — The Discipline</div>
-      <div>
-        <h2>Coherence <span class="it">without compromise.</span></h2>
-        <p class="blurb">A real identity system isn't a logo and a colour. It's a set of decisions that hold together when you push them in opposite directions.</p>
+  <!-- ─── 04 · A CLOSER LOOK ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 04 — A Closer Look</span>
+          <span class="ttl">In conversation, <span class="it">not selling at you.</span></span>
+        </div>
+        <div class="r">Same red, same logotype<br>Cultural register changes, brand doesn't</div>
       </div>
-    </div>
 
-    <div class="cs-pair reverse">
-      <div class="cs-pair-text">
-        <h3>The two posters share <span class="it">everything that matters.</span></h3>
-        <p>Same red. Same logotype lockup. Same large image-block-with-typography composition. Same sense that the brand is <span class="it">in conversation with</span> the player, not selling at them.</p>
-        <p>What changes is the cultural register: orchestral score-and-conductor for the symphony audience, festival-stage Hendrix for the beginners. Same studio. Same rules. <span class="it">A different room.</span></p>
+      <div class="fig rv">
+        <img src="../media/find your sound.jpg" alt="Find Your Sound — full campaign poster">
+        <div class="cap">
+          <span>Fig. 03 — Find Your Sound · full poster</span>
+          <span>Photography &amp; design · D&amp;M · 2025</span>
+        </div>
       </div>
-      <img src="../media/find your sound.jpg" alt="Find Your Sound — full campaign poster"
-           loading="lazy"
-           style="aspect-ratio:4/3;object-fit:cover;" />
     </div>
-    <div class="cs-cap"><span>Fig. 05 — Find Your Sound · poster · in full</span><span>Photography · Dastardly &amp; Muttley · 2025</span></div>
   </section>
 
-  <!-- ── § 05 — IN SITU ──────────────────────── -->
-  <section class="cs-chap paper" data-screen-label="07 In Situ">
-    <div class="chap-head">
-      <div class="chap-num">§ 05 — In Situ</div>
-      <div>
-        <h2>From screen <span class="it">to shopfront.</span></h2>
-        <p class="blurb">The completed shopfront — every spec made for the physical space first. Print, vinyl, awning, window-graphic, all working together. The test that proves an identity is more than a logo file.</p>
+  <!-- ─── 05 · IN SITU — shopfront ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 05 — In Situ</span>
+          <span class="ttl">From screen <span class="it">to shopfront.</span></span>
+        </div>
+        <div class="r">Print, vinyl, awning, window-graphic<br>All working together</div>
+      </div>
+
+      <div class="fig rv">
+        <img src="../media/finaloutsid.jpg" alt="James Music shopfront — High Street, South Wales. Black fascia, red logotype, FIND YOUR SOUND and SYMPHONY posters in window, magenta door">
+        <div class="cap">
+          <span>Fig. 04 — Completed exterior</span>
+          <span>High Street, South Wales · 2025</span>
+        </div>
       </div>
     </div>
-
-    <img src="../media/finaloutsid.jpg" alt="James Music shopfront — High Street, South Wales — black fascia, red logotype, FIND YOUR SOUND and YOUR PLACE IN THE SYMPHONY posters in window, magenta door"
-         loading="lazy"
-         style="width:100%;display:block;aspect-ratio:3/2;object-fit:cover;object-position:center 35%;" />
-    <div class="cs-cap"><span>Fig. 06 — Completed exterior</span><span>High Street, South Wales · 2025</span></div>
   </section>
 
-  <!-- ── PULL ─────────────────────────────────── -->
-  <section class="cs-pull" data-screen-label="08 Pull Quote">
-    <div class="cs-pull-inner">
+  <!-- ─── PULL ─── -->
+  <section class="pq dark" style="background: var(--ink); color: var(--paper);">
+    <div class="wrap">
+      <div class="lab">The work, in one line</div>
       <h2>From screen<br>to <span class="it">shopfront.</span></h2>
-      <div class="foot">
+      <div class="credit">
         <span>James Music — 2025</span>
-        <span>Dastardly &amp; Muttley · Studio</span>
+        <span>D&amp;M · Studio</span>
       </div>
     </div>
   </section>
 
-  <!-- ── NAV ──────────────────────────────────── -->
-  <nav class="cs-nav" data-screen-label="09 Project Nav">
-    <a href="on-the-flipside-v2.html">
-      <span class="lab">← Previous</span>
-      <span class="ttl"><span class="it">On the</span> Flipside</span>
-    </a>
-    <a href="old-olive-kart-v2.html">
-      <span class="lab">Next →</span>
-      <span class="ttl">Old Olive Kart</span>
-    </a>
-  </nav>
-
-  <!-- ── CONTACT ──────────────────────────────── -->
-  <section class="contact" data-screen-label="10 Contact">
-    <div class="contact-grid">
-      <div>
-        <div class="contact-eyebrow">§ Start a project</div>
-        <h2 class="contact-headline">Have something<br>worth <span class="it">making?</span></h2>
-        <a href="mailto:hello@dastardlyandmuttley.co.uk" class="contact-email">
-          hello@dastardlyandmuttley.co.uk
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
-        </a>
+  <!-- ─── CLOSING ─── -->
+  <section class="closing">
+    <div class="wrap">
+      <a class="next-link" href="old-olive-kart.html">
+        <div class="lab">Next case<br>05 / 50<span class="it">+</span></div>
+        <div class="ttl">The Old <span class="it">Olive Kart.</span></div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
+      </a>
+      <div class="closing-foot">
+        <span>© 2026 Dastardly &amp; Muttley · Case 04</span>
+        <span class="mid">Case Study v3</span>
+        <span class="end"><a href="../contact.html">hello@dastardlyandmuttley.co.uk →</a></span>
       </div>
-      <div class="contact-side">
-        <div class="blk">
-          <h5>Studio</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
-        </div>
-        <div class="blk">
-          <h5>Status</h5>
-          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
-        </div>
-      </div>
-    </div>
-    <div class="contact-foot">
-      <span>© 2026 Dastardly &amp; Muttley Ltd</span>
-      <span>Case Study · James Music</span>
-      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
     </div>
   </section>
 
   <footer class="wordmark" aria-hidden="true">
     <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
       <text x="1300" y="210" text-anchor="middle"
-            font-family="Space Grotesk, sans-serif"
-            font-weight="700"
-            font-size="240"
-            letter-spacing="-10"
-            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+        font-family="Space Grotesk, sans-serif"
+        font-weight="700" font-size="240" letter-spacing="-10"
+        fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
     </svg>
   </footer>
-  <script>    // Nav background on scroll
-    const topbar = document.querySelector('.topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+
+  <script>
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
   </script>
-  <script src="../js/cursor.js"></script>
 </body>
 </html>

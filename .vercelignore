@@ -26,6 +26,18 @@ media/Old Olive Kart/site-video-2.mov
 media/Fresh/
 media/Flipside/
 media/Mythora/
+media/Mutt Clothing/hoodie-flowers.png
+media/Mutt Clothing/hoodie.png
+media/Mutt Clothing/logo.png
+media/Mutt Clothing/model-front.jpg
+media/Mutt Clothing/site-cart.png
+media/Mutt Clothing/site-collab.png
+media/Mutt Clothing/site-collection.png
+media/Mutt Clothing/site-contact.png
+media/Mutt Clothing/site-hero.png
+media/Mutt Clothing/site-product.png
+media/Mutt Clothing/site-shop.png
+media/Mutt Clothing/shirt-back.jpg
 media/james music/
 media/Sandro Ford Wrong Glass/
 media/Steps/
@@ -54,3 +66,16 @@ media/olive-site.png
 media/olive2.png
 media/steps.png
 media/Manifest/Brazil/
+
+# Design tool exports — redundant with production files
+Proper (1).zip
+Proper (3).zip
+index-v3 (1).html
+index-v3.html
+about-v3.html
+contact-v3.html
+services-v3.html
+work-v3.html
+tweaks-panel.jsx
+work/*-v3.html
+media/Proper.zip

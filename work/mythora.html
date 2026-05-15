@@ -4,255 +4,188 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mythora — Dastardly &amp; Muttley</title>
+  <meta name="description" content="Identity, posters and record-label graphics for Mythora — a South Wales psychedelic band." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="../css/system.css" />
+  <link rel="stylesheet" href="../css/v3.css" />
   <style>
-    .topbar.light{ mix-blend-mode: normal; color: var(--ink); }
-    .topbar.light a, .topbar.light button{ color: var(--ink); }
-    .topbar.light .brand-meta .dot{ background:#0c0c0c; }
-
-    /* Mark on paper */
-    .myth-mark-frame{
-      background: #ece9e1;
-      padding: clamp(60px, 9vw, 140px) var(--pad);
-      margin: 0 calc(var(--pad) * -1);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .myth-mark-frame img{ max-width: 720px; width: 100%; display: block; }
-
-    /* Three-up posters */
-    .myth-posters{
-      display: grid; grid-template-columns: 1fr; gap: 14px;
-    }
-    @media (min-width: 760px){
-      .myth-posters{ grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    }
-    .myth-posters img{ width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
-    .myth-cap-row{
-      display: grid; grid-template-columns: 1fr; gap: 16px;
-      margin-top: 22px;
-      font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-      opacity: .55;
-    }
-    @media (min-width: 760px){
-      .myth-cap-row{ grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    }
-
-    /* Sticker hero */
-    .myth-sticker-frame{
-      background: #f5f3ee;
-      padding: clamp(60px, 12vw, 180px) var(--pad);
-      margin: 0 calc(var(--pad) * -1);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .myth-sticker-frame img{ max-width: 540px; width: 100%; display: block; }
+    /* Mythora local: warm red used as accent for pull / contain backgrounds */
+    .contain.myth-red{ background: #c33933; }
+    .pq.myth-red{ background: #c33933; color: var(--paper); }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
 
-  <header class="topbar light" data-screen-label="00 Top">
-    <a href="../index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
-    <div class="brand-meta">Independent Studio · Swansea, Wales</div>
-    <nav class="nav-links">
-      <a href="../work.html">Work</a>
-      <a href="../services.html">Services</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html" class="nav-cta">Work with us</a>
-    </nav>
+  <header class="bar">
+    <a class="back" href="../index.html"><span class="arr"></span><span>Index</span></a>
+    <div class="mid">Dastardly <span class="it">&amp;</span> Muttley · Case 03/50<span class="it">+</span></div>
+    <div class="right"><a class="nav-cta" href="../contact.html">Start a project</a></div>
   </header>
 
-  <!-- ── HERO ─────────────────────────────────── -->
-  <section class="cs-hero" data-screen-label="01 Hero">
-    <div class="top-meta">
-      <span>§ Case Study — 08 / 50+</span>
-      <span>Identity · Print · Records</span>
-      <span>2024 — South Wales</span>
-    </div>
-    <h1>Mythora<span class="it">.</span></h1>
-    <div class="cs-meta-row">
-      <div class="col"><h5>Client</h5><p>Mythora</p></div>
-      <div class="col"><h5>Sector</h5><p><span class="it">Music</span> · Band Identity</p></div>
-      <div class="col"><h5>Scope</h5><p>Logo · Posters · Records</p></div>
-      <div class="col"><h5>Year</h5><p>2024</p></div>
-      <div class="col"><h5>Location</h5><p>South Wales</p></div>
-    </div>
-  </section>
+  <!-- ─── PROJECT HEADER ─── -->
+  <header class="ph">
+    <div class="ph-wrap">
+      <div class="ph-meta">
+        <div class="l">
+          <span>§ Case 03</span>
+          <span>Identity · Print · Records</span>
+        </div>
+        <div>2024 — South Wales</div>
+      </div>
 
-  <!-- ── LEDE ─────────────────────────────────── -->
-  <section class="cs-lede" data-screen-label="02 Lede">
-    <div class="cs-lede-inner">
-      <aside class="cs-lede-aside">§ The Brief</aside>
-      <p>Mythora needed an identity that lived up to the mythology of the name. <span class="it">Not a logo — a totem.</span> Something that would hold its own on a record sleeve, a gig poster, a stage backdrop, a t-shirt. Something with presence.</p>
-    </div>
-  </section>
+      <h1 class="ph-title">Mythora<span class="it">.</span></h1>
 
-  <!-- ── § 01 — IN CONTEXT ────────────────────── -->
-  <section class="cs-chap dark" data-screen-label="03 In Context">
-    <div class="chap-head">
-      <div class="chap-num">§ 01 — In Context</div>
-      <div>
-        <h2>The mark above the band, <span class="it">not just behind them.</span></h2>
-        <p class="blurb">The first test for the mark was a band photograph. Could it sit above three faces and look like it belonged there — like the band had taken the name from the symbol, not the other way round.</p>
+      <div class="ph-grid">
+        <p class="ph-lede">
+          The brief wasn't a logo — it was <span class="it">a totem.</span> Something that could hold its own on a record sleeve, a gig poster, the back of a tour van.
+        </p>
+        <div class="ph-specs">
+          <div><div class="k">Client</div><div class="v">Mythora</div></div>
+          <div><div class="k">Year</div><div class="v">2024</div></div>
+          <div><div class="k">Sector</div><div class="v"><span class="it">Music</span> · Band Identity</div></div>
+          <div><div class="k">Disciplines</div><div class="v">03 — Logo, Print,<br>Records</div></div>
+        </div>
       </div>
     </div>
+  </header>
 
-    <img src="../media/myth-band.png" alt="Mythora — promotional band photograph with logo above the trio, looking up"
-         loading="lazy"
-         style="width:100%;display:block;aspect-ratio:2/3;object-fit:cover;object-position:center 20%;max-height:none;background:#ece9e1;" />
-    <div class="cs-cap"><span>Fig. 01 — Promo · band &amp; mark</span><span>Photography · 2024</span></div>
-  </section>
-
-  <!-- ── § 02 — THE MARK ─────────────────────── -->
-  <section class="cs-chap paper" data-screen-label="04 The Mark">
-    <div class="chap-head">
-      <div class="chap-num">§ 02 — The Mark</div>
-      <div>
-        <h2>A logo is <span class="it">the wrong word.</span></h2>
-        <p class="blurb">What we built is closer to a mark. Letterforms that arc and melt — psychedelic, hand-pressed, stamped into existence. Nested at their centre: an all-seeing eye, a four-pointed star in its pupil. Cover either half and the other loses its meaning.</p>
+  <!-- ─── 01 · THE MARK ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 01 — The Mark</span>
+          <span class="ttl">A logo is <span class="it">the wrong word.</span></span>
+        </div>
+        <div class="r">Hand-drawn · letterforms<br>over an all-seeing eye</div>
       </div>
-    </div>
 
-    <div class="myth-mark-frame">
-      <img src="../media/myth-mark.png" alt="Mythora primary mark — psychedelic letterforms arching over an all-seeing eye with four-pointed star pupil"
-           loading="lazy" />
-    </div>
-    <div class="cs-cap"><span>Fig. 02 — Primary mark</span><span>Hand-drawn · Dastardly &amp; Muttley</span></div>
-  </section>
-
-  <!-- ── § 03 — TYPE & SYMBOL ─────────────────── -->
-  <section class="cs-chap mid" data-screen-label="05 Type and Symbol">
-    <div class="chap-head">
-      <div class="chap-num">§ 03 — Type &amp; Symbol</div>
-      <div>
-        <h2>One language, <span class="it">three colourways.</span></h2>
-        <p class="blurb">Posters built from the same visual vocabulary as the mark — op-art abstraction, hand-printed feel, the same obsessive rhythm the music lives in. Different colourways, same logic.</p>
+      <div class="fig rv">
+        <div class="contain">
+          <img src="../media/myth-mark.png" alt="Mythora primary mark — psychedelic letterforms arching over an all-seeing eye with four-pointed star pupil">
+        </div>
+        <div class="cap">
+          <span>Fig. 01 — Primary mark</span>
+          <span>Hand-drawn · D&amp;M</span>
+        </div>
       </div>
-    </div>
-
-    <div class="myth-posters">
-      <img src="../media/myth-poster-1.png" alt="Mythora poster — flowing-hair face emerging from waves, monochrome on paper" loading="lazy" />
-      <img src="../media/myth-poster-2.png" alt="Mythora poster — radial op-art mandala in white on cobalt blue" loading="lazy" />
-      <img src="../media/myth-poster-3.png" alt="Mythora poster — repeating leaf pattern on red ground" loading="lazy" />
-    </div>
-    <div class="myth-cap-row">
-      <span>Fig. 03 — Profile · paper</span>
-      <span>Fig. 04 — Mandala · cobalt</span>
-      <span>Fig. 05 — Pattern · red</span>
     </div>
   </section>
 
-  <!-- ── § 04 — THE STICKER ───────────────────── -->
-  <section class="cs-chap paper" data-screen-label="06 The Sticker">
-    <div class="chap-head">
-      <div class="chap-num">§ 04 — Mythora Records</div>
-      <div>
-        <h2>The detail <span class="it">that rewards.</span></h2>
-        <p class="blurb">Every detail an argument for the brand. The record-label sticker — CAT NO 0020, CE, RoHS, barcode — plays it completely straight: the language of official certification applied to music. It's funny because <span class="it">it's serious.</span></p>
+  <!-- ─── 02 · IN CONTEXT (band) ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 02 — In Context</span>
+          <span class="ttl">The mark above the band, <span class="it">not just behind them.</span></span>
+        </div>
+        <div class="r">Promo · 2024</div>
       </div>
-    </div>
 
-    <div class="myth-sticker-frame">
-      <img src="../media/myth-sticker.png" alt="Mythora Records label sticker — black oval with eye-mark, CAT NO 0020, CE / RoHS, barcode"
-           loading="lazy" />
-    </div>
-    <div class="cs-cap"><span>Fig. 06 — Record label sticker</span><span>Mythora Records · CAT NO 0020</span></div>
-  </section>
-
-  <!-- ── § 05 — REPETITION ────────────────────── -->
-  <section class="cs-chap dark" data-screen-label="07 Repetition">
-    <div class="chap-head">
-      <div class="chap-num">§ 05 — Repetition</div>
-      <div>
-        <h2>Repetition <span class="it">as identity.</span></h2>
-        <p class="blurb">When you settle on a visual language this confident, you don't need to keep introducing yourself. The third poster doesn't show the mark. It doesn't have to.</p>
+      <div class="fig rv">
+        <img src="../media/myth-band.png" alt="Mythora — promotional band photograph with the logo above the trio, looking up">
+        <div class="cap">
+          <span>Fig. 02 — Promo · band &amp; mark</span>
+          <span>Mythora · 2024</span>
+        </div>
       </div>
-    </div>
-
-    <div class="cs-pair reverse">
-      <div class="cs-pair-text">
-        <h3>No genre. <span class="it">No instructions.</span></h3>
-        <p>The brief from the band was minimal — they wanted something that <span class="it">looked the way they sound.</span> Heavy, hypnotic, hand-made. Not a graphic-design exercise; a sigil.</p>
-        <p>Every output — mark, sticker, poster, pattern — is a different sentence in the same dialect.</p>
-      </div>
-      <img src="../media/myth-poster-3.png" alt="Mythora — pattern study, red"
-           loading="lazy"
-           style="aspect-ratio:2/3;object-fit:cover;background:#ece9e1;" />
     </div>
   </section>
 
-  <!-- ── PULL ─────────────────────────────────── -->
-  <section class="cs-pull" data-screen-label="08 Pull Quote">
-    <div class="cs-pull-inner">
+  <!-- ─── 03 · THE POSTERS (3-up at natural ratio) ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 03 — The Posters</span>
+          <span class="ttl">One language, <span class="it">three colourways.</span></span>
+        </div>
+        <div class="r">Op-art abstraction · hand-printed feel<br>Same logic, three voices</div>
+      </div>
+
+      <div class="grid-3 rv">
+        <img src="../media/myth-poster-1.png" alt="Mythora poster — flowing-hair face emerging from waves, monochrome on paper">
+        <img src="../media/myth-poster-2.png" alt="Mythora poster — radial op-art mandala in white on cobalt blue">
+        <img src="../media/myth-poster-3.png" alt="Mythora poster — repeating leaf pattern on red ground">
+      </div>
+      <div class="cap" style="display:flex;justify-content:space-between;gap:16px;margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;">
+        <span>Fig. 03 — Profile · paper</span>
+        <span>Fig. 04 — Mandala · cobalt</span>
+        <span>Fig. 05 — Pattern · red</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 04 · THE STICKER ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 04 — Mythora Records</span>
+          <span class="ttl">The detail <span class="it">that rewards.</span></span>
+        </div>
+        <div class="r">Record-label sticker<br>CAT NO 0020 · CE · RoHS · barcode</div>
+      </div>
+
+      <div class="pair rv">
+        <div class="contain">
+          <img src="../media/myth-sticker.png" alt="Mythora Records label sticker — black oval with eye-mark, CAT NO 0020, CE / RoHS, barcode" style="max-width:480px;">
+        </div>
+        <div class="note">
+          <h3>The language of <span class="it">official certification,</span> applied to music.</h3>
+          <p>CE marks. RoHS compliance. A barcode. The kind of small-print every record label puts on a sleeve and no-one designs properly. We treated it like a primary brand surface.</p>
+          <p>It's funny because <span class="it">it's serious.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PULL ─── -->
+  <section class="pq myth-red">
+    <div class="wrap">
+      <div class="lab">The brief, in one line</div>
       <h2>No genre.<br>No <span class="it">instructions.</span></h2>
-      <div class="foot">
+      <div class="credit">
         <span>Mythora — 2024</span>
-        <span>Dastardly &amp; Muttley · Studio</span>
+        <span>D&amp;M · Studio</span>
       </div>
     </div>
   </section>
 
-  <!-- ── NAV ──────────────────────────────────── -->
-  <nav class="cs-nav" data-screen-label="09 Project Nav">
-    <a href="manifest-v2.html">
-      <span class="lab">← Previous</span>
-      <span class="ttl">Manifest</span>
-    </a>
-    <a href="sandro-ford-wrong-glass-v2.html">
-      <span class="lab">Next →</span>
-      <span class="ttl">Sandro Ford</span>
-    </a>
-  </nav>
+  <!-- ─── CLOSING ─── -->
+  <section class="closing">
+    <div class="wrap">
+      <a class="next-link" href="james-music.html">
+        <div class="lab">Next case<br>04 / 50<span class="it">+</span></div>
+        <div class="ttl">James Music<span class="it">.</span></div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
+      </a>
 
-  <!-- ── CONTACT ──────────────────────────────── -->
-  <section class="contact" data-screen-label="10 Contact">
-    <div class="contact-grid">
-      <div>
-        <div class="contact-eyebrow">§ Start a project</div>
-        <h2 class="contact-headline">Have something<br>worth <span class="it">making?</span></h2>
-        <a href="mailto:hello@dastardlyandmuttley.co.uk" class="contact-email">
-          hello@dastardlyandmuttley.co.uk
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
-        </a>
+      <div class="closing-foot">
+        <span>© 2026 Dastardly &amp; Muttley · Case 03</span>
+        <span class="mid">Case Study v3</span>
+        <span class="end"><a href="../contact.html">hello@dastardlyandmuttley.co.uk →</a></span>
       </div>
-      <div class="contact-side">
-        <div class="blk">
-          <h5>Studio</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
-        </div>
-        <div class="blk">
-          <h5>Status</h5>
-          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
-        </div>
-      </div>
-    </div>
-    <div class="contact-foot">
-      <span>© 2026 Dastardly &amp; Muttley Ltd</span>
-      <span>Case Study · Mythora</span>
-      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
     </div>
   </section>
 
   <footer class="wordmark" aria-hidden="true">
     <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
       <text x="1300" y="210" text-anchor="middle"
-            font-family="Space Grotesk, sans-serif"
-            font-weight="700"
-            font-size="240"
-            letter-spacing="-10"
-            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+        font-family="Space Grotesk, sans-serif"
+        font-weight="700" font-size="240" letter-spacing="-10"
+        fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
     </svg>
   </footer>
-  <script>    // Nav background on scroll
-    const topbar = document.querySelector('.topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+
+  <script>
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
   </script>
-  <script src="../js/cursor.js"></script>
 </body>
 </html>

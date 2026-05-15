@@ -4,232 +4,225 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work — Dastardly &amp; Muttley</title>
-  <meta name="description" content="Selected projects from Dastardly &amp; Muttley — brand identity, web, photography and print for businesses that refuse to blend in." />
-
+  <meta name="description" content="Selected projects from Dastardly &amp; Muttley — brand identity, web, photography and print." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="css/system.css" />
+  <link rel="stylesheet" href="css/v3.css" />
+  <style>
+    /* Work-index local — masonry-ish project cards, image-led */
+    .wk-grid{
+      display: grid; gap: clamp(28px, 3vw, 48px);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px){ .wk-grid{ grid-template-columns: 1fr 1fr; gap: clamp(36px, 3.5vw, 64px) clamp(28px, 3vw, 48px); } }
+    .wk-card{ display: block; }
+    .wk-card .frame{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 5/4;
+      overflow: hidden;
+      background: var(--paper-2);
+    }
+    .wk-card .frame img{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .9s cubic-bezier(.2,.8,.2,1);
+    }
+    .wk-card:hover .frame img{ transform: scale(1.03); }
+    .wk-card .frame .n{
+      position: absolute; top: 12px; left: 12px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      background: var(--paper); color: var(--ink);
+      padding: 5px 9px; border-radius: 2px;
+    }
+    .wk-card .meta{
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 12px; align-items: baseline;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+      margin-top: 14px;
+    }
+    .wk-card .meta .ttl{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(20px, 2.1vw, 28px);
+      line-height: 1.1; letter-spacing: -.025em;
+    }
+    .wk-card .meta .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .wk-card .meta .yr{
+      font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .55;
+    }
+    .wk-card .tags{
+      grid-column: 1 / -1;
+      display: flex; flex-wrap: wrap; gap: 6px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      opacity: .65;
+      margin-top: 4px;
+    }
+    .wk-card .tags span{ border: 1px solid var(--rule); padding: 4px 8px 5px; border-radius: 999px; }
+
+    /* index ledger — a small list above the grid for scannability */
+    .wk-ledger{
+      display: grid; grid-template-columns: 1fr; gap: 0;
+      margin-bottom: clamp(40px, 4vw, 72px);
+      border-top: 1px solid var(--rule);
+    }
+    .wk-ledger a{
+      display: grid; grid-template-columns: 40px 2.4fr 1.6fr auto;
+      gap: 18px; align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted);
+      transition: padding-left .3s, color .3s;
+    }
+    .wk-ledger a:hover{ padding-left: 10px; color: var(--ink); }
+    .wk-ledger a .ttl{
+      font-family: var(--display); font-weight: 500; font-size: clamp(15px, 1.4vw, 18px); letter-spacing: -.01em;
+      color: var(--ink); text-transform: none;
+    }
+    .wk-ledger a .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    @media (max-width: 760px){
+      .wk-ledger a{ grid-template-columns: 28px 1fr auto; }
+      .wk-ledger a .tags{ display: none; }
+    }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
 
-  <header class="topbar">
-    <a href="index.html" class="brand">Dastardly <span class="amp">&amp;</span> Muttley</a>
-    <div class="brand-meta"><span class="dot"></span>Independent Studio · Swansea, Wales</div>
-    <nav class="nav-links">
-      <a href="work.html">Work</a>
+  <header class="bar full">
+    <a class="brand" href="index.html"><b>Dastardly</b> <span class="amp">&amp;</span> <b>Muttley</b></a>
+    <div class="mid"><span>Independent Studio</span><span class="sep">·</span><span>Swansea, Wales</span></div>
+    <nav class="right">
+      <a href="work.html" aria-current="page">Work</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="nav-cta">Work with us</a>
     </nav>
   </header>
 
-  <!-- ─── Page header ─── -->
-  <section class="page-head">
-    <div class="sec-head">
-      <div class="sec-num">§ Work</div>
-      <div class="sec-title">Selected <span class="it">projects.</span></div>
-      <div class="sec-meta">11 projects shown</div>
+  <!-- Page header (compact) -->
+  <header class="ph">
+    <div class="ph-wrap">
+      <div class="ph-meta">
+        <div class="l"><span>§ Work</span><span>2024 — 2026</span></div>
+        <div>11 projects · 50<span class="it">+</span> shipped</div>
+      </div>
+      <h1 class="ph-title">Selected <span class="it">projects.</span></h1>
+      <div class="ph-grid">
+        <p class="ph-lede">
+          Identity, web, photography and print. <span class="it">One studio,</span> one consistent voice — from the till to the high street to the source farm.
+        </p>
+        <div class="ph-specs">
+          <div><div class="k">Years</div><div class="v">2024 — 2026</div></div>
+          <div><div class="k">Disciplines</div><div class="v">04 — Identity, Web,<br>Photo, Print</div></div>
+          <div><div class="k">Booking</div><div class="v">Q3 <span class="it">2026</span></div></div>
+          <div><div class="k">Shown</div><div class="v">11 of 50<span class="it">+</span></div></div>
+        </div>
+      </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ─── Work table ─── -->
-  <section class="work" style="padding-top: 0;">
-    <div class="work-table">
+  <!-- Work — fast ledger first, then image grid -->
+  <section class="block">
+    <div class="wrap">
 
-      <a href="work/mutt-clothing.html" class="work-row">
-        <div class="num">01</div>
-        <div class="title">Mutt Clothing</div>
-        <div class="tags"><span class="tag">Ecommerce</span><span class="tag">Design</span><span class="tag">Print</span></div>
-        <div class="year">2026</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Custom ecommerce platform</li><li>Stripe payments &amp; CMS</li><li>Graphic design</li><li>Screen printing &amp; blank sourcing</li></ul>
-          <p class="expand-summary">Full-service clothing label — custom-built ecommerce platform, graphic design, and UK screen printing. No Shopify.</p>
-        </div></div>
-      </a>
+      <!-- ledger overview -->
+      <div class="wk-ledger">
+        <a href="work/mutt-clothing.html"><span>01</span><span class="ttl">Mutt <span class="it">Clothing</span></span><span class="tags">Ecommerce · Design · Print</span><span>2026</span></a>
+        <a href="work/manifest.html"><span>02</span><span class="ttl">Manifest<span class="it">.</span></span><span class="tags">Identity · Web · Print</span><span>2026</span></a>
+        <a href="work/sandro-ford.html"><span>03</span><span class="ttl">Sandro Ford <span class="it">— Wrong Glass</span></span><span class="tags">Merch · Print</span><span>2026</span></a>
+        <a href="work/mythora.html"><span>04</span><span class="ttl">Mythora<span class="it">.</span></span><span class="tags">Identity · Records · Print</span><span>2025</span></a>
+        <a href="work/james-music.html"><span>05</span><span class="ttl">James Music<span class="it">.</span></span><span class="tags">Identity · Photo · Campaign</span><span>2025</span></a>
+        <a href="work/old-olive-kart.html"><span>06</span><span class="ttl">The Old <span class="it">Olive Kart</span></span><span class="tags">Web · Identity · Photo</span><span>2025</span></a>
+        <a href="work/enthusiasts.html"><span>07</span><span class="ttl">The <span class="it">Enthusiasts</span></span><span class="tags">Brand · Photo · Edit</span><span>2025</span></a>
+        <a href="work/flipside.html"><span>08</span><span class="ttl"><span class="it">On the</span> Flipside</span><span class="tags">Logo · Brand · Merch</span><span>2025</span></a>
+        <a href="work/steps.html"><span>09</span><span class="ttl">Steps <span class="it">2.0</span></span><span class="tags">Logo · Colour · Signage</span><span>2024</span></a>
+        <a href="work/fresh-home.html"><span>10</span><span class="ttl">Fresh <span class="it">Home</span></span><span class="tags">Web · Drone · Photo</span><span>2024</span></a>
+        <a href="work/metanoia.html"><span>11</span><span class="ttl">Metanoia<span class="it">.</span></span><span class="tags">Photo · Art Book · Series</span><span>2024</span></a>
+      </div>
 
-      <a href="work/manifest.html" class="work-row">
-        <div class="num">02</div>
-        <div class="title">Manifest</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Web</span><span class="tag">Print</span></div>
-        <div class="year">2026</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Brand identity</li><li>Website design</li><li>Digital menus</li><li>Posters &amp; staffwear</li></ul>
-          <p class="expand-summary">Identity, web design, digital menus, in-store posters, and staffwear for a Welsh-Brazilian restaurant.</p>
-        </div></div>
-      </a>
+      <div class="seclabel">
+        <div class="l"><span>§ Cards</span><span class="ttl">In <span class="it">visuals.</span></span></div>
+        <div class="r">Hover for the brand · click for the case</div>
+      </div>
 
-      <a href="work/sandro-ford-wrong-glass.html" class="work-row">
-        <div class="num">03</div>
-        <div class="title">Sandro Ford: Wrong Glass</div>
-        <div class="tags"><span class="tag">Merch</span><span class="tag">Print</span></div>
-        <div class="year">2026</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Custom glassware</li><li>Merch design</li><li>Product photography</li></ul>
-          <p class="expand-summary">Custom printed glassware and merchandise design for Swansea musician Sandro Ford's debut release.</p>
-        </div></div>
-      </a>
-
-      <a href="work/mythora.html" class="work-row">
-        <div class="num">04</div>
-        <div class="title">Mythora</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Logo</span><span class="tag">Print</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo &amp; mark</li><li>Poster artwork</li><li>Sticker design</li></ul>
-          <p class="expand-summary">Band identity, logo design, and poster artwork for a South Wales rock band.</p>
-        </div></div>
-      </a>
-
-      <a href="work/james-music.html" class="work-row">
-        <div class="num">05</div>
-        <div class="title">James Music</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Photography</span><span class="tag">Print</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo &amp; wordmark</li><li>Window vinyl &amp; signage</li><li>Campaign photography</li><li>Print collateral</li></ul>
-          <p class="expand-summary">Brand identity, shopfront graphics, and dual campaigns for a long-standing Swansea music institution.</p>
-        </div></div>
-      </a>
-
-      <a href="work/old-olive-kart.html" class="work-row">
-        <div class="num">06</div>
-        <div class="title">The Old Olive Kart</div>
-        <div class="tags"><span class="tag">Web</span><span class="tag">Identity</span><span class="tag">Photography</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo &amp; identity</li><li>Website design &amp; build</li><li>Product photography</li><li>Video</li></ul>
-          <p class="expand-summary">Full brand identity and website for a West Wales artisan olive oil trader at farmers' markets.</p>
-        </div></div>
-      </a>
-
-      <a href="work/enthusiasts-podcast.html" class="work-row">
-        <div class="num">07</div>
-        <div class="title">The Enthusiasts</div>
-        <div class="tags"><span class="tag">Identity</span><span class="tag">Photography</span><span class="tag">Video</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Brand mark</li><li>Editorial photography</li><li>Episode video direction</li><li>Merchandise</li></ul>
-          <p class="expand-summary">Brand identity, editorial photography, and video direction for a Swansea culture podcast.</p>
-        </div></div>
-      </a>
-
-      <a href="work/on-the-flipside.html" class="work-row">
-        <div class="num">08</div>
-        <div class="title"><span class="it">On the</span> Flipside</div>
-        <div class="tags"><span class="tag">Logo</span><span class="tag">Identity</span></div>
-        <div class="year">2025</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Custom letterforms</li><li>Ambigram mark</li><li>Colour palette</li></ul>
-          <p class="expand-summary">Custom ambigram logotype for a South Wales music publication — reads identically upside down.</p>
-        </div></div>
-      </a>
-
-      <a href="work/steps-2.html" class="work-row">
-        <div class="num">09</div>
-        <div class="title">Steps 2.0</div>
-        <div class="tags"><span class="tag">Logo</span><span class="tag">Signage</span><span class="tag">Colour</span></div>
-        <div class="year">2024</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Logo redesign</li><li>Colour identity</li><li>Shopfront signage</li><li>Interior graphics</li></ul>
-          <p class="expand-summary">Logo refresh, colour system rebuild, and full signage installation for a Swansea fitness studio.</p>
-        </div></div>
-      </a>
-
-      <a href="work/fresh-home.html" class="work-row">
-        <div class="num">10</div>
-        <div class="title">Fresh Home Improvements</div>
-        <div class="tags"><span class="tag">Web</span><span class="tag">Identity</span><span class="tag">Photography</span></div>
-        <div class="year">2024</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Brand identity</li><li>Website design &amp; build</li><li>Photography</li></ul>
-          <p class="expand-summary">Brand identity and website for a Cardiff-based home improvements contractor.</p>
-        </div></div>
-      </a>
-
-      <a href="work/metanoia.html" class="work-row">
-        <div class="num">11</div>
-        <div class="title">Metanoia</div>
-        <div class="tags"><span class="tag">Photography</span><span class="tag">Art Direction</span><span class="tag">Print</span></div>
-        <div class="year">2024</div>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
-        <div class="work-expand"><div class="work-expand-inner">
-          <ul class="expand-media"><li>Art direction</li><li>Photography</li><li>Book design</li></ul>
-          <p class="expand-summary">Art direction, photography, and book design for an independent editorial project.</p>
-        </div></div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ─── Contact ─── -->
-  <section class="contact" id="contact">
-    <div class="contact-grid">
-      <div>
-        <div class="contact-eyebrow">§ Get in touch</div>
-        <h2 class="contact-headline">
-          Have something<br>
-          worth <span class="it">making?</span>
-        </h2>
-        <a href="mailto:dastardlyandmuttleyprint@gmail.com" class="contact-email">
-          dastardlyandmuttleyprint@gmail.com
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
+      <div class="wk-grid">
+        <a class="wk-card rv" href="work/mutt-clothing.html">
+          <div class="frame"><span class="n">01 · 2026</span><img src="media/Mutt Clothing/site-hero.jpg" alt="Mutt Clothing"></div>
+          <div class="meta"><div class="ttl">Mutt <span class="it">Clothing</span></div><div class="yr">2026</div><div class="tags"><span>Ecommerce</span><span>Design</span><span>Print</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/manifest.html">
+          <div class="frame"><span class="n">02 · 2026</span><img src="media/covers/manifest.jpg" alt="Manifest"></div>
+          <div class="meta"><div class="ttl">Manifest<span class="it">.</span></div><div class="yr">2026</div><div class="tags"><span>Identity</span><span>Web</span><span>Print</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/sandro-ford.html">
+          <div class="frame"><span class="n">03 · 2026</span><img src="media/covers/sandro.jpg" alt="Sandro Ford"></div>
+          <div class="meta"><div class="ttl">Sandro Ford <span class="it">— Wrong Glass</span></div><div class="yr">2026</div><div class="tags"><span>Merch</span><span>Print</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/mythora.html">
+          <div class="frame"><span class="n">04 · 2025</span><img src="media/covers/mythora.png" alt="Mythora"></div>
+          <div class="meta"><div class="ttl">Mythora<span class="it">.</span></div><div class="yr">2025</div><div class="tags"><span>Identity</span><span>Records</span><span>Print</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/james-music.html">
+          <div class="frame"><span class="n">05 · 2025</span><img src="media/hero-bigger.jpg" alt="James Music"></div>
+          <div class="meta"><div class="ttl">James Music<span class="it">.</span></div><div class="yr">2025</div><div class="tags"><span>Identity</span><span>Photo</span><span>Campaign</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/old-olive-kart.html">
+          <div class="frame"><span class="n">06 · 2025</span><img src="media/covers/olive.jpg" alt="The Old Olive Kart"></div>
+          <div class="meta"><div class="ttl">The Old <span class="it">Olive Kart</span></div><div class="yr">2025</div><div class="tags"><span>Web</span><span>Identity</span><span>Photo</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/enthusiasts.html">
+          <div class="frame"><span class="n">07 · 2025</span><img src="media/Enthusiasts/hero.avif" alt="The Enthusiasts"></div>
+          <div class="meta"><div class="ttl">The <span class="it">Enthusiasts</span></div><div class="yr">2025</div><div class="tags"><span>Brand</span><span>Photo</span><span>Edit</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/flipside.html">
+          <div class="frame" style="background:#0c0c0c;"><span class="n">08 · 2025</span><img src="media/flip-mark.png" alt="On The Flipside" style="object-fit:contain; padding: clamp(24px, 4vw, 60px);"></div>
+          <div class="meta"><div class="ttl"><span class="it">On the</span> Flipside</div><div class="yr">2025</div><div class="tags"><span>Logo</span><span>Brand</span><span>Merch</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/steps.html">
+          <div class="frame"><span class="n">09 · 2024</span><img src="media/steps-shopfront.jpg" alt="Steps 2.0"></div>
+          <div class="meta"><div class="ttl">Steps <span class="it">2.0</span></div><div class="yr">2024</div><div class="tags"><span>Logo</span><span>Colour</span><span>Signage</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/fresh-home.html">
+          <div class="frame"><span class="n">10 · 2024</span><img src="media/fresh-exterior.jpg" alt="Fresh Home Improvements"></div>
+          <div class="meta"><div class="ttl">Fresh <span class="it">Home</span></div><div class="yr">2024</div><div class="tags"><span>Web</span><span>Drone</span><span>Photo</span></div></div>
+        </a>
+        <a class="wk-card rv" href="work/metanoia.html">
+          <div class="frame"><span class="n">11 · 2024</span><img src="media/IMG_0719.jpg" alt="Metanoia"></div>
+          <div class="meta"><div class="ttl">Metanoia<span class="it">.</span></div><div class="yr">2024</div><div class="tags"><span>Photo</span><span>Art Book</span><span>Series</span></div></div>
         </a>
       </div>
-      <div class="contact-side">
-        <div class="blk">
-          <h5>Studio</h5>
-          <p>Elysium Gallery Studios<br>210 High Street<br>Swansea, SA1 1PE</p>
-        </div>
-        <div class="blk">
-          <h5>Direct</h5>
-          <a href="https://instagram.com/dastardlyandmuttleydesign" target="_blank" rel="noopener">@dastardlyandmuttleydesign</a>
-        </div>
-        <div class="blk">
-          <h5>Status</h5>
-          <p><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd47a;vertical-align:middle;margin-right:8px;box-shadow:0 0 8px rgba(43,212,122,.6)"></span>Booking Q3 2026</p>
-        </div>
-      </div>
-    </div>
-    <div class="contact-foot">
-      <span>© 2026 Dastardly &amp; Muttley Ltd</span>
-      <span>Site v2.0 — Hand-built in Swansea</span>
-      <span><a href="#" style="border-bottom:1px solid currentColor;padding-bottom:2px">Privacy</a></span>
     </div>
   </section>
 
-  <!-- ─── Wordmark footer ─── -->
+  <!-- Contact CTA strip -->
+  <section class="closing" style="padding-top: clamp(56px, 6vw, 96px);">
+    <div class="wrap">
+      <a class="next-link" href="contact.html">
+        <div class="lab">Start a project<br>Booking Q3 · 2026</div>
+        <div class="ttl">Have something <span class="it">worth making?</span></div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg></div>
+      </a>
+      <div class="closing-foot">
+        <span>© 2026 Dastardly &amp; Muttley · Selected Work</span>
+        <span class="mid">Site v3</span>
+        <span class="end"><a href="contact.html">hello@dastardlyandmuttley.co.uk →</a></span>
+      </div>
+    </div>
+  </section>
+
   <footer class="wordmark" aria-hidden="true">
     <svg viewBox="0 0 2600 260" preserveAspectRatio="xMidYMid meet">
-      <text x="1300" y="210" text-anchor="middle"
-            font-family="Space Grotesk, sans-serif"
-            font-weight="700"
-            font-size="240"
-            letter-spacing="-10"
-            fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
+      <text x="1300" y="210" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="240" letter-spacing="-10" fill="#f5f3ee">DASTARDLY <tspan font-family="Instrument Serif, serif" font-style="italic" font-weight="400">&amp;</tspan> MUTTLEY</text>
     </svg>
   </footer>
 
   <script>
-    // Nav background on scroll
-    const topbar = document.querySelector('.topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+    const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.08 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
   </script>
-  <script src="js/cursor.js"></script>
 </body>
 </html>
