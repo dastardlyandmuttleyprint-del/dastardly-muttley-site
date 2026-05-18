@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brandflow by Inspiration — Product Design &amp; Full-Stack Build Case Study | Dastardly &amp; Muttley</title>
+  <meta name="description" content="Brandflow — a UK print-on-demand SaaS platform built end-to-end. Brand identity, two portals, a custom in-browser product designer with simple and designer modes, and the engineering behind it." />
+  <link rel="canonical" href="https://dastardlyandmuttley.co.uk/work/brandflow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Dastardly &amp; Muttley" />
+  <meta property="og:title" content="Brandflow by Inspiration — Product Design &amp; Full-Stack Build Case Study | Dastardly &amp; Muttley" />
+  <meta property="og:description" content="Brandflow — a UK print-on-demand SaaS platform built end-to-end. Brand identity, two portals, a custom in-browser product designer, and the engineering behind it." />
+  <meta property="og:url" content="https://dastardlyandmuttley.co.uk/work/brandflow" />
+  <meta property="og:image" content="https://dastardlyandmuttley.co.uk/media/Brandflow/hero.jpg" />
+  <meta property="og:image:alt" content="Brandflow by Inspiration — landing page hero, merch your community will love" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Brandflow by Inspiration — Product Design &amp; Full-Stack Build Case Study | Dastardly &amp; Muttley" />
+  <meta name="twitter:description" content="A UK print-on-demand SaaS platform built end-to-end. Brand, two portals, a custom product designer, and the engineering behind it." />
+  <meta name="twitter:image" content="https://dastardlyandmuttley.co.uk/media/Brandflow/hero.jpg" />
+
+  <!-- Geo -->
+  <meta name="geo.region" content="GB-WLS" />
+  <meta name="geo.placename" content="Swansea" />
+  <meta name="geo.position" content="51.6208;-3.9432" />
+  <meta name="ICBM" content="51.6208, -3.9432" />
+
+  <!-- Authorship & Crawl -->
+  <meta name="author" content="Dastardly &amp; Muttley" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#0c0c0c" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+
+  <style>
+    /* ─── Tokens ─── */
+    :root{
+      --paper: #f5f3ee;
+      --paper-2:#ece9e1;
+      --ink:   #0c0c0c;
+      --rule:  rgba(12,12,12,.14);
+      --muted: rgba(12,12,12,.55);
+      --bf:    #1B52A8;   /* Brandflow signature blue */
+      --bf-soft: rgba(27,82,168,.12);
+
+      --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+      --serif:   "Instrument Serif", "Times New Roman", serif;
+      --mono:    "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+      --pad: clamp(20px, 3.2vw, 44px);
+      --max: 1360px;
+    }
+    *,*::before,*::after{ box-sizing: border-box; margin:0; padding:0; }
+    html,body{ background: var(--paper); color: var(--ink); }
+    html{ -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+    body{
+      font-family: var(--display);
+      font-size: 14px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    img{ display:block; max-width:100%; height: auto; }
+    a{ color:inherit; text-decoration:none; }
+    ::selection{ background: var(--bf); color: var(--paper); }
+    .it{ font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.005em; }
+    .mono{ font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+
+    /* ─── Top bar — slim ─── */
+    .bar{
+      position: fixed; top:0; left:0; right:0; z-index: 80;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      align-items: center; gap: 16px;
+      padding: 14px var(--pad);
+      font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ink);
+      background: rgba(245,243,238,.85);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .bar .back{ display:inline-flex; align-items:center; gap: 10px; opacity:.85; }
+    .bar .back .arr{ display:inline-block; width: 14px; height:1px; background:currentColor; position:relative; }
+    .bar .back .arr::before{ content:""; position:absolute; left:0; top:-3px; width:7px; height:7px; border-top:1px solid currentColor; border-left:1px solid currentColor; transform:rotate(-45deg); }
+    .bar .mid{ text-align:center; opacity:.7; }
+    .bar .right{ text-align:right; }
+    .bar .nav-cta{ border:1px solid currentColor; padding: 6px 14px 7px; border-radius:999px; font-size:10px; letter-spacing: .14em; display:inline-block; }
+
+    /* ─── PROJECT HEADER ─── */
+    .ph{ padding: 72px var(--pad) clamp(28px, 3.5vw, 48px); background: var(--paper); }
+    .ph-wrap{ max-width: var(--max); margin: 0 auto; }
+    .ph-meta{
+      display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;
+      gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: clamp(20px, 2.5vw, 36px);
+    }
+    .ph-meta .l{ display:flex; gap: 16px; flex-wrap: wrap; }
+    .ph-title{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(48px, 7.5vw, 116px);
+      letter-spacing: -.04em; line-height: .92;
+      margin-bottom: clamp(20px, 2.5vw, 32px);
+    }
+    .ph-title .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .ph-grid{
+      display: grid; grid-template-columns: 1fr; gap: 28px;
+      padding-top: 14px; border-top: 1px solid var(--rule);
+    }
+    @media (min-width: 900px){
+      .ph-grid{ grid-template-columns: 1.6fr 1fr; gap: clamp(36px, 4.5vw, 72px); align-items: end; }
+    }
+    .ph-lede{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(17px, 1.6vw, 24px);
+      line-height: 1.35; letter-spacing: -.01em;
+      max-width: 38ch; opacity: .9;
+    }
+    .ph-specs{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; align-self: end; }
+    .ph-specs .k{ font-size: 8px; letter-spacing: .2em; text-transform: uppercase; opacity: .5; margin-bottom: 3px; font-family: var(--mono); }
+    .ph-specs .v{ font-family: var(--display); font-size: 12px; line-height: 1.4; letter-spacing: -.005em; }
+
+    /* ─── BLOCK / general spacing ─── */
+    .block{ padding: clamp(40px, 4.5vw, 72px) var(--pad); }
+    .block.dark{ background: var(--ink); color: var(--paper); }
+    .block.paper2{ background: var(--paper-2); }
+    .block.blue{ background: var(--bf); color: var(--paper); }
+    .block.flush-top{ padding-top: 0; }
+    .block.flush-btm{ padding-bottom: 0; }
+    .wrap{ max-width: var(--max); margin: 0 auto; }
+
+    .seclabel{
+      display: flex; gap: 20px; align-items: baseline; justify-content: space-between;
+      flex-wrap: wrap; padding-bottom: 16px; margin-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .block.dark .seclabel, .block.blue .seclabel{ border-bottom-color: rgba(245,243,238,.22); color: rgba(245,243,238,.7); }
+    .seclabel .ttl{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(20px, 2.1vw, 30px);
+      letter-spacing: -.02em; line-height: 1.05; text-transform: none;
+      color: var(--ink); max-width: 22ch;
+    }
+    .block.dark .seclabel .ttl, .block.blue .seclabel .ttl{ color: var(--paper); }
+    .seclabel .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .seclabel .l{ display: flex; flex-direction: column; gap: 10px; }
+    .seclabel .r{ text-align: right; align-self: flex-end; opacity: .75; }
+
+    /* ─── Media grids ─── */
+    .grid-2{ display: grid; gap: 14px; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .grid-2{ grid-template-columns: 1fr 1fr; gap: 18px; } }
+    .grid-2 img{ width: 100%; height: auto; display: block; }
+
+    .fig{ display: grid; gap: 12px; }
+    .fig img{ width: 100%; height: auto; display: block; }
+    .fig .cap{
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      opacity: .55;
+    }
+    .block.dark .fig .cap, .block.blue .fig .cap{ opacity: .65; }
+
+    .pair{ display: grid; gap: 28px; grid-template-columns: 1fr; align-items: end; }
+    @media (min-width: 900px){
+      .pair{ grid-template-columns: 1.7fr 1fr; gap: clamp(36px, 5vw, 80px); }
+      .pair.reverse{ grid-template-columns: 1fr 1.7fr; }
+    }
+    .pair img{ width: 100%; height: auto; display: block; }
+    .pair .note h3{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(18px, 1.9vw, 26px); line-height: 1.15; letter-spacing: -.015em;
+      margin-bottom: 10px;
+    }
+    .pair .note h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .pair .note p{ font-size: 13px; line-height: 1.6; opacity: .82; max-width: 34ch; }
+    .pair .note p + p{ margin-top: 10px; }
+    .pair .note .cap{
+      margin-top: 14px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      opacity: .55;
+    }
+
+    /* ─── Naming block — split type ─── */
+    .naming{
+      padding: clamp(48px, 5.5vw, 88px) var(--pad);
+      background: var(--paper-2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .naming .wrap{ max-width: var(--max); margin: 0 auto; display: grid; gap: clamp(28px, 3.5vw, 56px); grid-template-columns: 1fr; align-items: end; }
+    @media (min-width: 900px){ .naming .wrap{ grid-template-columns: 1.1fr 1fr; } }
+    .naming .lab{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .naming h2{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(36px, 5.4vw, 80px); line-height: .98; letter-spacing: -.035em;
+    }
+    .naming h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .naming h2 em{ font-style: normal; color: var(--bf); font-family: var(--serif); font-weight: 400; }
+    .naming .body p{ font-size: 14px; line-height: 1.65; max-width: 42ch; opacity: .85; }
+    .naming .body p + p{ margin-top: 14px; }
+    .naming .body .kicker{
+      font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      display: inline-block;
+      padding: 5px 10px 6px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      margin-bottom: 18px;
+      color: var(--bf);
+      border-color: rgba(27,82,168,.35);
+      background: rgba(27,82,168,.06);
+    }
+
+    /* ─── Pull-quote slab ─── */
+    .quote-slab{
+      padding: clamp(60px, 7vw, 100px) var(--pad);
+      background: var(--bf);
+      color: var(--paper);
+    }
+    .quote-slab .lab{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      opacity: .7; margin-bottom: 18px;
+    }
+    .quote-slab h2{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(36px, 5.6vw, 84px);
+      line-height: .96; letter-spacing: -.035em;
+      max-width: 16ch;
+    }
+    .quote-slab h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .quote-slab .credit{
+      margin-top: clamp(32px, 4vw, 56px);
+      padding-top: 14px;
+      border-top: 1px solid rgba(245,243,238,.22);
+      display: flex; justify-content: space-between; gap: 20px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .75;
+    }
+
+    /* ─── Two-mode block — Simple vs Designer ─── */
+    .modes{ background: var(--ink); color: var(--paper); padding: clamp(48px, 5.5vw, 96px) var(--pad); }
+    .modes .wrap{ max-width: var(--max); margin: 0 auto; }
+    .modes .lead{
+      display: grid; gap: 24px; grid-template-columns: 1fr;
+      padding-bottom: clamp(28px, 3.5vw, 48px);
+      border-bottom: 1px solid rgba(245,243,238,.18);
+      margin-bottom: clamp(28px, 3.5vw, 48px);
+    }
+    @media (min-width: 900px){ .modes .lead{ grid-template-columns: 1.4fr 1fr; gap: clamp(48px, 5vw, 96px); align-items: end; } }
+    .modes .lead .lab{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 14px; }
+    .modes .lead h2{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(36px, 5.2vw, 76px);
+      line-height: .98; letter-spacing: -.035em;
+      max-width: 16ch;
+    }
+    .modes .lead h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .modes .lead p{ font-size: 14px; line-height: 1.65; opacity: .8; max-width: 42ch; }
+    .modes .lead p + p{ margin-top: 12px; }
+
+    .mode-pair{ display: grid; gap: 22px; grid-template-columns: 1fr; }
+    @media (min-width: 900px){ .mode-pair{ grid-template-columns: 1fr 1fr; gap: clamp(22px, 2.5vw, 36px); } }
+    .mode-card{
+      display: grid; gap: 14px;
+      padding: clamp(20px, 2vw, 32px);
+      background: rgba(245,243,238,.04);
+      border: 1px solid rgba(245,243,238,.12);
+      border-radius: 6px;
+    }
+    .mode-card img{ width: 100%; height: auto; display: block; border-radius: 3px; }
+    .mode-card .tag{
+      align-self: start;
+      display: inline-block;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      padding: 5px 10px 6px;
+      border: 1px solid rgba(245,243,238,.25);
+      border-radius: 999px;
+      opacity: .85;
+    }
+    .mode-card.feature .tag{ color: var(--paper); background: var(--bf); border-color: var(--bf); opacity: 1; }
+    .mode-card h3{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(20px, 2.1vw, 30px); line-height: 1.1; letter-spacing: -.02em;
+      margin-top: 4px;
+    }
+    .mode-card h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .mode-card p{ font-size: 13px; line-height: 1.6; opacity: .8; }
+    .mode-card ul{ list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 6px; }
+    .mode-card ul li{
+      font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      opacity: .7;
+      padding-left: 16px; position: relative;
+    }
+    .mode-card ul li::before{
+      content: "+";
+      position: absolute; left: 0; top: 0;
+      color: var(--bf);
+      font-family: var(--display); font-size: 12px; font-weight: 700;
+      line-height: 1;
+    }
+
+    /* ─── Video showcase ─── */
+    .vid{ background: var(--ink); color: var(--paper); padding: clamp(32px, 4vw, 64px) var(--pad); }
+    .vid .wrap{ max-width: var(--max); margin: 0 auto; }
+    .vid .frame{
+      position: relative;
+      width: 100%;
+      background: #000;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(245,243,238,.12);
+    }
+    .vid .frame video{
+      width: 100%; height: auto; display: block;
+    }
+    .vid .cap{
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      opacity: .55;
+      padding-top: 12px;
+    }
+
+    /* ─── Tech grid — four cards explaining engineering decisions ─── */
+    .tech{ padding: clamp(48px, 5.5vw, 88px) var(--pad); background: var(--paper); }
+    .tech .wrap{ max-width: var(--max); margin: 0 auto; }
+    .tech-grid{ display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .tech-grid{ grid-template-columns: 1fr 1fr; gap: 22px; } }
+    @media (min-width: 1080px){ .tech-grid{ grid-template-columns: repeat(4, 1fr); } }
+    .tech-card{
+      padding: clamp(20px, 2.2vw, 30px);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      background: var(--paper);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .tech-card .n{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--bf);
+    }
+    .tech-card h3{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(18px, 1.7vw, 22px); line-height: 1.15; letter-spacing: -.015em;
+    }
+    .tech-card h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .tech-card p{ font-size: 13px; line-height: 1.6; opacity: .82; }
+    .tech-card .stack{
+      margin-top: auto;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      opacity: .55;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ─── Outcome list ─── */
+    .outcome-list{
+      display: grid; grid-template-columns: 1fr; gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+    .outcome-row{
+      display: grid;
+      grid-template-columns: 48px 80px 1fr 140px;
+      gap: 20px; align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .outcome-row .n{ font-family: var(--mono); font-size: 10px; opacity: .55; }
+    .outcome-row .th{ width: 80px; height: 52px; overflow: hidden; background: var(--paper); border: 1px solid var(--rule); display: grid; place-items: center; }
+    .outcome-row .th img{ max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+    .outcome-row .lbl{ font-family: var(--display); font-weight: 500; font-size: clamp(16px, 1.6vw, 22px); line-height: 1.15; letter-spacing: -.015em; }
+    .outcome-row .lbl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .outcome-row .y{ font-family: var(--mono); font-size: 10px; opacity: .55; text-align: right; }
+    @media (max-width: 760px){
+      .outcome-row{ grid-template-columns: 40px 80px 1fr; }
+      .outcome-row .y{ display:none; }
+    }
+
+    /* ─── Closing ─── */
+    .closing{
+      background: var(--ink); color: var(--paper);
+      padding: clamp(48px, 5.5vw, 80px) var(--pad) 0;
+    }
+    .closing .wrap{ max-width: var(--max); margin: 0 auto; }
+    .next-link{
+      display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: end;
+      padding: clamp(28px, 3.5vw, 52px) 0;
+      border-top: 1px solid rgba(245,243,238,.2);
+      border-bottom: 1px solid rgba(245,243,238,.2);
+    }
+    .next-link .lab{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; opacity: .6; }
+    .next-link .ttl{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(28px, 4vw, 58px); line-height: 1.02; letter-spacing: -.03em;
+      text-align: right;
+    }
+    .next-link .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .next-link .arrow{
+      width: 40px; height: 40px; border-radius:50%; border:1px solid rgba(245,243,238,.4);
+      display:grid; place-items:center;
+      transition: background .25s, transform .25s, color .25s;
+    }
+    .next-link:hover .arrow{ background: var(--paper); color: var(--ink); transform: translateX(8px); }
+    .next-link .arrow svg{ width: 16px; height:16px; }
+
+    .closing-foot{
+      display: grid; grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 18px 0 26px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      opacity: .65;
+    }
+    @media (min-width: 760px){ .closing-foot{ grid-template-columns: 1fr 1fr 1fr; }
+      .closing-foot .mid{ text-align: center; }
+      .closing-foot .end{ text-align: right; }
+    }
+
+    /* ─── Reveal ─── */
+    .rv{ opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+    .rv.in{ opacity: 1; transform: none; }
+    .rv.d1{ transition-delay: .08s; }
+    .rv.d2{ transition-delay: .16s; }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dastardlyandmuttley.co.uk" },
+          { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://dastardlyandmuttley.co.uk/work" },
+          { "@type": "ListItem", "position": 3, "name": "Brandflow by Inspiration", "item": "https://dastardlyandmuttley.co.uk/work/brandflow" }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://dastardlyandmuttley.co.uk/work/brandflow#creative-work",
+        "name": "Brandflow by Inspiration — Print-on-Demand SaaS",
+        "description": "End-to-end product design and full-stack build of a UK print-on-demand SaaS platform. Brand, two portals, custom in-browser product designer with simple and designer modes.",
+        "creator": { "@id": "https://dastardlyandmuttley.co.uk/#business" },
+        "dateCreated": "2026",
+        "locationCreated": { "@type": "Place", "name": "Swansea, Wales", "address": { "@type": "PostalAddress", "addressLocality": "Swansea", "addressRegion": "Wales", "addressCountry": "GB" } },
+        "keywords": "product design, SaaS UX, print-on-demand UK, brand identity, full-stack build, Next.js, Supabase, Konva",
+        "url": "https://dastardlyandmuttley.co.uk/work/brandflow"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Top bar -->
+  <header class="bar">
+    <a class="back" href="../index.html"><span class="arr"></span><span>Index</span></a>
+    <div class="mid">Dastardly <span class="it">&amp;</span> Muttley · Case 12/50<span class="it">+</span></div>
+    <div class="right"><a class="nav-cta" href="../contact.html">Start a project</a></div>
+  </header>
+
+  <!-- ─── PROJECT HEADER ─── -->
+  <header class="ph">
+    <div class="ph-wrap">
+      <div class="ph-meta">
+        <div class="l">
+          <span>§ Case 12</span>
+          <span>Product · UX · Brand · Full-Stack</span>
+        </div>
+        <div>2026 — UK Print-on-Demand</div>
+      </div>
+
+      <h1 class="ph-title">Brandflow<span class="it">.</span></h1>
+
+      <div class="ph-grid">
+        <p class="ph-lede">
+          An entire print-on-demand SaaS — brand, two portals, and an in-browser product designer — built so a merchant can go from <span class="it">"I have a logo"</span> to selling merch by tea time.
+        </p>
+        <div class="ph-specs">
+          <div><div class="k">Client</div><div class="v">Inspiration <span class="it">UK</span></div></div>
+          <div><div class="k">Year</div><div class="v">2026</div></div>
+          <div><div class="k">Role</div><div class="v">Product, UX, Brand,<br>End-to-end build</div></div>
+          <div><div class="k">Stack</div><div class="v">Next.js · Supabase<br>Konva · Shopify</div></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── 00 · DESIGNER IN MOTION — screen recording, lead-in ─── -->
+  <section class="vid">
+    <div class="wrap">
+      <div class="frame rv">
+        <video controls playsinline preload="metadata" poster="../media/Brandflow/designer-pro.jpg">
+          <source src="../media/Brandflow/demo.mp4" type="video/mp4" />
+          Your browser can't play this video — <a href="../media/Brandflow/demo.mp4" style="color:#fff;text-decoration:underline;">download it here</a>.
+        </video>
+      </div>
+      <div class="cap">
+        <span>Fig. 00 — Designer in motion · screen capture</span>
+        <span>Upload → place → switch colourway → save</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 01 · LANDING / HERO ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 01 — The pitch</span>
+          <span class="ttl">Merch your community <span class="it">will love.</span></span>
+        </div>
+        <div class="r">brandflow.uk — landing page<br>Bricolage Grotesque + DM Sans</div>
+      </div>
+
+      <div class="fig rv">
+        <img src="../media/Brandflow/hero.jpg" alt="Brandflow landing page hero — Merch your community will love, with UK print-on-demand badge and a row of branded apparel photos">
+        <div class="cap">
+          <span>Fig. 01 — Landing page, above the fold</span>
+          <span>One CTA · No price up front · No setup cost</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NAMING — why "Brandflow" ─── -->
+  <section class="naming">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="lab">§ The name</div>
+        <h2>Let the brand <em>flow.</em></h2>
+      </div>
+      <div class="body rv d1">
+        <span class="kicker">Brand <span class="it">·</span> Flow</span>
+        <p>UK indie brands shouldn't need a warehouse, a screen printer's lead time and a £400 setup quote just to drop a tee. The promise was simple: remove every hurdle between an idea and a product live on a store.</p>
+        <p>So the name said it back. <span class="it">Brand</span> — what they already have. <span class="it">Flow</span> — what we give them. Upload a logo at 10am, ship orders by Friday. No minimums, no friction, no stock to sit on.</p>
+        <p>The wordmark holds the same idea visually — a single, looping <span class="it">B</span> that doesn't lift the pen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 02 · LOGO ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 02 — Wordmark</span>
+          <span class="ttl">One mark, <span class="it">one motion.</span></span>
+        </div>
+        <div class="r">Custom-drawn <span class="it">B</span><br>Used at every scale, from favicon to billboard</div>
+      </div>
+      <div class="fig rv">
+        <img src="../media/Brandflow/logo.png" alt="Brandflow wordmark — a single bold looping B paired with the word Brandflow set in a heavy grotesque">
+        <div class="cap">
+          <span>Fig. 02 — Wordmark, lockup</span>
+          <span>The B is the motion — a brand, flowing.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 03 · MERCHANT DASHBOARD ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 03 — Merchant portal</span>
+          <span class="ttl">First login: <span class="it">do one thing.</span></span>
+        </div>
+        <div class="r">Day-one onboarding<br>Light theme · user-toggled dark mode</div>
+      </div>
+
+      <div class="pair rv">
+        <img src="../media/Brandflow/dashboard.jpg" alt="Brandflow merchant dashboard — Hey Jordan greeting, setup banner, three zero-state stat cards, and three quick action tiles">
+        <div class="note">
+          <h3>A dashboard that <span class="it">tells you what to do.</span></h3>
+          <p>Most SaaS dashboards greet a new merchant with empty charts and zeroes. Brandflow's flips the script — the banner up top points to the one missing step (<span class="it">connect a store</span>) and the bottom strip nudges to the first product.</p>
+          <p>Once stores connect and products go live, the same surface fills with real numbers — no second screen, no migration.</p>
+          <div class="cap">Fig. 03 — Empty state · onboarding</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 04 · CATALOGUE ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 04 — Catalogue</span>
+          <span class="ttl">Browse the blanks. <span class="it">Or be guided.</span></span>
+        </div>
+        <div class="r">Stanley Stella core + extended range<br>Dispatch speed shown up front</div>
+      </div>
+
+      <div class="fig rv">
+        <img src="../media/Brandflow/catalogue.jpg" alt="Brandflow catalogue page — Not sure where to start banner, dispatch filter chips, search bar, category tabs and a row of Stanley Stella t-shirt cards">
+        <div class="cap">
+          <span>Fig. 04a — Catalogue index</span>
+          <span>3-question quiz available for new merchants</span>
+        </div>
+      </div>
+
+      <div class="fig rv d1" style="margin-top: clamp(24px, 3vw, 40px);">
+        <img src="../media/Brandflow/catalogue-grid.jpg" alt="Brandflow catalogue grid view — eight Stanley Stella garments shown with model photos, colour chips, dispatch badges and entry prices">
+        <div class="cap">
+          <span>Fig. 04b — Card grid</span>
+          <span>Colour chips · 48hr / 5-day badges · entry price</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 05 · PRODUCT DETAIL ─── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 05 — Product page</span>
+          <span class="ttl">The full picture, <span class="it">before you commit.</span></span>
+        </div>
+        <div class="r">Transparent print pricing<br>Every colour · every size</div>
+      </div>
+
+      <div class="pair reverse rv">
+        <div class="note">
+          <h3>Honest pricing <span class="it">on the same screen.</span></h3>
+          <p>The hardest thing in print-on-demand is the surprise mark-up at checkout. Here it's flipped — blank cost, front print, back print and front&nbsp;+&nbsp;back are listed on the right of every product, before you've made a single decision.</p>
+          <p>A 19-colour swatch row and full size matrix sit underneath. No collapsing accordions, no <span class="it">"contact us for pricing"</span>.</p>
+          <div class="cap">Fig. 05 — Mini Creator 2.0 · kids' tee</div>
+        </div>
+        <img src="../media/Brandflow/product.jpg" alt="Brandflow product page for Mini Creator 2.0 kids t-shirt — main photo, gallery thumbnails, transparent print pricing table, 19 colour swatches and a five-size selector">
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PULL QUOTE ─── -->
+  <section class="quote-slab">
+    <div class="wrap">
+      <div class="lab">The brief, in five words</div>
+      <h2>Brand in. <span class="it">Merch out.</span></h2>
+      <div class="credit">
+        <span>Brandflow — internal kickoff doc</span>
+        <span>Dastardly &amp; Muttley · 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 06 · THE DESIGNER — Simple vs Designer ─── -->
+  <section class="modes">
+    <div class="wrap">
+      <div class="lead">
+        <div class="rv">
+          <div class="lab">§ 06 — The Designer</div>
+          <h2>Two tools <span class="it">in one canvas.</span></h2>
+        </div>
+        <div class="rv d1">
+          <p>The hardest UX call on the project: most merchants just have a PNG of their logo. Showing them a Photoshop-style interface causes them to bounce on the first session.</p>
+          <p>But the merchants who are designers want every slider, every blend mode, every layer. The answer was two modes living inside the same canvas — toggled in the header, with the same artwork between them.</p>
+        </div>
+      </div>
+
+      <div class="mode-pair">
+        <div class="mode-card rv">
+          <span class="tag">Simple mode</span>
+          <img src="../media/Brandflow/designer-simple.jpg" alt="Brandflow Designer in Simple mode — a centred t-shirt mockup with a dashed blue print area and just two buttons: Change colour and Upload artwork">
+          <h3>Just put it on <span class="it">the shirt.</span></h3>
+          <p>One garment, one print area, two buttons. Click <span class="it">Upload artwork</span> and your logo is on the tee. Click <span class="it">Change colour</span> to swap the colourway. That's the whole interface.</p>
+          <ul>
+            <li>No panels · no chrome</li>
+            <li>White canvas · zero intimidation</li>
+            <li>Drop-in for non-designers</li>
+          </ul>
+        </div>
+
+        <div class="mode-card feature rv d1">
+          <span class="tag">Designer mode</span>
+          <img src="../media/Brandflow/designer-pro.jpg" alt="Brandflow Designer in Designer mode — dark UI with a left toolbar of shape tools, the centre canvas showing the same Caribbean Blue t-shirt with print area, and a right panel with Properties, Layers and Artwork tabs">
+          <h3>Or build it <span class="it">from scratch.</span></h3>
+          <p>Three-panel pro tool — shape library on the left, Konva canvas in the middle, properties / layers / artwork on the right. Same toggle, same canvas, same artwork stays in place.</p>
+          <ul>
+            <li>Shapes · text · gradients · shadows</li>
+            <li>In-browser background removal</li>
+            <li>Layers · undo · keyboard shortcuts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 07 · TECH GRID — engineering decisions ─── -->
+  <section class="tech">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 07 — Under the hood</span>
+          <span class="ttl">Four decisions that <span class="it">made it flow.</span></span>
+        </div>
+        <div class="r">Where the design met the engineering<br>Each call protects the merchant from a hurdle</div>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card rv">
+          <span class="n">01 — Canvas</span>
+          <h3>Print area as <span class="it">clipping mask.</span></h3>
+          <p>The artwork layer is clipped to the printable zone in Konva. Drag a logo off the shirt and it disappears — the merchant physically can't place artwork where it'll be cropped at print.</p>
+          <span class="stack">Konva.js · clipFunc · SVG paths</span>
+        </div>
+        <div class="tech-card rv d1">
+          <span class="n">02 — BG removal</span>
+          <h3>White background, <span class="it">gone.</span></h3>
+          <p>An ONNX background-removal model runs entirely in the browser in a Web Worker. No round-trip, no API key, no per-image cost — the merchant clicks a button and the white box around their logo is gone in two seconds.</p>
+          <span class="stack">@imgly/background-removal · WASM · ONNX</span>
+        </div>
+        <div class="tech-card rv d2">
+          <span class="n">03 — Composites</span>
+          <h3>3× output for <span class="it">crisp listings.</span></h3>
+          <p>On save, the app composites the artwork onto every chosen colourway at 1260×1680 — three times the canvas resolution — so when Shopify scales the listing image up, it stays sharp. The merchant doesn't see the maths, just gets perfect photos.</p>
+          <span class="stack">HTML canvas · per-variant export</span>
+        </div>
+        <div class="tech-card rv d2">
+          <span class="n">04 — Uploads</span>
+          <h3>Straight to <span class="it">cloud storage.</span></h3>
+          <p>Vercel serverless caps request bodies at 4.5MB; print-quality artwork blows past that easily. Signed upload URLs let the browser push files directly to Supabase Storage, bypassing the server entirely. Big files stop being a problem.</p>
+          <span class="stack">Supabase Storage · signed URLs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 08 · OUTCOME ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 08 — What shipped</span>
+          <span class="ttl">One platform, <span class="it">two audiences.</span></span>
+        </div>
+        <div class="r">Inspiration staff · merchant store owners<br>One studio · end-to-end build</div>
+      </div>
+
+      <div class="outcome-list">
+        <div class="outcome-row"><div class="n">01.</div><div class="th"><img src="../media/Brandflow/logo.png" alt=""></div><div class="lbl">Brand <span class="it">identity</span></div><div class="y">Wordmark · system · tone</div></div>
+        <div class="outcome-row"><div class="n">02.</div><div class="th"><img src="../media/Brandflow/hero.jpg" alt=""></div><div class="lbl">Marketing <span class="it">site</span></div><div class="y">brandflow.uk</div></div>
+        <div class="outcome-row"><div class="n">03.</div><div class="th"><img src="../media/Brandflow/dashboard.jpg" alt=""></div><div class="lbl">Merchant <span class="it">portal</span></div><div class="y">Dashboard · catalogue · orders · billing</div></div>
+        <div class="outcome-row"><div class="n">04.</div><div class="th"><img src="../media/Brandflow/catalogue-grid.jpg" alt=""></div><div class="lbl">Admin <span class="it">portal</span></div><div class="y">Internal fulfilment tools</div></div>
+        <div class="outcome-row"><div class="n">05.</div><div class="th"><img src="../media/Brandflow/designer-pro.jpg" alt=""></div><div class="lbl">Product <span class="it">designer</span></div><div class="y">Simple + Designer modes</div></div>
+        <div class="outcome-row"><div class="n">06.</div><div class="th"><img src="../media/Brandflow/product.jpg" alt=""></div><div class="lbl">Shopify <span class="it">pipeline</span></div><div class="y">OAuth · webhooks · publishing</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CLOSING ─── -->
+  <section class="closing">
+    <div class="wrap">
+      <a class="next-link" href="mutt-clothing.html">
+        <div class="lab">Next case<br>02 / 50<span class="it">+</span></div>
+        <div class="ttl">Mutt Clothing<span class="it">.</span></div>
+        <div class="arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="square"/></svg>
+        </div>
+      </a>
+
+      <div class="closing-foot">
+        <span>© 2026 Dastardly &amp; Muttley · Case 12</span>
+        <span class="mid">Case Study v3</span>
+        <span class="end"><a href="../contact.html">hello@dastardlyandmuttley.co.uk →</a></span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
