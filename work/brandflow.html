@@ -375,6 +375,27 @@
     }
     @keyframes pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: .35; } }
 
+    /* ─── Art direction grids ─── */
+    .ad-grid-2{ display: grid; gap: 14px; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .ad-grid-2{ grid-template-columns: 1fr 1fr; gap: 18px; } }
+    .ad-grid-2 img{ width: 100%; height: auto; display: block; aspect-ratio: 4/5; object-fit: cover; }
+
+    .ad-grid-3{ display: grid; gap: 14px; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .ad-grid-3{ grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+    .ad-grid-3 img{ width: 100%; height: auto; display: block; aspect-ratio: 4/3; object-fit: cover; }
+
+    .ad-grid-4{ display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+    @media (min-width: 760px){ .ad-grid-4{ grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+    .ad-grid-4 img{ width: 100%; height: auto; display: block; aspect-ratio: 1/1; object-fit: cover; }
+
+    /* Two-register intro — model vs pedestal */
+    .ad-registers{ display: grid; gap: 28px; grid-template-columns: 1fr; padding-top: clamp(28px, 3.5vw, 48px); margin-top: clamp(28px, 3.5vw, 48px); border-top: 1px solid var(--rule); }
+    @media (min-width: 900px){ .ad-registers{ grid-template-columns: 1fr 1fr; gap: clamp(36px, 4.5vw, 64px); } }
+    .ad-reg .n{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--bf); margin-bottom: 10px; }
+    .ad-reg h3{ font-family: var(--display); font-weight: 500; font-size: clamp(20px, 2vw, 28px); line-height: 1.1; letter-spacing: -.02em; margin-bottom: 8px; }
+    .ad-reg h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .ad-reg p{ font-size: 13px; line-height: 1.6; opacity: .82; max-width: 36ch; }
+
     /* ─── Store integrations strip ─── */
     .stores{
       padding: clamp(48px, 5.5vw, 88px) var(--pad);
@@ -709,12 +730,97 @@
     </div>
   </section>
 
-  <!-- ─── 03 · MERCHANT DASHBOARD ─── -->
+  <!-- ─── 03 · ART DIRECTION — the visual world we built around the mark ─── -->
   <section class="block">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 03 — Merchant portal</span>
+          <span>§ 03 — Art direction</span>
+          <span class="ttl">We made it look like <span class="it">a label, not a print shop.</span></span>
+        </div>
+        <div class="r">Editorial product photography<br>Real customer brands · consistent visual world</div>
+      </div>
+
+      <div class="rv">
+        <p style="font-size: 14px; line-height: 1.65; max-width: 56ch; opacity: .85; margin-bottom: clamp(28px, 3vw, 44px);">
+          Most print-on-demand sites look the same — a blank shirt on a white background with a placeholder logo dropped on top. We took the opposite approach for Brandflow. Every product photograph on the site is a <span class="it">real</span> customer's merch, shot in one consistent visual world, so the platform reads like a credible label that serious indie brands already work with — because, in real life, they do.
+        </p>
+      </div>
+
+      <!-- Hero flatlay — Aleworks system shot -->
+      <div class="fig rv">
+        <img src="../media/Brandflow/ad-flatlay.jpg" alt="Aleworks Brewing Co full merch system — folded black t-shirt, branded ceramic mug, pint glass and bottle opener on a concrete surface">
+        <div class="cap">
+          <span>Fig. 03a — Aleworks Brewing Co · the full system</span>
+          <span>Tee · mug · pint glass · bottle opener</span>
+        </div>
+      </div>
+
+      <!-- Two-register explainer -->
+      <div class="ad-registers">
+        <div class="ad-reg rv">
+          <div class="n">01 — Register one</div>
+          <h3>Editorial, <span class="it">on the body.</span></h3>
+          <p>Real people, real customer artwork, moody side-lighting against concrete or coloured paper. We art-directed these to feel like a fashion campaign — never a stock catalogue page.</p>
+        </div>
+        <div class="ad-reg rv d1">
+          <div class="n">02 — Register two</div>
+          <h3>Still-life, <span class="it">on the plinth.</span></h3>
+          <p>For hard goods and accessories we shot on matte black pedestals or pale concrete with single hard side-light. Same austerity, different surface — the language stays the same brand-wide.</p>
+        </div>
+      </div>
+
+      <!-- Model grid -->
+      <div class="seclabel" style="margin-top: clamp(40px, 4vw, 64px);">
+        <div class="l">
+          <span>§ 03b — Brands on people</span>
+          <span class="ttl">Same lighting, <span class="it">same world.</span></span>
+        </div>
+        <div class="r">Attic Brew · Double-Barrelled<br>Nethergate · Piglove</div>
+      </div>
+
+      <div class="ad-grid-4 rv">
+        <img src="../media/Brandflow/ad-attic-brew.jpg" alt="Model wearing an Attic Brew Co green sherpa vest with embroidered hops logo against an orange paper backdrop">
+        <img src="../media/Brandflow/ad-double-barrelled.jpg" alt="Model wearing a Double-Barrelled Kitchen Disco screen-printed t-shirt back graphic against a concrete wall">
+        <img src="../media/Brandflow/ad-nethergate.jpg" alt="Model holding open a jacket to reveal a Fuelled by Nethergate Brewery printed black t-shirt under coloured studio gels">
+        <img src="../media/Brandflow/ad-piglove.jpg" alt="Model wearing a Piglove black embroidered fleece against a concrete wall in low light">
+      </div>
+
+      <!-- Pedestal / still-life grid -->
+      <div class="seclabel" style="margin-top: clamp(40px, 4vw, 64px);">
+        <div class="l">
+          <span>§ 03c — Brands on plinths</span>
+          <span class="ttl">Stripped-back, <span class="it">on the surface.</span></span>
+        </div>
+        <div class="r">Datum Attitude · Jersey Zoo · Brecon Brewing<br>Hard Lines Coffee · Joe's Ice Cream</div>
+      </div>
+
+      <div class="ad-grid-3 rv">
+        <img src="../media/Brandflow/ad-caps.jpg" alt="Stack of five Datum Attitude embroidered dad caps in beige and olive, arranged on a dark grey suede pedestal against black">
+        <img src="../media/Brandflow/ad-mug-coaster.jpg" alt="Jersey Zoo branded ceramic mug with matching circular coaster, colourful wildlife pattern on dark grey textured ground">
+        <img src="../media/Brandflow/ad-bottle-opener.jpg" alt="Brecon Brewing branded red metal bottle opener with WRU partnership co-brand, lit dramatically on a dark concrete plinth">
+      </div>
+
+      <div class="ad-grid-2 rv" style="margin-top: 16px;">
+        <img src="../media/Brandflow/ad-mug.jpg" alt="Hand with sky-blue painted nails holding a Hard Lines Coffee Roasters white ceramic mug with red printed logo against a pale concrete wall">
+        <img src="../media/Brandflow/ad-tote.jpg" alt="Joe's Ice Cream blue logo printed on a natural canvas tote bag, suspended in pale studio light against concrete">
+      </div>
+
+      <div class="fig" style="margin-top: 16px;">
+        <div class="cap">
+          <span>Fig. 03b/c — Selected customer brands shot for the site</span>
+          <span>All photography commissioned + art-directed by D&amp;M</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 04 · MERCHANT DASHBOARD ─── -->
+  <section class="block paper2">
+    <div class="wrap">
+      <div class="seclabel">
+        <div class="l">
+          <span>§ 04 — Merchant portal</span>
           <span class="ttl">First login: <span class="it">do one thing.</span></span>
         </div>
         <div class="r">Day-one onboarding<br>Light theme · user-toggled dark mode</div>
@@ -732,12 +838,12 @@
     </div>
   </section>
 
-  <!-- ─── 04 · CATALOGUE ─── -->
-  <section class="block paper2">
+  <!-- ─── 05 · CATALOGUE ─── -->
+  <section class="block">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 04 — Catalogue</span>
+          <span>§ 05 — Catalogue</span>
           <span class="ttl">Browse the blanks. <span class="it">Or be guided.</span></span>
         </div>
         <div class="r">Stanley Stella core + extended range<br>Dispatch speed shown up front</div>
@@ -746,7 +852,7 @@
       <div class="fig rv">
         <img src="../media/Brandflow/catalogue.jpg" alt="Brandflow catalogue page — Not sure where to start banner, dispatch filter chips, search bar, category tabs and a row of Stanley Stella t-shirt cards">
         <div class="cap">
-          <span>Fig. 04a — Catalogue index</span>
+          <span>Fig. 05a — Catalogue index</span>
           <span>3-question quiz available for new merchants</span>
         </div>
       </div>
@@ -754,19 +860,19 @@
       <div class="fig rv d1" style="margin-top: clamp(24px, 3vw, 40px);">
         <img src="../media/Brandflow/catalogue-grid.jpg" alt="Brandflow catalogue grid view — eight Stanley Stella garments shown with model photos, colour chips, dispatch badges and entry prices">
         <div class="cap">
-          <span>Fig. 04b — Card grid</span>
+          <span>Fig. 05b — Card grid</span>
           <span>Colour chips · 48hr / 5-day badges · entry price</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 05 · PRODUCT DETAIL ─── -->
-  <section class="block">
+  <!-- ─── 06 · PRODUCT DETAIL ─── -->
+  <section class="block paper2">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 05 — Product page</span>
+          <span>§ 06 — Product page</span>
           <span class="ttl">The full picture, <span class="it">before you commit.</span></span>
         </div>
         <div class="r">Transparent print pricing<br>Every colour · every size</div>
@@ -777,7 +883,7 @@
           <h3>We put the pricing <span class="it">on the same screen.</span></h3>
           <p>The hardest thing in print-on-demand is the surprise mark-up at checkout. We made the call to flip it — blank cost, front print, back print and front&nbsp;+&nbsp;back are listed on the right of every product, before the merchant has made a single decision.</p>
           <p>A 19-colour swatch row and full size matrix sit underneath. No collapsing accordions. No <span class="it">"contact us for pricing"</span>.</p>
-          <div class="cap">Fig. 05 — Mini Creator 2.0 · kids' tee</div>
+          <div class="cap">Fig. 06 — Mini Creator 2.0 · kids' tee</div>
         </div>
         <img src="../media/Brandflow/product.jpg" alt="Brandflow product page for Mini Creator 2.0 kids t-shirt — main photo, gallery thumbnails, transparent print pricing table, 19 colour swatches and a five-size selector">
       </div>
@@ -801,7 +907,7 @@
     <div class="wrap">
       <div class="lead">
         <div class="rv">
-          <div class="lab">§ 06 — The Designer</div>
+          <div class="lab">§ 07 — The Designer</div>
           <h2>We built two tools <span class="it">in one canvas.</span></h2>
         </div>
         <div class="rv d1">
@@ -843,7 +949,7 @@
     <div class="wrap">
       <div class="head">
         <div class="rv">
-          <div class="lab">§ 07 — Store integrations</div>
+          <div class="lab">§ 08 — Store integrations</div>
           <h2>We plugged it into <span class="it">stores merchants already had.</span></h2>
         </div>
         <div class="rv d1">
@@ -882,7 +988,7 @@
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 08 — Under the hood</span>
+          <span>§ 09 — Under the hood</span>
           <span class="ttl">It only feels this simple <span class="it">because of this.</span></span>
         </div>
         <div class="r">Four calls we made early<br>Each one removes a hurdle the merchant never sees</div>
@@ -922,7 +1028,7 @@
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 09 — What we shipped</span>
+          <span>§ 10 — What we shipped</span>
           <span class="ttl">One platform, <span class="it">two audiences.</span></span>
         </div>
         <div class="r">Inspiration staff · merchant store owners<br>One studio · end-to-end build by Dastardly &amp; Muttley</div>
@@ -930,11 +1036,12 @@
 
       <div class="outcome-list">
         <div class="outcome-row"><div class="n">01.</div><div class="th"><img src="../media/Brandflow/logo.png" alt=""></div><div class="lbl">Brand <span class="it">identity</span></div><div class="y">Wordmark · system · tone</div></div>
-        <div class="outcome-row"><div class="n">02.</div><div class="th"><img src="../media/Brandflow/hero.jpg" alt=""></div><div class="lbl">Marketing <span class="it">site</span></div><div class="y">brandflow.uk</div></div>
-        <div class="outcome-row"><div class="n">03.</div><div class="th"><img src="../media/Brandflow/dashboard.jpg" alt=""></div><div class="lbl">Merchant <span class="it">portal</span></div><div class="y">Dashboard · catalogue · orders · billing</div></div>
-        <div class="outcome-row"><div class="n">04.</div><div class="th"><img src="../media/Brandflow/catalogue-grid.jpg" alt=""></div><div class="lbl">Admin <span class="it">portal</span></div><div class="y">Internal fulfilment tools</div></div>
-        <div class="outcome-row"><div class="n">05.</div><div class="th"><img src="../media/Brandflow/designer-pro.jpg" alt=""></div><div class="lbl">Product <span class="it">designer</span></div><div class="y">Simple + Designer modes</div></div>
-        <div class="outcome-row"><div class="n">06.</div><div class="th"><img src="../media/Brandflow/product.jpg" alt=""></div><div class="lbl">Shopify <span class="it">pipeline</span></div><div class="y">OAuth · webhooks · publishing</div></div>
+        <div class="outcome-row"><div class="n">02.</div><div class="th"><img src="../media/Brandflow/ad-flatlay.jpg" alt=""></div><div class="lbl">Art direction <span class="it">&amp; photography</span></div><div class="y">10+ customer brand shoots</div></div>
+        <div class="outcome-row"><div class="n">03.</div><div class="th"><img src="../media/Brandflow/hero.jpg" alt=""></div><div class="lbl">Marketing <span class="it">site</span></div><div class="y">brandflow.uk</div></div>
+        <div class="outcome-row"><div class="n">04.</div><div class="th"><img src="../media/Brandflow/dashboard.jpg" alt=""></div><div class="lbl">Merchant <span class="it">portal</span></div><div class="y">Dashboard · catalogue · orders · billing</div></div>
+        <div class="outcome-row"><div class="n">05.</div><div class="th"><img src="../media/Brandflow/catalogue-grid.jpg" alt=""></div><div class="lbl">Admin <span class="it">portal</span></div><div class="y">Internal fulfilment tools</div></div>
+        <div class="outcome-row"><div class="n">06.</div><div class="th"><img src="../media/Brandflow/designer-pro.jpg" alt=""></div><div class="lbl">Product <span class="it">designer</span></div><div class="y">Simple + Designer modes</div></div>
+        <div class="outcome-row"><div class="n">07.</div><div class="th"><img src="../media/Brandflow/product.jpg" alt=""></div><div class="lbl">Store <span class="it">integrations</span></div><div class="y">Shopify · WooCommerce</div></div>
       </div>
     </div>
   </section>
