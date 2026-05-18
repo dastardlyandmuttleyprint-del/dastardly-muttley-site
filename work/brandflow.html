@@ -664,33 +664,12 @@
 
   <!-- ─── 00b · DESIGNER IN MOTION — full-bleed autoplay, ambient ─── -->
   <section class="vid-bleed">
-    <video autoplay muted loop playsinline preload="auto" poster="../media/Brandflow/designer-pro.jpg">
+    <video muted loop playsinline preload="metadata" poster="../media/Brandflow/designer-pro.jpg" data-scroll-play>
       <source src="../media/Brandflow/demo.mp4" type="video/mp4" />
     </video>
     <div class="cap">
       <span class="dot" aria-hidden="true"></span>
       <span>Brandflow Designer · live capture</span>
-    </div>
-  </section>
-
-  <!-- ─── 01 · LANDING / HERO ─── -->
-  <section class="block">
-    <div class="wrap">
-      <div class="seclabel">
-        <div class="l">
-          <span>§ 01 — The pitch</span>
-          <span class="ttl">Merch your community <span class="it">will love.</span></span>
-        </div>
-        <div class="r">brandflow.uk — landing page<br>Bricolage Grotesque + DM Sans</div>
-      </div>
-
-      <div class="fig rv">
-        <img src="../media/Brandflow/hero.jpg" alt="Brandflow landing page hero — Merch your community will love, with UK print-on-demand badge and a row of branded apparel photos">
-        <div class="cap">
-          <span>Fig. 01 — Landing page, above the fold</span>
-          <span>One CTA · No price up front · No setup cost</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1070,6 +1049,20 @@
       es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    // Scroll-triggered video — only plays when in view, pauses when not
+    document.querySelectorAll('video[data-scroll-play]').forEach(vid => {
+      const vio = new IntersectionObserver(es => {
+        es.forEach(e => {
+          if (e.isIntersecting){
+            vid.play().catch(() => {});
+          } else {
+            vid.pause();
+          }
+        });
+      }, { threshold: 0.35 });
+      vio.observe(vid);
+    });
   </script>
 </body>
 </html>
