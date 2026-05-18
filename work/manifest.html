@@ -387,6 +387,16 @@
     .rv.in{ opacity: 1; transform: none; }
     .rv.d1{ transition-delay: .08s; }
     .rv.d2{ transition-delay: .16s; }
+
+    /* ─── Mobile bar + closing ─── */
+    @media (max-width: 760px){
+      .bar{ grid-template-columns: 1fr auto; padding: 12px var(--pad); }
+      .bar .mid{ display: none; }
+      .bar .right{ text-align: right; }
+      .next-link{ grid-template-columns: 1fr auto; row-gap: 14px; }
+      .next-link .lab{ grid-column: 1 / -1; }
+      .next-link .ttl{ text-align: left; }
+    }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 
