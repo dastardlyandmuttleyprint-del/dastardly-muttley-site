@@ -418,6 +418,9 @@
       overflow: hidden; background: var(--paper-2);
     }
     .work-row .inline-cover img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Sandro Ford — glass sits low in the source, anchor crop to bottom so it stays in frame */
+    .work-row .inline-cover img[src*="sandro"],
+    .work-preview .frame img[src*="sandro"]{ object-position: center 78%; }
     @media (max-width: 899px){
       .work-row{ grid-template-columns: 28px 1fr; }
       .work-row .tags, .work-row .year{ display: none; }
@@ -914,12 +917,12 @@
             <div class="year">2026</div>
             <div class="inline-cover"><img src="media/covers/sandro.jpg" alt="Sandro Ford"></div>
           </a>
-          <a href="work/mythora.html" class="work-row" data-cover="media/covers/mythora.png" data-cap="Mythora · 2025">
+          <a href="work/mythora.html" class="work-row" data-cover="media/covers/mythora-band.jpg" data-cap="Mythora · 2025">
             <div class="n">05</div>
             <div class="ttl">Mythora<span class="it">.</span></div>
             <div class="tags"><span>Identity</span><span>Logo</span><span>Print</span></div>
             <div class="year">2025</div>
-            <div class="inline-cover"><img src="media/covers/mythora.png" alt="Mythora"></div>
+            <div class="inline-cover"><img src="media/covers/mythora-band.jpg" alt="Mythora"></div>
           </a>
           <a href="work/james-music.html" class="work-row" data-cover="media/hero-bigger.jpg" data-cap="James Music · 2025">
             <div class="n">06</div>
@@ -942,7 +945,7 @@
             <img src="media/Pixie/cover-pixie.jpg" alt="" data-key="media/Pixie/cover-pixie.jpg">
             <img src="media/covers/manifest.jpg" alt="" data-key="media/covers/manifest.jpg">
             <img src="media/covers/sandro.jpg" alt="" data-key="media/covers/sandro.jpg">
-            <img src="media/covers/mythora.png" alt="" data-key="media/covers/mythora.png">
+            <img src="media/covers/mythora-band.jpg" alt="" data-key="media/covers/mythora-band.jpg">
             <img src="media/hero-bigger.jpg" alt="" data-key="media/hero-bigger.jpg">
           </div>
           <div class="cap">
