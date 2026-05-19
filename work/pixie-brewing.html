@@ -4,33 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pixie Brewing — Brand Identity, Illustration System &amp; Web Design Case Study | Dastardly &amp; Muttley</title>
-  <meta name="description" content="Pixie Brewing — a Cambridgeshire nano-brewery. We took three folk-surreal illustrations and built a complete brewery universe: totem mark, packaging system, colour architecture, glassware, merch and a cinematic website." />
+  <meta name="description" content="Pixie Brewing — a Cambridgeshire nano-brewery. We turned three folk-surreal drawings into a complete brewery universe: totem mark, packaging system, tap badges, colour architecture and a cinematic site." />
   <link rel="canonical" href="https://dastardlyandmuttley.co.uk/work/pixie-brewing" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Dastardly &amp; Muttley" />
-  <meta property="og:title" content="Pixie Brewing — Brand Identity, Illustration System &amp; Web Design Case Study | Dastardly &amp; Muttley" />
-  <meta property="og:description" content="Three folk-surreal drawings became a whole brewery universe. Totem mark, packaging system, colour architecture, glassware, merch, and a cinematic site." />
+  <meta property="og:title" content="Pixie Brewing — Brand Identity, Illustration System &amp; Web Design | Dastardly &amp; Muttley" />
+  <meta property="og:description" content="Three folk-surreal drawings became a whole brewery universe. Mark, packaging, tap badges, colour architecture, cinematic site." />
   <meta property="og:url" content="https://dastardlyandmuttley.co.uk/work/pixie-brewing" />
-  <meta property="og:image" content="https://dastardlyandmuttley.co.uk/media/Pixie/logo-mark.png" />
-  <meta property="og:image:alt" content="Pixie Brewing — totem logo mark with eye, hops and tendrils" />
+  <meta property="og:image" content="https://dastardlyandmuttley.co.uk/media/Pixie/poster-hero.png" />
   <meta property="og:locale" content="en_GB" />
 
-  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Pixie Brewing — Brand Identity &amp; Web Case Study | Dastardly &amp; Muttley" />
-  <meta name="twitter:description" content="Three folk-surreal drawings became a whole brewery universe — totem mark, packaging system, colour architecture, glassware, merch, and a cinematic site." />
-  <meta name="twitter:image" content="https://dastardlyandmuttley.co.uk/media/Pixie/logo-mark.png" />
+  <meta name="twitter:image" content="https://dastardlyandmuttley.co.uk/media/Pixie/poster-hero.png" />
 
-  <!-- Geo -->
   <meta name="geo.region" content="GB-WLS" />
   <meta name="geo.placename" content="Swansea" />
-  <meta name="geo.position" content="51.6208;-3.9432" />
-  <meta name="ICBM" content="51.6208, -3.9432" />
-
   <meta name="author" content="Dastardly &amp; Muttley" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0F1C24" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,11 +35,12 @@
       --ink:   #0c0c0c;
       --rule:  rgba(12,12,12,.14);
       --muted: rgba(12,12,12,.55);
-      --pixie-teal: #0F1C24;     /* Pixie deep-night background */
-      --pixie-green: #2E7D3A;    /* Pixie folk green */
+
+      --pixie-teal: #0F1C24;
+      --pixie-teal-2: #142732;
+      --pixie-green: #2E7D3A;
       --pixie-green-bright: #5DAE3B;
-      --pixie-gold: #E2B635;
-      --pixie-red:  #C8392B;
+      --pixie-pink: #C8456E;
 
       --display: "Space Grotesk", "Inter", system-ui, sans-serif;
       --serif:   "Instrument Serif", "Times New Roman", serif;
@@ -70,7 +62,6 @@
     a{ color:inherit; text-decoration:none; }
     ::selection{ background: var(--pixie-green); color: var(--paper); }
     .it{ font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.005em; }
-    .mono{ font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
 
     /* ─── Top bar ─── */
     .bar{
@@ -108,7 +99,6 @@
       letter-spacing: -.04em; line-height: .92;
       margin-bottom: clamp(20px, 2.5vw, 32px);
     }
-    .ph-title .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
     .ph-title em{ font-style: normal; color: var(--pixie-green); font-family: var(--serif); font-weight: 400; }
     .ph-grid{
       display: grid; grid-template-columns: 1fr; gap: 28px;
@@ -121,256 +111,240 @@
       font-family: var(--display); font-weight: 500;
       font-size: clamp(17px, 1.6vw, 24px);
       line-height: 1.35; letter-spacing: -.01em;
-      max-width: 38ch; opacity: .9;
+      max-width: 42ch; opacity: .9;
     }
+    .ph-lede .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
     .ph-specs{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; align-self: end; }
     .ph-specs .k{ font-size: 8px; letter-spacing: .2em; text-transform: uppercase; opacity: .5; margin-bottom: 3px; font-family: var(--mono); }
     .ph-specs .v{ font-family: var(--display); font-size: 12px; line-height: 1.4; letter-spacing: -.005em; }
+    .ph-specs .v .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
 
-    /* ─── BLOCKS ─── */
-    .block{ padding: clamp(40px, 4.5vw, 72px) var(--pad); }
+    /* ─── Full-bleed poster lead ─── */
+    .lead-poster{
+      background: var(--pixie-teal);
+      padding: clamp(48px, 6vw, 96px) var(--pad);
+      position: relative;
+      overflow: hidden;
+    }
+    .lead-poster .wrap{ max-width: 1200px; margin: 0 auto; position: relative; }
+    .lead-poster .lab{
+      font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(245,243,238,.55);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .lead-poster .poster{
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: block;
+      border-radius: 4px;
+    }
+    .lead-poster .caption{
+      text-align: center;
+      margin-top: clamp(28px, 3vw, 44px);
+    }
+    .lead-poster .caption h2{
+      font-family: var(--display); font-weight: 500;
+      color: var(--paper);
+      font-size: clamp(26px, 3.8vw, 56px);
+      line-height: 1.05; letter-spacing: -.025em;
+      max-width: 22ch;
+      margin: 0 auto;
+    }
+    .lead-poster .caption h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--pixie-green-bright); }
+    .lead-poster .caption p{
+      margin-top: 16px;
+      color: rgba(245,243,238,.7);
+      font-size: 13px; line-height: 1.6;
+      max-width: 48ch;
+      margin-inline: auto;
+    }
+
+    /* ─── BLOCK ─── */
+    .block{ padding: clamp(48px, 5vw, 88px) var(--pad); }
     .block.paper2{ background: var(--paper-2); }
     .block.teal{ background: var(--pixie-teal); color: var(--paper); }
-    .block.flush-top{ padding-top: 0; }
-    .block.flush-btm{ padding-bottom: 0; }
+    .block.teal-2{ background: var(--pixie-teal-2); color: var(--paper); }
     .wrap{ max-width: var(--max); margin: 0 auto; }
 
+    /* Section label — uniform across the case study */
     .seclabel{
       display: flex; gap: 20px; align-items: baseline; justify-content: space-between;
-      flex-wrap: wrap; padding-bottom: 16px; margin-bottom: 24px;
+      flex-wrap: wrap; padding-bottom: 16px; margin-bottom: clamp(28px, 3vw, 44px);
       border-bottom: 1px solid var(--rule);
       font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
       color: var(--muted);
     }
-    .block.teal .seclabel{ border-bottom-color: rgba(245,243,238,.22); color: rgba(245,243,238,.7); }
+    .block.teal .seclabel, .block.teal-2 .seclabel{ border-bottom-color: rgba(245,243,238,.22); color: rgba(245,243,238,.7); }
     .seclabel .ttl{
       font-family: var(--display); font-weight: 500;
-      font-size: clamp(20px, 2.1vw, 30px);
+      font-size: clamp(22px, 2.4vw, 34px);
       letter-spacing: -.02em; line-height: 1.05; text-transform: none;
       color: var(--ink); max-width: 22ch;
     }
-    .block.teal .seclabel .ttl{ color: var(--paper); }
+    .block.teal .seclabel .ttl, .block.teal-2 .seclabel .ttl{ color: var(--paper); }
     .seclabel .ttl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
     .seclabel .l{ display: flex; flex-direction: column; gap: 10px; }
-    .seclabel .r{ text-align: right; align-self: flex-end; opacity: .75; }
+    .seclabel .r{ text-align: right; align-self: flex-end; opacity: .75; max-width: 28ch; line-height: 1.4; }
 
-    /* Body type within sections */
-    .body p{ font-size: 14px; line-height: 1.65; max-width: 60ch; opacity: .85; }
-    .body p + p{ margin-top: 14px; }
-    .body p .em{ color: var(--pixie-green); font-style: italic; font-family: var(--serif); }
-    .block.teal .body p .em{ color: var(--pixie-green-bright); }
-
-    /* ─── Three-originals grid ─── */
-    .originals{
-      display: grid; gap: 28px;
-      grid-template-columns: 1fr;
-      padding: clamp(24px, 3vw, 48px) 0;
-    }
-    @media (min-width: 760px){ .originals{ grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 3vw, 56px); } }
-    .original{ display: flex; flex-direction: column; align-items: center; gap: 16px; }
-    .original .img{
-      width: 100%; aspect-ratio: 1/1;
-      display: grid; place-items: center;
-      padding: clamp(12px, 1.5vw, 24px);
-    }
-    .original .img img{ max-width: 100%; max-height: 100%; width: auto; height: auto; }
-    .original .meta{ text-align: center; }
-    .original .meta .n{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--pixie-green); margin-bottom: 6px; }
-    .original .meta h3{ font-family: var(--display); font-weight: 500; font-size: clamp(18px, 1.7vw, 22px); letter-spacing: -.015em; }
-    .original .meta h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
-    .original .meta p{ font-size: 12px; line-height: 1.55; opacity: .7; margin-top: 8px; max-width: 26ch; margin-inline: auto; }
-
-    /* ─── Principle list ─── */
-    .principles{
-      display: grid; gap: 22px;
-      grid-template-columns: 1fr;
-      counter-reset: pr;
-      padding-top: clamp(24px, 3vw, 36px);
-      margin-top: clamp(24px, 3vw, 36px);
-      border-top: 1px solid var(--rule);
-    }
-    @media (min-width: 760px){ .principles{ grid-template-columns: 1fr 1fr; gap: clamp(24px, 2.5vw, 44px); } }
-    .principle{
-      counter-increment: pr;
-      padding-left: 0;
-      position: relative;
-    }
-    .principle::before{
-      content: counter(pr, decimal-leading-zero);
-      font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
-      color: var(--pixie-green);
-      display: block; margin-bottom: 10px;
-    }
-    .principle h3{
+    /* ─── Lede paragraph (one per section, short) ─── */
+    .lede{
       font-family: var(--display); font-weight: 500;
-      font-size: clamp(18px, 1.8vw, 24px); line-height: 1.15; letter-spacing: -.015em;
-      margin-bottom: 8px;
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.45; letter-spacing: -.01em;
+      max-width: 56ch;
+      margin-bottom: clamp(28px, 3.5vw, 48px);
     }
-    .principle h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
-    .principle p{ font-size: 13px; line-height: 1.6; opacity: .82; max-width: 42ch; }
+    .lede .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .block.teal .lede, .block.teal-2 .lede{ color: rgba(245,243,238,.92); }
 
-    /* ─── Mark showcase — dark slab ─── */
-    .mark-show{
-      display: grid; gap: clamp(28px, 3.5vw, 56px);
-      grid-template-columns: 1fr;
-      align-items: center;
-      padding-top: clamp(28px, 3.5vw, 48px);
-    }
-    @media (min-width: 900px){ .mark-show{ grid-template-columns: 1fr 1fr; } }
-    .mark-show .stage{
-      display: grid; place-items: center;
-      aspect-ratio: 1/1;
-      padding: clamp(20px, 3vw, 48px);
-      background: rgba(245,243,238,.04);
-      border: 1px solid rgba(245,243,238,.12);
-      border-radius: 8px;
-    }
-    .mark-show .stage img{ max-width: 78%; max-height: 78%; width: auto; height: auto; }
-    .mark-show .stage.wordmark{ aspect-ratio: 4/3; }
-    .mark-show .stage.wordmark img{ max-width: 84%; }
-
-    /* ─── Variation triplet ─── */
-    .variations{
-      display: grid; gap: 18px;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 760px){ .variations{ grid-template-columns: repeat(3, 1fr); gap: 22px; } }
-    .variation{
-      display: grid; place-items: center;
+    /* ─── UNIFORM IMAGE CELLS (the key fix) ─── */
+    .cell{
       aspect-ratio: 1/1;
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 6px;
-      padding: clamp(18px, 2.5vw, 36px);
-      position: relative;
+      border-radius: 4px;
+      display: grid; place-items: center;
+      padding: clamp(20px, 3vw, 44px);
+      overflow: hidden;
     }
-    .variation img{ max-width: 80%; max-height: 80%; width: auto; height: auto; }
-    .variation .lab{
-      position: absolute; bottom: 12px; left: 12px;
+    .block.teal .cell, .block.teal-2 .cell{
+      background: var(--pixie-teal-2);
+      border-color: rgba(245,243,238,.12);
+    }
+    .cell img{ max-width: 100%; max-height: 100%; width: auto; height: auto; }
+    .cell.tall{ aspect-ratio: 3/4; }
+    .cell.wide{ aspect-ratio: 4/3; }
+    .cell.flat{ background: transparent; border: 0; padding: 0; }
+    .cell .lab{
+      position: absolute; bottom: 12px; left: 14px;
       font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
       color: var(--muted);
+      pointer-events: none;
     }
+    .block.teal .cell .lab, .block.teal-2 .cell .lab{ color: rgba(245,243,238,.55); }
+    .cell{ position: relative; }
 
-    /* ─── Catalogue grid (the whole illustrated world) ─── */
-    .catalogue{
-      display: grid; gap: 18px;
-      grid-template-columns: repeat(2, 1fr);
-      padding-top: clamp(24px, 3vw, 40px);
-    }
-    @media (min-width: 760px){ .catalogue{ grid-template-columns: repeat(3, 1fr); gap: 22px; } }
-    @media (min-width: 1080px){ .catalogue{ grid-template-columns: repeat(4, 1fr); gap: 26px; } }
-    .cat-cell{
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      padding: clamp(20px, 2.5vw, 32px);
-      background: rgba(245,243,238,.04);
-      border: 1px solid rgba(245,243,238,.1);
+    /* ─── Grid systems — all share the same cell ─── */
+    .grid-3{ display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .grid-3{ grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+    .grid-4{ display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 760px){ .grid-4{ grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+    .grid-2{ display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .grid-2{ grid-template-columns: 1fr 1fr; gap: 22px; } }
+
+    /* ─── Hero stage — single big image (mark, can, tap badge) ─── */
+    .hero-stage{
+      aspect-ratio: 16/10;
+      background: var(--pixie-teal-2);
+      border: 1px solid rgba(245,243,238,.12);
       border-radius: 6px;
-      aspect-ratio: 3/4;
+      display: grid; place-items: center;
+      padding: clamp(28px, 4vw, 72px);
+      overflow: hidden;
       position: relative;
     }
-    .cat-cell .img{
-      flex: 1; width: 100%;
-      display: grid; place-items: center;
-      min-height: 0;
-    }
-    .cat-cell .img img{ max-width: 100%; max-height: 100%; width: auto; height: auto; }
-    .cat-cell .nm{
-      font-family: var(--display); font-weight: 500; font-size: 13px;
-      letter-spacing: -.005em; text-align: center;
-    }
-    .cat-cell .nm .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
-    .cat-cell .style{
-      font-family: var(--mono); font-size: 8px; letter-spacing: .18em; text-transform: uppercase;
-      opacity: .6;
-    }
+    .hero-stage img{ max-width: 70%; max-height: 88%; width: auto; height: auto; }
+    .hero-stage.wide img{ max-width: 92%; }
+    .hero-stage.tall{ aspect-ratio: 5/4; }
+    .hero-stage.tall img{ max-height: 92%; max-width: 60%; }
 
-    /* ─── Hero-and-field pair ─── */
-    .hf-pair{ display: grid; gap: 28px; grid-template-columns: 1fr; align-items: end; padding-top: clamp(28px, 3.5vw, 48px); }
-    @media (min-width: 900px){ .hf-pair{ grid-template-columns: 1.2fr 1fr; gap: clamp(36px, 5vw, 80px); } }
-    .hf-pair .stage{
-      display: grid; place-items: center;
-      aspect-ratio: 4/3;
-      padding: clamp(20px, 3vw, 56px);
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
+    /* Pair: image + note */
+    .stage-pair{ display: grid; gap: 28px; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 900px){ .stage-pair{ grid-template-columns: 1.4fr 1fr; gap: clamp(36px, 4.5vw, 72px); } }
+    .stage-pair .note h3{
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(22px, 2.2vw, 32px); line-height: 1.1; letter-spacing: -.02em;
+      margin-bottom: 14px;
     }
-    .block.teal .hf-pair .stage{ background: rgba(245,243,238,.04); border-color: rgba(245,243,238,.12); }
-    .hf-pair .stage img{ max-width: 88%; max-height: 88%; width: auto; height: auto; }
+    .stage-pair .note h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .stage-pair .note h3 em{ font-style: normal; color: var(--pixie-green-bright); font-family: var(--serif); font-weight: 400; }
+    .stage-pair .note p{ font-size: 14px; line-height: 1.6; opacity: .88; max-width: 36ch; }
+    .stage-pair .note p + p{ margin-top: 12px; }
 
-    /* ─── Colour strategy chips ─── */
-    .colour-strategy{
-      display: grid; gap: 14px; grid-template-columns: 1fr;
-      padding-top: clamp(24px, 3vw, 36px);
-    }
-    @media (min-width: 760px){ .colour-strategy{ grid-template-columns: repeat(4, 1fr); gap: 16px; } }
-    .swatch{
-      padding: clamp(18px, 2vw, 28px);
-      border: 1px solid var(--rule);
+    /* ─── Tap badge centered showcase ─── */
+    .tap-stage{
+      aspect-ratio: 5/4;
+      background: var(--pixie-teal);
       border-radius: 6px;
-      display: flex; flex-direction: column; gap: 14px;
-      min-height: 200px;
+      display: grid; place-items: center;
+      padding: clamp(28px, 4vw, 64px);
+      position: relative;
+      overflow: hidden;
     }
-    .swatch .chip{
-      width: 100%; height: 56px; border-radius: 4px;
-      box-shadow: inset 0 0 0 1px rgba(12,12,12,.12);
+    .tap-stage::before{
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at center, transparent 0%, transparent 40%, rgba(0,0,0,.35) 100%);
+      pointer-events: none;
     }
-    .swatch .lab{ font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .6; }
-    .swatch h4{ font-family: var(--display); font-weight: 500; font-size: 15px; letter-spacing: -.01em; line-height: 1.2; }
-    .swatch h4 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
-    .swatch p{ font-size: 12px; line-height: 1.55; opacity: .75; }
+    .tap-stage img{ max-width: 56%; max-height: 84%; width: auto; height: auto; position: relative; z-index: 1; }
 
     /* ─── Pull quote (green slab) ─── */
     .quote-slab{
-      padding: clamp(60px, 7vw, 100px) var(--pad);
+      padding: clamp(64px, 7.5vw, 110px) var(--pad);
       background: var(--pixie-green);
       color: var(--paper);
     }
     .quote-slab .wrap{ max-width: var(--max); margin: 0 auto; }
     .quote-slab .lab{
       font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
-      opacity: .7; margin-bottom: 18px;
+      opacity: .8; margin-bottom: 22px;
     }
     .quote-slab h2{
       font-family: var(--display); font-weight: 500;
-      font-size: clamp(36px, 5.6vw, 84px);
-      line-height: .96; letter-spacing: -.035em;
-      max-width: 16ch;
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: .94; letter-spacing: -.04em;
+      max-width: 18ch;
     }
     .quote-slab h2 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
     .quote-slab .credit{
-      margin-top: clamp(32px, 4vw, 56px);
+      margin-top: clamp(36px, 4.5vw, 64px);
       padding-top: 14px;
       border-top: 1px solid rgba(245,243,238,.22);
       display: flex; justify-content: space-between; gap: 20px;
       font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
-      opacity: .75;
+      opacity: .8;
     }
 
-    /* ─── Web build cards ─── */
-    .web-grid{
-      display: grid; gap: 18px;
-      grid-template-columns: 1fr;
-      padding-top: clamp(24px, 3vw, 36px);
+    /* ─── Full-bleed scroll video ─── */
+    .vid-bleed{
+      background: var(--ink);
+      width: 100%;
+      padding: 0;
+      position: relative;
     }
-    @media (min-width: 760px){ .web-grid{ grid-template-columns: repeat(3, 1fr); gap: 22px; } }
-    .web-card{
-      padding: clamp(20px, 2.2vw, 32px);
-      border: 1px solid var(--rule);
+    .vid-bleed video{ width: 100%; height: auto; display: block; }
+    .vid-bleed .cap{
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 14px; align-items: center;
+      padding: 8px 14px;
+      background: rgba(12,12,12,.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(245,243,238,.18);
+      border-radius: 999px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--paper);
+      opacity: .9;
+      pointer-events: none;
+    }
+    .vid-bleed .cap .dot{
+      width: 6px; height: 6px; border-radius: 50%; background: var(--pixie-green-bright);
+      box-shadow: 0 0 0 4px rgba(93,174,59,.18);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: .35; } }
+
+    /* ─── Site screenshot frame ─── */
+    .site-frame{
+      width: 100%;
       border-radius: 6px;
-      display: flex; flex-direction: column; gap: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(245,243,238,.14);
+      background: var(--pixie-teal-2);
     }
-    .web-card .n{ font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--pixie-green); }
-    .web-card h3{ font-family: var(--display); font-weight: 500; font-size: clamp(18px, 1.7vw, 22px); line-height: 1.15; letter-spacing: -.015em; }
-    .web-card h3 .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
-    .web-card p{ font-size: 13px; line-height: 1.6; opacity: .82; }
-    .web-card .stack{
-      margin-top: auto;
-      font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
-      opacity: .55;
-      padding-top: 14px;
-      border-top: 1px solid var(--rule);
-    }
+    .site-frame img{ width: 100%; height: auto; display: block; }
 
     /* ─── Outcome list ─── */
     .outcome-list{
@@ -379,15 +353,15 @@
     }
     .outcome-row{
       display: grid;
-      grid-template-columns: 48px 80px 1fr 160px;
-      gap: 20px; align-items: center;
-      padding: 14px 0;
+      grid-template-columns: 48px 88px 1fr 160px;
+      gap: 22px; align-items: center;
+      padding: 16px 0;
       border-bottom: 1px solid var(--rule);
     }
     .outcome-row .n{ font-family: var(--mono); font-size: 10px; opacity: .55; }
     .outcome-row .th{
-      width: 80px; height: 60px;
-      background: var(--paper); border: 1px solid var(--rule);
+      width: 88px; height: 60px;
+      background: var(--pixie-teal); border-radius: 3px;
       display: grid; place-items: center;
       padding: 6px;
     }
@@ -396,8 +370,9 @@
     .outcome-row .lbl .it{ font-family: var(--serif); font-style: italic; font-weight: 400; }
     .outcome-row .y{ font-family: var(--mono); font-size: 10px; opacity: .55; text-align: right; }
     @media (max-width: 760px){
-      .outcome-row{ grid-template-columns: 40px 80px 1fr; }
+      .outcome-row{ grid-template-columns: 40px 70px 1fr; }
       .outcome-row .y{ display:none; }
+      .outcome-row .th{ width: 70px; }
     }
 
     /* ─── Closing ─── */
@@ -448,7 +423,6 @@
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -463,13 +437,9 @@
       },
       {
         "@type": "CreativeWork",
-        "@id": "https://dastardlyandmuttley.co.uk/work/pixie-brewing#creative-work",
         "name": "Pixie Brewing — Brand Identity, Illustration System & Web Design",
-        "description": "Full brand universe for Pixie Brewing — a Cambridgeshire nano-brewery. Totem mark, illustrated packaging system, colour architecture, glassware, merch and a cinematic single-page site.",
         "creator": { "@id": "https://dastardlyandmuttley.co.uk/#business" },
         "dateCreated": "2026",
-        "locationCreated": { "@type": "Place", "name": "Swansea, Wales", "address": { "@type": "PostalAddress", "addressLocality": "Swansea", "addressRegion": "Wales", "addressCountry": "GB" } },
-        "keywords": "brewery brand identity, illustration system, packaging design UK, craft beer branding, folk-surreal illustration, totem logo, web design Wales",
         "url": "https://dastardlyandmuttley.co.uk/work/pixie-brewing"
       }
     ]
@@ -499,7 +469,7 @@
 
       <div class="ph-grid">
         <p class="ph-lede">
-          A Cambridgeshire nano-brewery came to us with three strange illustrations and a head full of ideas. We turned it into <span class="it">a whole brewery universe</span> — totem mark, packaging system, colour architecture, glassware, merch and the cinematic site that holds it all together.
+          A nano-brewery arrived with three strange drawings and no system. We turned it into a <span class="it">whole brewery universe</span> — mark, can artwork, tap badges, glassware direction, merch, and a cinematic site that holds it together.
         </p>
         <div class="ph-specs">
           <div><div class="k">Client</div><div class="v">Pixie <span class="it">Brewing Ltd</span></div></div>
@@ -511,366 +481,263 @@
     </div>
   </header>
 
-  <!-- ─── 01 · THE STARTING POINT — THREE DRAWINGS ─── -->
-  <section class="block paper2">
+  <!-- ─── LEAD POSTER — the whole universe in one image ─── -->
+  <section class="lead-poster">
     <div class="wrap">
-      <div class="seclabel">
-        <div class="l">
-          <span>§ 01 — The starting point</span>
-          <span class="ttl">A folk-surreal pile, <span class="it">not a brand yet.</span></span>
-        </div>
-        <div class="r">Three drawings · zero rules<br>Lithuanian outsider-illustration energy</div>
-      </div>
-
-      <div class="body rv">
-        <p>Most breweries arrive with a strategy deck and ask for a logo. Pixie arrived with the opposite — three illustrations from a Lithuanian artist that already had personality coming out of them, and no system to hold them together. A garage on roller skates with hops bursting out the back. A heraldic bird made of patterned architecture. A symmetrical heart with an eye in the middle and plants growing skyward.</p>
-        <p>They were striking, weird, ceremonial and slightly psychedelic. They were not yet a brand. They had imperfections, asymmetry, hidden symbols and a clearly-authored hand — the kind of thing that looks like it belongs to a <span class="em">culture</span>, not a marketing department. The brief, when we stripped it back, was simple: keep all of that weirdness, but make it scale. Make it work on a 33ml can lid, a 30L KeyKeg, a beer-festival glass, an Instagram feed, a pub-window vinyl, and a pump-clip across the bar — without sanitising any of it.</p>
-      </div>
-
-      <div class="originals">
-        <div class="original rv">
-          <div class="img"><img src="../media/Pixie/garage-daze.png" alt="Original Pixie illustration — Garage Daze, a green-and-blue garage building on roller skates with hop-vine tendrils bursting out the back"></div>
-          <div class="meta">
-            <div class="n">Original 01</div>
-            <h3>The garage <span class="it">on wheels.</span></h3>
-            <p>Architecture, machinery, biology and absurdity in one object. Introduced eyes-inside-forms and tendril extensions.</p>
-          </div>
-        </div>
-        <div class="original rv d1">
-          <div class="img"><img src="../media/Pixie/rib-ride.png" alt="Original Pixie illustration — Rib Ride, a heraldic red and green bird made of patterned wings with a hop in its beak"></div>
-          <div class="meta">
-            <div class="n">Original 02</div>
-            <h3>The heraldic <span class="it">bird.</span></h3>
-            <p>Medieval-emblem energy filtered through folk illustration. Wings as patterned architecture, hops as ceremony.</p>
-          </div>
-        </div>
-        <div class="original rv d2">
-          <div class="img"><img src="../media/Pixie/first-krush.png" alt="Original Pixie illustration — First Krush, a symmetrical red heart with an eye in the centre, plants growing skyward and small legs underneath"></div>
-          <div class="meta">
-            <div class="n">Original 03</div>
-            <h3>The heart <span class="it">with the eye.</span></h3>
-            <p>Symmetry, an emblem-like front-on stance, and a recurring archetype set — eyes, growth, transformation, hybrids.</p>
-          </div>
-        </div>
+      <div class="lab">§ The universe, on one page</div>
+      <img class="poster rv" src="../media/Pixie/poster-hero.png" alt="Pixie Brewing brand universe poster — wordmark centred on a white cloud, surrounded by all the brewery characters: the totem eye, the wolf with a beer, the green crocodile, the cat, the small house, hop plants and a kombi van under a moon and stars">
+      <div class="caption rv d1">
+        <h2>Strange beers. Strange friends. <span class="it">Good times.</span></h2>
+        <p>A single key visual built from the whole cast — wordmark anchored in white, every character orbiting. This is the brand condensed into one frame, and the blueprint we worked back from.</p>
       </div>
     </div>
   </section>
 
-  <!-- ─── 02 · THE LANGUAGE — extracting the DNA ─── -->
+  <!-- ─── 01 · THE STARTING POINT ─── -->
   <section class="block">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 02 — Building the language</span>
-          <span class="ttl">We didn't pick a logo. <span class="it">We pulled a system out of the drawings.</span></span>
+          <span>§ 01 — Where we started</span>
+          <span class="ttl">Three drawings, <span class="it">zero rules.</span></span>
         </div>
-        <div class="r">Five visual principles<br>The DNA we kept through everything</div>
+        <div class="r">Folk-surreal energy<br>No system · no scale</div>
       </div>
 
-      <div class="body rv">
-        <p>Our first call was not to push any of the three illustrations toward becoming the mark. They were too detailed, too asymmetric and too narrative-driven to survive at favicon size. Great illustrations are usually weak logos. So we treated the drawings as a quarry — and went looking for the DNA underneath. Five principles emerged, and every later decision on this project answers back to them.</p>
-      </div>
+      <p class="lede rv">Most breweries arrive with a strategy deck and ask for a logo. Pixie arrived with the opposite — three illustrations from a Lithuanian artist that already had personality coming out of them, and no system to hold them together.</p>
 
-      <div class="principles">
-        <div class="principle rv">
-          <h3>The eye, <span class="it">always.</span></h3>
-          <p>An eye appears in every drawing, sometimes obvious, sometimes hidden. We made it central. Eyes solve a retail problem too — they create an instant focal point in a crowded fridge.</p>
+      <div class="grid-3">
+        <div class="cell rv">
+          <img src="../media/Pixie/garage-daze.png" alt="Original illustration — Garage Daze, a garage on roller skates with hop tendrils">
+          <span class="lab">01 — Garage</span>
         </div>
-        <div class="principle rv d1">
-          <h3>Hops as <span class="it">spirit, not cone.</span></h3>
-          <p>Across the work, hops, leaves, feathers and flowers melt into one organic structure. We didn't draw literal hop cones for the mark — we kept it as a "hop spirit" sitting somewhere between flower, talisman and creature.</p>
+        <div class="cell rv d1">
+          <img src="../media/Pixie/rib-ride.png" alt="Original illustration — Rib Ride heraldic bird with patterned wings">
+          <span class="lab">02 — Bird</span>
         </div>
-        <div class="principle rv d2">
-          <h3>Thick black <span class="it">linework.</span></h3>
-          <p>Heavy outlines are the glue. They unify chaotic colour, survive screen-printing, embroidery, etched glass and embossed lids, and keep the whole world feeling handmade no matter where it ends up.</p>
-        </div>
-        <div class="principle rv d3">
-          <h3>Flat, <span class="it">unblended colour.</span></h3>
-          <p>No gradients, no airbrush, no shading. Colour sits in flat blocks inside the linework — the visual logic of stained glass, folk woodcuts and printmaking, not digital illustration.</p>
-        </div>
-        <div class="principle rv d2">
-          <h3>Controlled <span class="it">imperfection.</span></h3>
-          <p>Wobble in the lines, uneven spacing, hand-set type. We protected this through every redraw. Over-polish kills the emotional honesty that made these drawings work in the first place.</p>
-        </div>
-        <div class="principle rv d3">
-          <h3>Pattern as <span class="it">connective tissue.</span></h3>
-          <p>Small repeated motifs — micro hops, leaves, dots, stars, tendrils — became the fill texture across packaging. They tie hero artwork to background, so nothing on a can ever feels orphaned.</p>
+        <div class="cell rv d2">
+          <img src="../media/Pixie/first-krush.png" alt="Original illustration — First Krush symmetrical heart with eye and plants">
+          <span class="lab">03 — Heart</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 03 · THE MARK — totem logo on dark ─── -->
+  <!-- ─── 02 · THE MARK ─── -->
   <section class="block teal">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 03 — The mark</span>
+          <span>§ 02 — The mark</span>
           <span class="ttl">A totem, <span class="it">not a badge.</span></span>
         </div>
-        <div class="r">Eye, hops, tendrils, drip<br>One symbol, all five principles</div>
+        <div class="r">Eye · hops · tendrils · drip<br>The whole world, condensed</div>
       </div>
 
-      <div class="body rv">
-        <p>The mark needed to do the impossible — condense all that folk-surreal chaos into one symbol you could read at favicon size, scale to a wall mural, and embroider onto a beanie. We landed on a vertical totem. An eye at the heart, hops blooming above, tendrils curling out the sides, and a single drop falling from the bottom. Three of the five principles live inside it; the linework and flat colour carry the other two.</p>
-        <p>Symmetric enough to feel mythic. Simple enough to scale. Distinctive enough that nobody confuses it with another brewery. Because we resisted the urge to draw a literal hop cone, the mark reads as ceremonial — a brewer's totem — rather than another generic craft-beer pictogram.</p>
-      </div>
+      <p class="lede rv">We didn't push any of the drawings toward becoming the mark — they were too detailed to survive at favicon size. Instead we pulled the DNA out: the eye, the hop spirit, the tendrils. One vertical totem that scales from a beanie embroidery to a pub mural.</p>
 
-      <div class="mark-show">
-        <div class="stage rv">
-          <img src="../media/Pixie/logo-mark.png" alt="Pixie Brewing primary mark — a vertical folk-surreal totem with a green hop bloom on top, an eye with patterned petals at the centre, curling tendrils either side, and a small drip falling from the base">
+      <div class="stage-pair">
+        <div class="hero-stage tall rv">
+          <img src="../media/Pixie/logo-mark.png" alt="Pixie Brewing primary mark — a folk-surreal totem with a hop bloom on top, an eye at the centre with patterned petals, curling tendrils, and a single drip below">
         </div>
-        <div class="stage wordmark rv d1">
-          <img src="../media/Pixie/logo-wordmark.png" alt="Pixie Brewing wordmark — hand-set chunky display type spelling Pixie Brewing, with two small leaf flourishes either side of Brewing, and the tagline Strange Beers · Strange Friends · Good Times underneath">
+        <div class="note rv d1">
+          <h3>One symbol, <em>five principles</em>.</h3>
+          <p>An eye at the heart. Hops blooming above as a "spirit", not a literal cone. Tendrils curling out either side. A single drip below. Heavy black linework holding it together. Flat unblended colour inside.</p>
+          <p>Symmetric enough to feel mythic. Simple enough to scale. Distinctive enough that nobody confuses it with another brewery.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: clamp(28px, 3.5vw, 48px);">
+        <div class="hero-stage wide rv">
+          <img src="../media/Pixie/logo-wordmark.png" alt="Pixie Brewing wordmark — hand-set chunky display type with Strange Beers · Strange Friends · Good Times tagline underneath">
+        </div>
+        <div class="hero-stage wide rv d1">
+          <img src="../media/Pixie/motif-totem.png" alt="Vertical totem variation — eye above a hop-leaf body with leafy wings and a small drip">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 04 · VARIATIONS — eye motif, vertical totem, PX monogram ─── -->
+  <!-- ─── 03 · MARK SYSTEM — variations ─── -->
   <section class="block">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 04 — System variations</span>
-          <span class="ttl">Three reductions of the same idea, <span class="it">for every surface.</span></span>
+          <span>§ 03 — System variations</span>
+          <span class="ttl">One mark, <span class="it">four reductions.</span></span>
         </div>
-        <div class="r">Eye motif · Vertical totem · PX monogram<br>One language, three voices</div>
+        <div class="r">Eye motif · Vertical totem<br>PX monogram · Hop stamp</div>
       </div>
 
-      <div class="body rv">
-        <p>A single mark, no matter how good, will never carry a whole brewery alone. So we drew variations — three reductions of the same logic, each engineered for surfaces the primary totem couldn't comfortably cover.</p>
-      </div>
+      <p class="lede rv">A single mark can't cover every surface alone. So we drew four reductions of the same logic — each engineered for a job the primary totem couldn't do on its own.</p>
 
-      <div class="variations">
-        <div class="variation rv">
-          <img src="../media/Pixie/eye-motif.png" alt="Pixie Brewing eye motif — a wide eye with green hops above, red wings either side, hand-drawn folk style">
-          <div class="lab">01 — Eye motif</div>
+      <div class="grid-4">
+        <div class="cell rv">
+          <img src="../media/Pixie/eye-motif.png" alt="Eye motif variant — wide eye with green hops above and red wings either side">
+          <span class="lab">01 — Eye</span>
         </div>
-        <div class="variation rv d1">
-          <img src="../media/Pixie/eye-totem.png" alt="Pixie Brewing vertical totem — a tall stacked motif with hops above an eye, a yellow body and leafy wings below">
-          <div class="lab">02 — Vertical totem</div>
+        <div class="cell rv d1">
+          <img src="../media/Pixie/eye-totem.png" alt="Vertical totem variant — eye atop a hop body with leafy wings">
+          <span class="lab">02 — Totem</span>
         </div>
-        <div class="variation rv d2">
-          <img src="../media/Pixie/px.png" alt="Pixie Brewing PX monogram — a hand-drawn PX in heavy black inside a circular wreath of green hop leaves with tiny eyes nested in them">
-          <div class="lab">03 — PX monogram</div>
+        <div class="cell rv d2">
+          <img src="../media/Pixie/px.png" alt="PX monogram — hand-drawn PX letters inside a circular wreath of hops with tiny eyes">
+          <span class="lab">03 — PX</span>
         </div>
-      </div>
-
-      <div class="body rv d1" style="margin-top: clamp(24px, 3vw, 36px);">
-        <p>The <span class="em">eye motif</span> isolates the focal point — it lives on pump clips, on tap badges, on the back of tees where you need recognition at three metres but don't have room for a full lockup. The <span class="em">vertical totem</span> is the wrap variant — it strips into one colour for glass etching, embroidery and tax-stamp foil. The <span class="em">PX monogram</span> handles small-spot duties: bottle-cap liner, KeyKeg neck-ring sticker, hangtag corner. Together they cover every contact point the brewery has with its drinkers, without ever feeling like a watered-down sub-brand.</p>
+        <div class="cell rv d3">
+          <img src="../media/Pixie/hop-motif.png" alt="Isolated hop motif — single hop cone in green with thick black outline">
+          <span class="lab">04 — Hop</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 05 · THE ILLUSTRATED CATALOGUE — the whole world ─── -->
-  <section class="block teal">
+  <!-- ─── 04 · PACKAGING — the big 3D can moment ─── -->
+  <section class="block teal-2">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 05 — The catalogue</span>
-          <span class="ttl">Each beer is <span class="it">its own creature.</span></span>
+          <span>§ 04 — Packaging</span>
+          <span class="ttl">Cans that <span class="it">spill into the world.</span></span>
         </div>
-        <div class="r">Eight illustrated cans &amp; growing<br>Same language · different protagonist</div>
+        <div class="r">Hero + field composition<br>One rule, every can</div>
       </div>
 
-      <div class="body rv">
-        <p>Once the principles were locked, we kept commissioning new illustrations in the same hand for each beer Pixie released — a steadily-growing illustrated catalogue that turns the brewery into a kind of folk bestiary. Hop-haired pixie blowing a pipe of smoke for the Norsk Pilsner. A green crocodile carrying barrels for the Longest Green. A masked imperial-stout figure in a stained-glass robe. A heraldic bird for the red IPA. We treat each can less like a packaging job and more like a new <span class="em">character</span> joining the troupe.</p>
-      </div>
+      <p class="lede rv">Every can has a single hero illustration anchored in the centre. Side characters and a quiet pattern field do the supporting work around it. No can ever screams; each one tells a story.</p>
 
-      <div class="catalogue">
-        <div class="cat-cell rv">
-          <div class="img"><img src="../media/Pixie/garage-daze.png" alt="Garage Daze illustrated can artwork — a garage building on roller skates with hop vines"></div>
-          <div class="nm">Garage <span class="it">Daze.</span></div>
-          <div class="style">NEIPA · 4.9%</div>
+      <div class="hero-stage wide rv" style="aspect-ratio: 16/9; padding: 0;">
+        <img src="../media/Pixie/can-mockup.png" alt="Pixie Brewing Garage Daze can mockup — the printed can stands left, with the artwork bursting out the open lid: hop plants, a kombi van, a small house, a cat holding a beer mug, and Strange Beers Good Times text floating in the centre" style="max-width: 100%; max-height: 100%; object-fit: cover; width: 100%; height: 100%; border-radius: 6px;">
+      </div>
+      <p style="font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: rgba(245,243,238,.55); margin-top: 14px; text-align: center;">Fig. 04 — Garage Daze · the can as a portal</p>
+
+      <div class="grid-4" style="margin-top: clamp(36px, 4vw, 64px);">
+        <div class="cell rv">
+          <img src="../media/Pixie/garage-daze.png" alt="Garage Daze can artwork">
+          <span class="lab">Garage Daze · NEIPA</span>
         </div>
-        <div class="cat-cell rv">
-          <div class="img"><img src="../media/Pixie/first-krush.png" alt="First Krush illustrated can artwork — symmetrical red heart with eye and hop plants"></div>
-          <div class="nm">First <span class="it">Krush.</span></div>
-          <div class="style">Hazy IPA · 6.4%</div>
+        <div class="cell rv d1">
+          <img src="../media/Pixie/first-krush.png" alt="First Krush can artwork">
+          <span class="lab">First Krush · Hazy</span>
         </div>
-        <div class="cat-cell rv">
-          <div class="img"><img src="../media/Pixie/rib-ride.png" alt="Rib Ride illustrated can artwork — heraldic red and green bird with hop in beak"></div>
-          <div class="nm">Rib <span class="it">Ride.</span></div>
-          <div class="style">Red IPA · 4.5%</div>
+        <div class="cell rv d2">
+          <img src="../media/Pixie/rib-ride.png" alt="Rib Ride can artwork">
+          <span class="lab">Rib Ride · Red IPA</span>
         </div>
-        <div class="cat-cell rv">
-          <div class="img"><img src="../media/Pixie/longest-green.png" alt="Longest Green illustrated can artwork — pixie figure with a cottage and hop leaves"></div>
-          <div class="nm">Longest <span class="it">Green.</span></div>
-          <div class="style">Hazy Pale · 4.6%</div>
+        <div class="cell rv d3">
+          <img src="../media/Pixie/longest-green.png" alt="Longest Green can artwork">
+          <span class="lab">Longest Green · Hazy Pale</span>
         </div>
-        <div class="cat-cell rv d1">
-          <div class="img"><img src="../media/Pixie/longest-green-croc.png" alt="Longest Green alternate artwork — a long green crocodile carrying small barrels"></div>
-          <div class="nm">Longest Green <span class="it">— Croc edition.</span></div>
-          <div class="style">Hazy Pale · 4.6%</div>
+        <div class="cell rv">
+          <img src="../media/Pixie/norsk-pilsner.png" alt="Norsk Pilsner can artwork">
+          <span class="lab">Norsk Pilsner · Lager</span>
         </div>
-        <div class="cat-cell rv d1">
-          <div class="img"><img src="../media/Pixie/norsk-pilsner.png" alt="Norsk Pilsner illustrated can artwork — green-haired pixie smoking a pipe with a small dog"></div>
-          <div class="nm">Norsk <span class="it">Pilsner.</span></div>
-          <div class="style">Pilsner · 4.6%</div>
+        <div class="cell rv d1">
+          <img src="../media/Pixie/incognito.png" alt="Incognito Imperial Stout can artwork">
+          <span class="lab">Incognito · Imperial Stout</span>
         </div>
-        <div class="cat-cell rv d1">
-          <div class="img"><img src="../media/Pixie/incognito.png" alt="Incognito Imperial Stout illustrated can artwork — masked stained-glass robed figure with hops"></div>
-          <div class="nm">Incognito <span class="it">Imperial Stout.</span></div>
-          <div class="style">Imperial Stout</div>
+        <div class="cell rv d2">
+          <img src="../media/Pixie/sticky-end.png" alt="Sticky End can artwork">
+          <span class="lab">Sticky End · NEIPA</span>
         </div>
-        <div class="cat-cell rv d1">
-          <div class="img"><img src="../media/Pixie/sticky-end.png" alt="Sticky End illustrated artwork — a figure made of upside-down cup and toffee dripping"></div>
-          <div class="nm">Sticky <span class="it">End.</span></div>
-          <div class="style">NEIPA · 6.5%</div>
+        <div class="cell rv d3">
+          <img src="../media/Pixie/character-wolf.png" alt="Wolf character holding a beer mug">
+          <span class="lab">Cast member · Wolf</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 06 · HERO AND FIELD — the packaging composition rule ─── -->
-  <section class="block paper2">
-    <div class="wrap">
-      <div class="seclabel">
-        <div class="l">
-          <span>§ 06 — Hero &amp; field</span>
-          <span class="ttl">We invented one rule that <span class="it">stops every can from screaming.</span></span>
-        </div>
-        <div class="r">Hero anchor · creature characters · micro pattern<br>Why nothing looks like collage</div>
-      </div>
-
-      <div class="body rv">
-        <p>The collapse trap with illustrative brands is that every element competes equally. Six bright shapes on a 33cl can with no hierarchy looks like a sticker album, not a packaging system. So we built one composition rule and applied it everywhere: <span class="em">hero and field</span>. A single hero illustration anchors the centre. One or two secondary creatures sit in supporting positions. Around them, a quiet micro-pattern — small hops, tendrils, hidden eyes, leaves — becomes connective tissue rather than competition. The eye lands on the hero, wanders to the side characters, then drifts through the pattern. The can stops shouting and starts <span class="em">telling a story</span>.</p>
-      </div>
-
-      <div class="hf-pair">
-        <div class="stage rv">
-          <img src="../media/Pixie/incognito.png" alt="Incognito Imperial Stout — example of hero and field composition: the masked stout figure anchors the centre while hops, leaves and hidden eyes form the surrounding pattern field">
-        </div>
-        <div class="body rv d1">
-          <p>The Incognito Imperial Stout artwork is the rule at its most uncompromising. A single masked figure dressed in stained-glass robes anchors dead-centre. Hop plumes grow out either shoulder as secondary characters. The background fills with woven pattern, hidden eyes and curling tendrils — never bright enough to compete, never empty enough to leave the figure floating. You can read the can at three metres across a bar (mask + colour), at one metre as you reach for it (figure + hops), and at twenty centimetres in your hand (the hidden pattern).</p>
-          <p>Every Pixie can after this one follows the same hierarchy. The protagonist changes; the rule doesn't.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 07 · COLOUR & SKU STRATEGY ─── -->
+  <!-- ─── 05 · TAP BADGES — the centred Incognito ─── -->
   <section class="block">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 07 — Colour &amp; SKU strategy</span>
-          <span class="ttl">Black linework stays. <span class="it">Colour does the sorting.</span></span>
+          <span>§ 05 — Tap badges</span>
+          <span class="ttl">Where the brand <span class="it">meets the bar.</span></span>
         </div>
-        <div class="r">Style families, not arbitrary brights<br>Recognition before the eye reads the name</div>
+        <div class="r">Circular pump-clip system<br>Same illustration, ceremonial frame</div>
       </div>
 
-      <div class="body rv">
-        <p>Once the brewery grew past four beers, colour had to start <span class="em">earning its keep</span>. So we made a structural decision: linework stays black across everything, and colour gets assigned by style family. Now a drinker can pick the right can off the shelf without reading a single word.</p>
-      </div>
+      <p class="lede rv">Pixie sells exclusively in 30-litre KeyKegs through pubs and festivals — so the tap badge is where most drinkers first meet the brand. We built a single circular system: ornate gold border, name set arching in heritage caps, illustration centred, style and ABV beneath.</p>
 
-      <div class="colour-strategy">
-        <div class="swatch rv">
-          <div class="chip" style="background: #5DAE3B;"></div>
-          <div class="lab">Family 01</div>
-          <h4>Green / yellow — <span class="it">IPA &amp; pale.</span></h4>
-          <p>The brewery's home territory. Greens, hop yellows, soft chartreuse. Garage Daze, First Krush, Longest Green, On A Call all live here.</p>
-        </div>
-        <div class="swatch rv d1">
-          <div class="chip" style="background: #C8392B;"></div>
-          <div class="lab">Family 02</div>
-          <h4>Warm reds — <span class="it">red &amp; amber.</span></h4>
-          <p>Saturated reds, ember oranges. For Rib Ride and amber styles where toasty malt sits behind the hop. Reads warm against pub-low light.</p>
-        </div>
-        <div class="swatch rv d2">
-          <div class="chip" style="background: #2A5E8F;"></div>
-          <div class="lab">Family 03</div>
-          <h4>Blue / aqua — <span class="it">lagers.</span></h4>
-          <p>Cooler blues and aqua greens for pilsners and clean lagers. Norsk Pilsner, Snap Crackle &amp; Hop. Crisp on shelf next to the warmer IPAs.</p>
-        </div>
-        <div class="swatch rv d3">
-          <div class="chip" style="background: #3A2E20;"></div>
-          <div class="lab">Family 04</div>
-          <h4>Deep earth — <span class="it">stout &amp; dark.</span></h4>
-          <p>Muted brown, plum, indigo and ink. Incognito Imperial Stout, Get Stuffed Christmas Stout, Discovery brown. Heavier — and visually it should look heavier too.</p>
-        </div>
-      </div>
-
-      <div class="body rv d1" style="margin-top: clamp(28px, 3vw, 44px);">
-        <p>The system is deliberately loose. Inside each family there's room for the illustration to play — a Rib Ride bird can be more orange than red, a Norsk pixie can be all green with a single blue accent. What stays consistent is the family the can belongs to, so the brewery can scale to thirty SKUs and still read as one shelf at a beer festival.</p>
+      <div class="tap-stage rv">
+        <img src="../media/Pixie/tap-incognito.png" alt="Incognito Imperial Stout tap badge — circular dark badge with gold border, INCOGNITO arched across the top in multi-colour letters, the masked illustrated figure in the centre, and IMPERIAL STOUT 4.8% ABV below">
       </div>
     </div>
   </section>
 
-  <!-- ─── Pull quote — green slab ─── -->
+  <!-- ─── Pull quote ─── -->
   <section class="quote-slab">
     <div class="wrap">
-      <div class="lab">The line that ran through everything</div>
-      <h2>Strange beers. Strange friends. <span class="it">Good times.</span></h2>
+      <div class="lab">The line under every can</div>
+      <h2>Keep it hand-drawn.<br>Keep it imperfect.<br><span class="it">Keep it alive.</span></h2>
       <div class="credit">
-        <span>Pixie Brewing — tagline</span>
+        <span>Pixie Brewing — internal house rules</span>
         <span>Dastardly &amp; Muttley · 2026</span>
       </div>
     </div>
   </section>
 
-  <!-- ─── 08 · THE WEBSITE ─── -->
-  <section class="block">
+  <!-- ─── 06 · THE WEBSITE ─── -->
+  <section class="block teal">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 08 — The website</span>
-          <span class="ttl">A site you fall into, <span class="it">not a SaaS template.</span></span>
+          <span>§ 06 — The website</span>
+          <span class="ttl">A site you <span class="it">fall into.</span></span>
         </div>
-        <div class="r">brand.pixiebrewing.com<br>Single page · custom WebGL hero · world bible</div>
+        <div class="r">pixiebrewing.com<br>Cinematic single page · cinematic hero · brand bible</div>
       </div>
 
-      <div class="body rv">
-        <p>The site brief came out of one sentence we wrote into the project's house rules: <span class="em">build a world, not pages</span>. Every other craft-brewery site we looked at felt like a content-managed marketing template that happened to be about beer. We wanted the opposite — a site that felt like stepping into the brewery's mythology, where every section was discovered rather than navigated to.</p>
-      </div>
+      <p class="lede rv">Every other craft-brewery site felt like a content-managed marketing template that happened to be about beer. We wrote one rule into the brief — <span class="it">build a world, not pages</span> — and built the whole site around it.</p>
+    </div>
+  </section>
 
-      <div class="web-grid">
-        <div class="web-card rv">
-          <div class="n">01 — Homepage</div>
-          <h3>Cinematic hero, <span class="it">shader-driven.</span></h3>
-          <p>The hero isn't a video tag. We bound a 4K footage loop to a custom GLSL shader on a canvas — grain, paper texture and a slow drift live on top of it in real time, so the brewery world starts moving before anything reads "brewery".</p>
-          <span class="stack">WebGL · GLSL · 460vh sticky scroll</span>
-        </div>
-        <div class="web-card rv d1">
-          <div class="n">02 — Brand bible</div>
-          <h3>A second page <span class="it">just for the world.</span></h3>
-          <p>brand.html is its own atmospheric long-scroll — manifesto, palette, voice, the strange-beers catalogue, the marks, the milestones. It's the brewery's mythology document made into a website.</p>
-          <span class="stack">Long-scroll · paper-texture sections</span>
-        </div>
-        <div class="web-card rv d2">
-          <div class="n">03 — Merch storefront</div>
-          <h3>Print-on-demand <span class="it">in an overlay.</span></h3>
-          <p>Rather than break the cinematic single-universe feel, the merch store opens as a full-screen overlay. Products pull live from the Brandflow POD platform; checkout happens inside the overlay's iframe so the user never leaves the world.</p>
-          <span class="stack">Brandflow POD API · iframe checkout overlay</span>
-        </div>
-      </div>
+  <!-- Full-bleed scroll-triggered video -->
+  <section class="vid-bleed">
+    <video muted loop playsinline preload="metadata" poster="../media/Pixie/site-screenshot.jpg" data-scroll-play>
+      <source src="../media/Pixie/site-demo.mp4" type="video/mp4" />
+    </video>
+    <div class="cap">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Pixie Brewing site · live scroll</span>
+    </div>
+  </section>
 
-      <div class="body rv d1" style="margin-top: clamp(28px, 3vw, 44px);">
-        <p>Under the hood, the site is deliberately old-school: three hand-written HTML files, no framework, no build step. Inline CSS, inline JS, custom WebGL where it earns it. We made that call early — a brewery this hand-drawn deserves a hand-built site. A React/Next stack would have added speed for the dev, slowness for the visitor, and a layer of template-feel that nothing else in the project has.</p>
+  <!-- Site screenshot + note -->
+  <section class="block teal">
+    <div class="wrap">
+      <div class="stage-pair" style="grid-template-columns: 1.4fr 1fr;">
+        <div class="site-frame rv">
+          <img src="../media/Pixie/site-screenshot.jpg" alt="Pixie Brewing live site — Born in a garage section in deep pink, with the brewery house illustration on the right and the brewery's origin story on the left">
+        </div>
+        <div class="note rv d1">
+          <h3>Every section is its <em>own colour world.</em></h3>
+          <p>Above-the-fold is the cinematic hero. Past that, each section flips into a new dominant brand colour with one matching illustration — pink for the origin story, deep teal for the catalogue, sun-yellow for the merch.</p>
+          <p>It reads less like a website and more like flipping through a brewery's own picture book.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 09 · WHAT WE SHIPPED ─── -->
+  <!-- ─── 07 · WHAT WE SHIPPED ─── -->
   <section class="block paper2">
     <div class="wrap">
       <div class="seclabel">
         <div class="l">
-          <span>§ 09 — What we shipped</span>
+          <span>§ 07 — What we shipped</span>
           <span class="ttl">A whole brewery universe, <span class="it">in one engagement.</span></span>
         </div>
-        <div class="r">From three loose drawings → a deployable system<br>One studio · end-to-end build by Dastardly &amp; Muttley</div>
+        <div class="r">From three loose drawings → a deployable system<br>One studio · end-to-end build by D&amp;M</div>
       </div>
 
       <div class="outcome-list">
         <div class="outcome-row"><div class="n">01.</div><div class="th"><img src="../media/Pixie/logo-mark.png" alt=""></div><div class="lbl">Primary <span class="it">totem mark</span></div><div class="y">+ wordmark · tagline</div></div>
-        <div class="outcome-row"><div class="n">02.</div><div class="th"><img src="../media/Pixie/eye-motif.png" alt=""></div><div class="lbl">Mark <span class="it">variations</span></div><div class="y">Eye · totem · PX monogram</div></div>
+        <div class="outcome-row"><div class="n">02.</div><div class="th"><img src="../media/Pixie/eye-motif.png" alt=""></div><div class="lbl">Mark <span class="it">variations</span></div><div class="y">Eye · totem · PX · hop</div></div>
         <div class="outcome-row"><div class="n">03.</div><div class="th"><img src="../media/Pixie/garage-daze.png" alt=""></div><div class="lbl">Illustrated <span class="it">can system</span></div><div class="y">8+ SKUs, growing</div></div>
-        <div class="outcome-row"><div class="n">04.</div><div class="th"><img src="../media/Pixie/norsk-pilsner.png" alt=""></div><div class="lbl">Hero &amp; field <span class="it">composition rule</span></div><div class="y">Applied across all packaging</div></div>
-        <div class="outcome-row"><div class="n">05.</div><div class="th"><img src="../media/Pixie/incognito.png" alt=""></div><div class="lbl">Colour &amp; SKU <span class="it">architecture</span></div><div class="y">Four style families</div></div>
-        <div class="outcome-row"><div class="n">06.</div><div class="th"><img src="../media/Pixie/eye-totem.png" alt=""></div><div class="lbl">Glassware &amp; <span class="it">merch direction</span></div><div class="y">Monochrome wrap system</div></div>
-        <div class="outcome-row"><div class="n">07.</div><div class="th"><img src="../media/Pixie/brewery.png" alt=""></div><div class="lbl">Cinematic <span class="it">website</span></div><div class="y">Home · brand bible · merch overlay</div></div>
+        <div class="outcome-row"><div class="n">04.</div><div class="th"><img src="../media/Pixie/tap-incognito.png" alt=""></div><div class="lbl">Tap badges &amp; <span class="it">pump clips</span></div><div class="y">Pubs · festivals · trade</div></div>
+        <div class="outcome-row"><div class="n">05.</div><div class="th"><img src="../media/Pixie/poster-hero.png" alt=""></div><div class="lbl">Brand <span class="it">key-visual</span></div><div class="y">Cast-of-characters poster</div></div>
+        <div class="outcome-row"><div class="n">06.</div><div class="th"><img src="../media/Pixie/site-screenshot.jpg" alt=""></div><div class="lbl">Cinematic <span class="it">website</span></div><div class="y">Home · brand bible · merch</div></div>
       </div>
     </div>
   </section>
@@ -895,10 +762,22 @@
   </section>
 
   <script>
+    // Reveal on scroll
     const io = new IntersectionObserver(es => {
       es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    // Scroll-triggered video
+    document.querySelectorAll('video[data-scroll-play]').forEach(vid => {
+      const vio = new IntersectionObserver(es => {
+        es.forEach(e => {
+          if (e.isIntersecting){ vid.play().catch(() => {}); }
+          else { vid.pause(); }
+        });
+      }, { threshold: 0.35 });
+      vio.observe(vid);
+    });
   </script>
 </body>
 </html>
